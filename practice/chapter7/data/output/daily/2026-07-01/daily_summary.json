@@ -1,0 +1,28 @@
+{
+  "by_category": {
+    "도로": 7,
+    "소음": 5,
+    "청소": 3,
+    "환경": 3
+  },
+  "by_region": [
+    {
+      "count": 5,
+      "lawd_cd": "11440",
+      "region": "마포구"
+    },
+    {
+      "count": 5,
+      "lawd_cd": "11620",
+      "region": "관악구"
+    },
+    {
+      "count": 8,
+      "lawd_cd": "11680",
+      "region": "강남구"
+    }
+  ],
+  "date": "2026-07-01",
+  "mapped_total": 18,
+  "top_category": "도로"
+}

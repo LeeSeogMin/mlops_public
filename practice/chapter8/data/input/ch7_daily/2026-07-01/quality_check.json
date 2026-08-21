@@ -1,0 +1,15 @@
+{
+  "alias_fixed": 4,
+  "date": "2026-07-01",
+  "dup_removed": 0,
+  "gate": "PASS",
+  "mapped": 18,
+  "missing": 1,
+  "missing_rate": 0.05,
+  "physical": 20,
+  "preservation_ok": true,
+  "unmapped": 1,
+  "unmapped_rate": 0.05,
+  "valid": 20,
+  "ws_stripped": 1
+}

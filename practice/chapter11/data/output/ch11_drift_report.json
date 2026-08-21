@@ -1,0 +1,133 @@
+{
+  "alert_rule": {
+    "combine": "경보=KS유의 AND PSI>=0.25, 주의=둘 중 하나, 정상=둘 다 미달",
+    "ks": "p < 0.05 (2장과 동일 alpha)",
+    "psi": "0.1 주의 / 0.25 경보 (신용평가 업계 관행 — Yurdakul 2018)"
+  },
+  "column": "pm10Value",
+  "comparison_a_1hour": {
+    "alert_level": "주의",
+    "alpha": 0.05,
+    "baseline_mean": 20.025,
+    "baseline_n": 40,
+    "baseline_time": "2026-06-28 22:00",
+    "bins": {
+      "baseline_counts": [
+        7,
+        5,
+        10,
+        5,
+        13
+      ],
+      "baseline_props": [
+        0.1765,
+        0.1294,
+        0.2471,
+        0.1294,
+        0.3176
+      ],
+      "bins_effective": 5,
+      "bins_requested": 5,
+      "current_counts": [
+        3,
+        6,
+        12,
+        3,
+        16
+      ],
+      "current_props": [
+        0.0824,
+        0.1529,
+        0.2941,
+        0.0824,
+        0.3882
+      ],
+      "labels": [
+        "[-inf, 17.0)",
+        "[17.0, 19.0)",
+        "[19.0, 21.0)",
+        "[21.0, 22.0)",
+        "[22.0, inf)"
+      ]
+    },
+    "column": "pm10Value",
+    "current_mean": 20.775,
+    "current_n": 40,
+    "current_time": "2026-06-28 23:00",
+    "kl_base_to_curr": 0.0646,
+    "kl_curr_to_base": 0.0548,
+    "ks_significant": false,
+    "ks_statistic": 0.175,
+    "p_value": 0.5786,
+    "psi": 0.1193,
+    "psi_band": "주의",
+    "psi_equals_kl_sum": true,
+    "recommended_action": "모니터링 강화 + 원인 분류 착수(계절/정책/시스템 변경/데이터 결함)"
+  },
+  "comparison_a_matches_ch2": true,
+  "comparison_b_9days_time_aligned": {
+    "alert_level": "주의",
+    "alpha": 0.05,
+    "baseline_mean": 20.025,
+    "baseline_n": 40,
+    "baseline_time": "2026-06-28 22:00",
+    "bins": {
+      "baseline_counts": [
+        7,
+        5,
+        10,
+        5,
+        13
+      ],
+      "baseline_props": [
+        0.1765,
+        0.1294,
+        0.2471,
+        0.1294,
+        0.3176
+      ],
+      "bins_effective": 5,
+      "bins_requested": 5,
+      "current_counts": [
+        13,
+        7,
+        11,
+        5,
+        4
+      ],
+      "current_props": [
+        0.3176,
+        0.1765,
+        0.2706,
+        0.1294,
+        0.1059
+      ],
+      "labels": [
+        "[-inf, 17.0)",
+        "[17.0, 19.0)",
+        "[19.0, 21.0)",
+        "[21.0, 22.0)",
+        "[22.0, inf)"
+      ]
+    },
+    "column": "pm10Value",
+    "current_mean": 17.75,
+    "current_n": 40,
+    "current_time": "2026-07-07 22:00",
+    "kl_base_to_curr": 0.1826,
+    "kl_curr_to_base": 0.1497,
+    "ks_significant": false,
+    "ks_statistic": 0.225,
+    "p_value": 0.2657,
+    "psi": 0.3324,
+    "psi_band": "경보",
+    "psi_equals_kl_sum": true,
+    "recommended_action": "모니터링 강화 + 원인 분류 착수(계절/정책/시스템 변경/데이터 결함)"
+  },
+  "notes": [
+    "비교창 정렬: 기준·현재 모두 22:00 정시 — 일중 변동 교란을 설계로 제거",
+    "n=40 소표본 — KS 검정력 낮음, PSI 구간당 기대 8건으로 출렁임에 민감",
+    "알림≠재학습: 권고 조치는 원인 분류를 먼저 요구(11.4)"
+  ],
+  "practice": "11.1 기준 vs 현재 분포 비교"
+}

@@ -1,0 +1,12 @@
+{
+  "forecast": 6.0,
+  "health": {
+    "model_name": "complaint_daily_forecaster",
+    "model_source": "local-dir",
+    "model_version": "1",
+    "shadow_enabled": false,
+    "status": "ok"
+  },
+  "invalid_input_status": 422,
+  "predict_status": 200
+}

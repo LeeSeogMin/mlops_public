@@ -1,0 +1,67 @@
+{
+  "all_passed": true,
+  "items": [
+    {
+      "item": "편향 평가가 그룹별로 산출되었는가",
+      "no": 1,
+      "passed": true
+    },
+    {
+      "item": "그룹 MAE 격차·비율이 보고되었는가",
+      "no": 2,
+      "passed": true
+    },
+    {
+      "item": "편향의 방향(부호)이 식별되었는가",
+      "no": 3,
+      "passed": true
+    },
+    {
+      "item": "설명 결과(permutation importance)가 산출되었는가",
+      "no": 4,
+      "passed": true
+    },
+    {
+      "item": "배포 모델의 피처 의존성이 설명되었는가(상수=피처 무시 식별)",
+      "no": 5,
+      "passed": true
+    },
+    {
+      "item": "모델 카드 9절이 전부 채워졌는가",
+      "no": 6,
+      "passed": true
+    },
+    {
+      "item": "모델 카드에 윤리적 고려·한계가 명시되었는가",
+      "no": 7,
+      "passed": true
+    },
+    {
+      "item": "정책 루브릭 3기준(법적 정합성·중립성·유해성)이 정의되었는가",
+      "no": 8,
+      "passed": true
+    },
+    {
+      "item": "개인정보 영향평가 검토 지점(제33조)이 있는가",
+      "no": 9,
+      "passed": true
+    },
+    {
+      "item": "자동화된 결정 이의제기 절차(제37조의2)가 있는가",
+      "no": 10,
+      "passed": true
+    },
+    {
+      "item": "소표본 한계가 정직하게 표기되었는가",
+      "no": 11,
+      "passed": true
+    },
+    {
+      "item": "데이터 지문으로 훈련 데이터가 증명 가능한가(9장 교차)",
+      "no": 12,
+      "passed": true
+    }
+  ],
+  "passed": 12,
+  "total": 12
+}

@@ -1,0 +1,12 @@
+{
+  "dup_removed": [],
+  "missing": [
+    "C260703-021"
+  ],
+  "unmapped": [
+    {
+      "complaint_id": "C260703-022",
+      "region_raw": "김포"
+    }
+  ]
+}

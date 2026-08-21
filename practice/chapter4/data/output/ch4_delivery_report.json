@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-07-07T02:19:59.114321+00:00",
+  "platform": "macOS-14.3.1-arm64-arm-64bit-Mach-O",
+  "python": "3.14.6",
+  "bootstrap": "localhost:9092",
+  "topic": "public.complaint.received.v1",
+  "partitions": 3,
+  "scenarios": {
+    "A_baseline": {
+      "produced": 200,
+      "partition_distribution": {
+        "0": 61,
+        "1": 76,
+        "2": 63
+      },
+      "key_to_single_partition": true,
+      "processed_records": 200,
+      "unique_events": 200,
+      "duplicated_events": 0,
+      "duplicate_records": 0,
+      "lost_events": 0,
+      "latency_ms": {
+        "count": 200,
+        "mean": 3.5,
+        "max": 110.7
+      }
+    },
+    "B_at_most_once_crash": {
+      "produced": 30,
+      "crash_after": 10,
+      "crash_exit_code": 42,
+      "processed_records": 10,
+      "unique_events": 10,
+      "duplicated_events": 0,
+      "duplicate_records": 0,
+      "lost_events": 20
+    },
+    "C_at_least_once_crash": {
+      "produced": 30,
+      "crash_after": 10,
+      "crash_exit_code": 42,
+      "processed_records": 40,
+      "unique_events": 30,
+      "duplicated_events": 10,
+      "duplicate_records": 10,
+      "lost_events": 0
+    }
+  }
+}

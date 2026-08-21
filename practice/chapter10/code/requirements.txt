@@ -1,0 +1,10 @@
+# 10장 실습: FastAPI 모델 서빙 + Docker + CI 검증
+# (버전 고정은 실측 후 본문 표기 기준 — 설치 시점 최신 안정판 사용)
+fastapi
+uvicorn
+mlflow
+scikit-learn
+pandas
+pyarrow
+pytest
+httpx

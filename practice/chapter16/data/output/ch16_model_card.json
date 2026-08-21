@@ -1,0 +1,90 @@
+{
+  "reference": "Mitchell et al. (2019) Model Cards for Model Reporting",
+  "runs": {
+    "challenger_linear": {
+      "coef": {
+        "intercept": 3.6818,
+        "slope": 0.4091
+      },
+      "train_mae": 1.0455
+    },
+    "champion_baseline_mean": {
+      "constant_prediction": 6.0,
+      "train_mae": 1.0
+    }
+  },
+  "section_count": 9,
+  "sections": [
+    {
+      "heading": "1. 모델 상세(Model Details)",
+      "items": [
+        "모델명: complaint_daily_forecaster",
+        "배포 모델(champion): v1 baseline_mean — 상수 예측(전 입력 6.0)",
+        "후보(challenger): v2 linear — 승격 반려(9장, 개선 없음)",
+        "훈련 데이터 지문(sha256 앞 16자리): 96f6b6b3ce9dcdd1",
+        "소유자: 민원데이터팀(가상·시뮬레이션 표기), 레지스트리: 9장 MLflow"
+      ]
+    },
+    {
+      "heading": "2. 의도된 용도(Intended Use)",
+      "items": [
+        "용도: 지역구별 익일 민원 건수 예측(교육용 운영 실습)",
+        "범위 밖(out-of-scope): 개인 대상 결정, 자원 최종 배분의 완전 자동화, 행정 처분의 근거로 단독 사용"
+      ]
+    },
+    {
+      "heading": "3. 요인(Factors)",
+      "items": [
+        "평가 그룹축: 지역구(강남·마포·관악) — 법적 보호속성이 아니라 운영 그룹축",
+        "지역 형평(균형발전)은 실재하는 공공 공정성 관심사"
+      ]
+    },
+    {
+      "heading": "4. 지표(Metrics)",
+      "items": [
+        "그룹별 MAE·편향(평균 부호오차)·그룹 캘리브레이션(예측평균 vs 실측평균)",
+        "전체 MAE: 1.0 (9장 baseline 훈련 MAE와 일치)"
+      ]
+    },
+    {
+      "heading": "5. 평가 데이터(Evaluation Data)",
+      "items": [
+        "훈련 쌍 6개(3지역 × 2쌍), 원천: 7장 확정 집계 3일(7/1~7/3)",
+        "극소 표본 — 성능의 주장이 아니라 편향 평가의 구조 시연"
+      ]
+    },
+    {
+      "heading": "6. 훈련 데이터(Training Data)",
+      "items": [
+        "평가 데이터와 동일한 6쌍(교육용), 지문으로 동일성 증명 가능",
+        "8장 피처 스냅숏 → 9장 (전일→당일) 쌍"
+      ]
+    },
+    {
+      "heading": "7. 정량 분석(Quantitative Analyses)",
+      "items": [
+        "강남구: MAE 1.5, 편향 -1.5, 실측평균 7.5 vs 예측평균 6.0",
+        "마포구: MAE 0.5, 편향 +0.5, 실측평균 5.5 vs 예측평균 6.0",
+        "관악구: MAE 1.0, 편향 +1.0, 실측평균 5.0 vs 예측평균 6.0",
+        "그룹 MAE 격차 1.0, 비율 3.0"
+      ]
+    },
+    {
+      "heading": "8. 윤리적 고려(Ethical Considerations)",
+      "items": [
+        "체계적 편향: champion이 강남구 그룹을 과소예측(편향 음수) — 이 예측을 자원배분에 쓰면 고민원 지역이 과소 배분될 위험",
+        "설명(16.3): 상수 모델이 피처를 무시(permutation importance 0)하는 것이 편향의 근본 원인",
+        "자동화된 결정 금지 — 인적 개입과 이의제기 절차 필요(제37조의2)"
+      ]
+    },
+    {
+      "heading": "9. 주의와 권고(Caveats and Recommendations)",
+      "items": [
+        "소표본(n=6)으로 통계적 유의성을 주장하지 않는다 — 방법·구조의 시연",
+        "권고: 지역 특성을 반영하는 피처·모델로 그룹 형평 개선, 배포 전 그룹별 성능 게이트",
+        "권고: 배포 후 그룹별 성능을 11장 감시에 포함(드리프트와 편향은 다른 층)"
+      ]
+    }
+  ],
+  "title": "모델 카드 — complaint_daily_forecaster"
+}

@@ -1,0 +1,10 @@
+# Chapter 2: 공공 실시간 데이터셋 이해
+# 실습 환경 의존성
+
+requests>=2.31.0
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+scipy>=1.10.0
+faker>=18.0.0

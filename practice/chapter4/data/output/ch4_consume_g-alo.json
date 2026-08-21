@@ -1,0 +1,18 @@
+{
+  "finished_at": "2026-07-07T02:21:32.660312+00:00",
+  "topic": "public.complaint.received.v1",
+  "group": "g-alo",
+  "mode": "at-least-once",
+  "processed_this_run": 30,
+  "partitions_seen": {
+    "0": 7,
+    "1": 14,
+    "2": 9
+  },
+  "latency_ms": {
+    "count": 30,
+    "mean": 19456.0,
+    "max": 19581.5
+  },
+  "processed_store": "data/output/ch4_processed_g-alo.jsonl"
+}

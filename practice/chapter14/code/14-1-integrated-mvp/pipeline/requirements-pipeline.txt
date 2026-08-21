@@ -1,0 +1,2 @@
+# 파이프라인 컨테이너(ingester·processor) 의존성 — 4장 실측 버전으로 고정
+kafka-python==3.0.7

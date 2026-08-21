@@ -1,0 +1,6 @@
+# Airflow는 공식 constraints와 함께 설치한다(의존성이 많아 버전 충돌 예방).
+# 설치(Python 3.13 기준):
+#   pip install -r code/requirements.txt \
+#     --constraint https://raw.githubusercontent.com/apache/airflow/constraints-3.3.0/constraints-3.13.txt
+# 주의: Airflow는 Windows 네이티브 미지원 — Windows에서는 WSL2 또는 컨테이너로 실행한다.
+apache-airflow==3.3.0

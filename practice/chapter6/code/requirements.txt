@@ -1,0 +1,5 @@
+# Chapter 6 (practice)
+# 검증 환경(2026-07-07): Python 3.13 venv + OpenJDK 17 + PySpark 4.1.2
+# 주의: Java 17 이상 필요(JAVA_HOME 설정). Python 3.14는 PySpark 미검증으로 배제.
+
+pyspark>=4.1,<5

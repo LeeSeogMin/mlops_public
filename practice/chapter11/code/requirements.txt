@@ -1,0 +1,4 @@
+# Python 3.10+ (이 실습은 3.13에서 검증: numpy 2.5.1, pandas 3.0.3, scipy 1.18.0)
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0

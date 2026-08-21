@@ -1,0 +1,57 @@
+{
+  "all_passed": true,
+  "items": [
+    {
+      "item": "모든 질의가 로그에 기록되었는가",
+      "no": 1,
+      "passed": true
+    },
+    {
+      "item": "프롬프트 인젝션 의심 질의가 전부 차단되었는가",
+      "no": 2,
+      "passed": true
+    },
+    {
+      "item": "근거 부족 질의에 생성이 차단되었는가(환각 통제)",
+      "no": 3,
+      "passed": true
+    },
+    {
+      "item": "생성 허용 질의가 전부 출처(cited_sources)를 보유하는가",
+      "no": 4,
+      "passed": true
+    },
+    {
+      "item": "PII 포함 질의가 마스킹 후 저장되어 원시 개인정보가 0건인가",
+      "no": 5,
+      "passed": true
+    },
+    {
+      "item": "활성 프롬프트가 승인 기록을 보유하는가",
+      "no": 6,
+      "passed": true
+    },
+    {
+      "item": "모든 프롬프트 버전이 content hash로 식별되는가",
+      "no": 7,
+      "passed": true
+    },
+    {
+      "item": "프롬프트 변경에 요청자·검토자·사유가 기록되었는가",
+      "no": 8,
+      "passed": true
+    },
+    {
+      "item": "코퍼스 문서가 전부 출처(법령·조문)를 보유하고 무결성 해시가 일치하는가",
+      "no": 9,
+      "passed": true
+    },
+    {
+      "item": "PII 질의가 실제로 탐지·마스킹되었는가",
+      "no": 10,
+      "passed": true
+    }
+  ],
+  "passed": 10,
+  "total": 10
+}

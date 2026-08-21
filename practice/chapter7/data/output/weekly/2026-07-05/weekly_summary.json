@@ -1,0 +1,56 @@
+{
+  "by_category": {
+    "도로": 21,
+    "소음": 15,
+    "청소": 8,
+    "환경": 10
+  },
+  "by_region": [
+    {
+      "count": 16,
+      "lawd_cd": "11440",
+      "region": "마포구"
+    },
+    {
+      "count": 15,
+      "lawd_cd": "11620",
+      "region": "관악구"
+    },
+    {
+      "count": 23,
+      "lawd_cd": "11680",
+      "region": "강남구"
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-07-01",
+      "mapped": 18,
+      "physical": 20
+    },
+    {
+      "date": "2026-07-02",
+      "mapped": 16,
+      "physical": 18
+    },
+    {
+      "date": "2026-07-03",
+      "mapped": 20,
+      "physical": 22
+    }
+  ],
+  "days_absent": [
+    "2026-06-29",
+    "2026-06-30",
+    "2026-07-04",
+    "2026-07-05"
+  ],
+  "dup_removed_total": 1,
+  "mapped_total": 54,
+  "missing_total": 2,
+  "physical_total": 60,
+  "preservation_ok": true,
+  "unmapped_total": 3,
+  "window_end": "2026-07-05",
+  "window_start": "2026-06-29"
+}

@@ -1,0 +1,4 @@
+# Chapter 4 (practice)
+# Python 3.14에서 kafka-python 3.0.7 설치·실행 검증(2026-07-07)
+
+kafka-python>=3.0,<4

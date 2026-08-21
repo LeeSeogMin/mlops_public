@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-07-05T11:45:31+00:00",
+  "compose_path": "/Users/callii/Documents/class/2026-2/mlops/practice/chapter3/docker-compose.yml",
+  "services": {
+    "zookeeper": {
+      "image": "confluentinc/cp-zookeeper:7.5.0",
+      "ports": [
+        "2181:2181"
+      ],
+      "depends_on": []
+    },
+    "kafka": {
+      "image": "confluentinc/cp-kafka:7.5.0",
+      "ports": [
+        "9092:9092",
+        "29092:29092"
+      ],
+      "depends_on": []
+    },
+    "postgres": {
+      "image": "postgres:15",
+      "ports": [
+        "5432:5432"
+      ],
+      "depends_on": []
+    },
+    "prometheus": {
+      "image": "prom/prometheus:v2.47.0",
+      "ports": [
+        "9090:9090"
+      ],
+      "depends_on": []
+    },
+    "grafana": {
+      "image": "grafana/grafana:10.1.0",
+      "ports": [
+        "3000:3000"
+      ],
+      "depends_on": [
+        "prometheus"
+      ]
+    },
+    "kafka-ui": {
+      "image": "provectuslabs/kafka-ui:latest",
+      "ports": [
+        "8080:8080"
+      ],
+      "depends_on": [
+        "kafka"
+      ]
+    }
+  },
+  "host_ports": [
+    2181,
+    3000,
+    5432,
+    8080,
+    9090,
+    9092,
+    29092
+  ],
+  "security_checks": {
+    "warnings": [
+      "postgres: weak/default password in POSTGRES_PASSWORD",
+      "grafana: weak/default password in GF_SECURITY_ADMIN_PASSWORD"
+    ],
+    "notes": []
+  }
+}

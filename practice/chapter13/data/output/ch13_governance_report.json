@@ -1,0 +1,310 @@
+{
+  "access_control": {
+    "allow": 8,
+    "deny": 4,
+    "log": [
+      {
+        "action": "read_value",
+        "decision": "ALLOW",
+        "feature": "complaint_count",
+        "purpose": "일별 예측 모델 훈련",
+        "reason": "정책 허용",
+        "role": "training_pipeline",
+        "seq": 0,
+        "ts": "2026-07-04T00:00:00+00:00"
+      },
+      {
+        "action": "read_value",
+        "decision": "ALLOW",
+        "feature": "day_unmapped_rate",
+        "purpose": "훈련 데이터 품질 피처",
+        "reason": "정책 허용",
+        "role": "training_pipeline",
+        "seq": 1,
+        "ts": "2026-07-04T00:01:00+00:00"
+      },
+      {
+        "action": "read_value",
+        "decision": "ALLOW",
+        "feature": "complaint_count",
+        "purpose": "champion 온라인 예측",
+        "reason": "정책 허용",
+        "role": "serving_api",
+        "seq": 2,
+        "ts": "2026-07-04T00:02:00+00:00"
+      },
+      {
+        "action": "read_definition",
+        "decision": "ALLOW",
+        "feature": "complaint_count",
+        "purpose": "서빙 입력 스키마 확인",
+        "reason": "정책 허용",
+        "role": "serving_api",
+        "seq": 3,
+        "ts": "2026-07-04T00:03:00+00:00"
+      },
+      {
+        "action": "read_definition",
+        "decision": "ALLOW",
+        "feature": "complaint_count",
+        "purpose": "지역별 민원 추이 분석",
+        "reason": "정책 허용",
+        "role": "analyst",
+        "seq": 4,
+        "ts": "2026-07-04T00:04:00+00:00"
+      },
+      {
+        "action": "read_value",
+        "decision": "ALLOW",
+        "feature": "complaint_count",
+        "purpose": "월간 민원 리포트",
+        "reason": "정책 허용",
+        "role": "analyst",
+        "seq": 5,
+        "ts": "2026-07-04T00:05:00+00:00"
+      },
+      {
+        "action": "read_log",
+        "decision": "DENY",
+        "feature": "complaint_count",
+        "purpose": "동료 조회 이력 확인",
+        "reason": "로그 열람은 감사 권한 필요",
+        "role": "analyst",
+        "seq": 6,
+        "ts": "2026-07-04T00:06:00+00:00"
+      },
+      {
+        "action": "read_definition",
+        "decision": "ALLOW",
+        "feature": "day_unmapped_rate",
+        "purpose": "정의서 감사",
+        "reason": "정책 허용",
+        "role": "external_auditor",
+        "seq": 7,
+        "ts": "2026-07-04T00:07:00+00:00"
+      },
+      {
+        "action": "read_log",
+        "decision": "ALLOW",
+        "feature": "complaint_count",
+        "purpose": "접근 이력 감사",
+        "reason": "정책 허용",
+        "role": "external_auditor",
+        "seq": 8,
+        "ts": "2026-07-04T00:08:00+00:00"
+      },
+      {
+        "action": "read_value",
+        "decision": "DENY",
+        "feature": "complaint_count",
+        "purpose": "원시 값 확인 시도",
+        "reason": "감사 역할은 원시 값 조회 불가 — 메타데이터·로그만(목적 제한)",
+        "role": "external_auditor",
+        "seq": 9,
+        "ts": "2026-07-04T00:09:00+00:00"
+      },
+      {
+        "action": "read_value",
+        "decision": "DENY",
+        "feature": "complaint_count",
+        "purpose": "미등록 역할 조회",
+        "reason": "미등록 역할 — 정책에 없음",
+        "role": "marketing_bot",
+        "seq": 10,
+        "ts": "2026-07-04T00:10:00+00:00"
+      },
+      {
+        "action": "read_value",
+        "decision": "DENY",
+        "feature": "resident_arrears",
+        "purpose": "가구 단위 민감 피처 조회",
+        "reason": "카탈로그 미등록 피처 — 접근의 전제는 등록",
+        "role": "analyst",
+        "seq": 11,
+        "ts": "2026-07-04T00:11:00+00:00"
+      }
+    ],
+    "requests": 12,
+    "roles": [
+      "analyst",
+      "external_auditor",
+      "serving_api",
+      "training_pipeline"
+    ]
+  },
+  "audit_checklist": {
+    "all_passed": true,
+    "items": [
+      {
+        "item": "모든 접근 요청이 로그에 기록되었는가",
+        "no": 1,
+        "passed": true
+      },
+      {
+        "item": "거부된 요청이 전부 사유를 보유하는가",
+        "no": 2,
+        "passed": true
+      },
+      {
+        "item": "허용된 원시 값 조회가 전부 인가된 역할인가",
+        "no": 3,
+        "passed": true
+      },
+      {
+        "item": "미등록 역할의 접근이 전부 거부되었는가",
+        "no": 4,
+        "passed": true
+      },
+      {
+        "item": "감사 역할의 원시 값 조회가 0건인가(목적 제한)",
+        "no": 5,
+        "passed": true
+      },
+      {
+        "item": "카탈로그의 모든 피처가 소유자·개인정보 등급·소비자를 보유하는가",
+        "no": 6,
+        "passed": true
+      },
+      {
+        "item": "개인정보 등급이 비어 있는 피처가 0건인가",
+        "no": 7,
+        "passed": true
+      },
+      {
+        "item": "품질 규칙(완전성·정확성·일관성) 3종이 전부 통과했는가",
+        "no": 8,
+        "passed": true
+      },
+      {
+        "item": "변경 이력에 요청자·승인자·사유가 기록되었는가",
+        "no": 9,
+        "passed": true
+      },
+      {
+        "item": "정의 변경이 영향 소비자를 식별했는가",
+        "no": 10,
+        "passed": true
+      }
+    ],
+    "passed": 10,
+    "total": 10
+  },
+  "catalog": {
+    "entries": [
+      {
+        "consumers": [
+          "complaint_model_v1 훈련(9장)",
+          "champion 서빙(10장)",
+          "통합 MVP(14장)"
+        ],
+        "definition": "전일 확정 민원 건수(7장 일별 집계)",
+        "dtype": "Int64",
+        "feature_name": "complaint_count",
+        "owner": "민원데이터팀(가상 — 시뮬레이션 표기)",
+        "privacy": "개인정보 없음(지역 단위 집계)",
+        "purpose": "민원 급증 예측(complaint_model_v1)",
+        "source": "7장 일별 배치 확정 산출물",
+        "timestamp_semantics": "event_timestamp = 값이 확정·공개된 시점(집계 대상일 다음 날 00:00 UTC)",
+        "ttl_days": 3,
+        "version": "complaint_model_v1"
+      },
+      {
+        "consumers": [
+          "complaint_model_v1 서비스(9장 훈련)"
+        ],
+        "definition": "전일 정제 품질 — 매핑 실패율(7장 quality_check)",
+        "dtype": "Float64",
+        "feature_name": "day_unmapped_rate",
+        "owner": "민원데이터팀(가상 — 시뮬레이션 표기)",
+        "privacy": "개인정보 없음(지역 단위 집계)",
+        "purpose": "민원 급증 예측(complaint_model_v1)",
+        "source": "7장 일별 배치 확정 산출물",
+        "timestamp_semantics": "event_timestamp = 값이 확정·공개된 시점(집계 대상일 다음 날 00:00 UTC)",
+        "ttl_days": 3,
+        "version": "complaint_model_v1"
+      }
+    ],
+    "features": 2
+  },
+  "change_management": {
+    "approver": "민원데이터팀 소유자(가상)",
+    "change_id": "CHG-2026-07-day_unmapped_rate-v2",
+    "changed_days": 1,
+    "changed_rows": 3,
+    "feature": "day_unmapped_rate",
+    "from_def": "미매핑 건수 / 유효 건수(valid)",
+    "impacted_consumers": [
+      "complaint_model_v1 서비스(9장 훈련)"
+    ],
+    "per_day": [
+      {
+        "changed": false,
+        "date": "2026-07-01",
+        "event_timestamp": "2026-07-02T00:00:00+00:00",
+        "physical": 20,
+        "unmapped": 1,
+        "v1_rate": 0.05,
+        "v2_rate": 0.05,
+        "valid": 20
+      },
+      {
+        "changed": true,
+        "date": "2026-07-02",
+        "event_timestamp": "2026-07-03T00:00:00+00:00",
+        "physical": 18,
+        "unmapped": 1,
+        "v1_rate": 0.0588,
+        "v2_rate": 0.0556,
+        "valid": 17
+      },
+      {
+        "changed": false,
+        "date": "2026-07-03",
+        "event_timestamp": "2026-07-04T00:00:00+00:00",
+        "physical": 22,
+        "unmapped": 1,
+        "v1_rate": 0.0455,
+        "v2_rate": 0.0455,
+        "valid": 22
+      }
+    ],
+    "reason": "물리 수집량 대비 실패율로 정의 통일 — 중복 포함 원자료 기준",
+    "requester": "품질관리팀(가상)",
+    "to_def": "미매핑 건수 / 물리 건수(physical)",
+    "ts": "2026-07-04T01:00:00+00:00"
+  },
+  "inputs": {
+    "days": [
+      "2026-07-01",
+      "2026-07-02",
+      "2026-07-03"
+    ],
+    "feature_definition_source": "ch8_feature_definitions.json(8장 registry 추출)",
+    "feature_rows": 9
+  },
+  "practice": "13.1 피처 카탈로그와 접근 로그",
+  "quality": {
+    "all_passed": true,
+    "rows": 9,
+    "rules": [
+      {
+        "detail": "non-null 9/9",
+        "passed": true,
+        "quality_dim": "완전성",
+        "rule": "완전성(결측 없음)"
+      },
+      {
+        "detail": "in-range 9/9",
+        "passed": true,
+        "quality_dim": "정확성",
+        "rule": "정확성(범위: count≥0, rate∈[0,1])"
+      },
+      {
+        "detail": "unique-keys 9/9",
+        "passed": true,
+        "quality_dim": "일관성",
+        "rule": "일관성(키 유일성)"
+      }
+    ]
+  }
+}

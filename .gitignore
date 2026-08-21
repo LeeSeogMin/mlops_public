@@ -1,0 +1,120 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+
+# Model files
+*.pkl
+*.h5
+*.pb
+*.onnx
+*.pth
+*.pt
+
+# Data files
+*.csv
+# 7장 표준 코드 매핑 사전은 실습 필수 입력이라 추적한다
+!practice/chapter7/data/input/lawd_cd_seoul.csv
+*.xlsx
+*.parquet
+# 9장 훈련 입력(8장 피처 스냅숏)은 실습 필수 입력이라 추적한다
+!practice/chapter9/data/input/complaint_daily_features.parquet
+# 10장 훈련 입력(9장과 동일 스냅숏 — bootstrap 재구성용)도 실습 필수 입력이라 추적한다
+!practice/chapter10/data/input/complaint_daily_features.parquet
+# 12장 부하 실습 입력(10장과 동일 스냅숏 — bootstrap 재구성용)도 실습 필수 입력이라 추적한다
+!practice/chapter12/data/input/complaint_daily_features.parquet
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Logs
+*.log
+logs/
+mlruns/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Spark 체크포인트(런타임 산물)·재생성 가능한 로컬 DB
+practice/*/data/output/checkpoint/
+practice/*/data/output/*.sqlite
+
+# 7장 Airflow 런타임 상태(로컬 절대경로 cfg·메타데이터 DB·로그)는 커밋하지 않는다
+practice/chapter7/data/output/airflow_home/
+
+# 8장 Feast 생성물(yaml·registry·online DB에 로컬 절대경로 포함)·9장 MLflow DB는 커밋하지 않는다
+practice/chapter8/data/output/feature_repo/
+practice/chapter9/data/output/mlflow.db
+
+# 10장 로컬 생성물(MLflow DB·모델 export·shadow 로그=타임스탬프 포함 휘발성)은 커밋하지 않는다
+# — 커밋되는 증거는 결정적 JSON 리포트만
+practice/chapter10/data/output/mlflow.db
+practice/chapter10/code/10-1-model-api/model_export/
+practice/chapter10/data/output/ch10_shadow_log.jsonl
+
+# 12장 로컬 생성물(MLflow DB·shadow 로그=타임스탬프 포함 휘발성)은 커밋하지 않는다
+# — 커밋되는 증거는 결정적 스냅샷 JSON 리포트만
+practice/chapter12/data/output/mlflow.db
+practice/chapter12/data/output/ch12_shadow_log.jsonl
+
+# 14장 통합 MVP 런타임 산출물(컨테이너 상태·스냅샷)·MLflow DB·모델 export·실행 로그는 커밋하지 않는다
+# — 커밋되는 증거는 결정적 JSON 리포트만(+수동 보존 로그 1회)
+practice/chapter14/data/output/mvp/
+practice/chapter14/data/output/mlflow.db
+practice/chapter14/data/output/ch14_run_log.txt
+practice/chapter14/code/14-1-integrated-mvp/model-api/model_export/
+# 14장 실습 필수 입력(7·9장 자산 복사본)은 전역 무시 규칙에서 제외해 추적한다
+!practice/chapter14/data/input/complaint_daily_features.parquet
+!practice/chapter14/data/input/lawd_cd_seoul.csv

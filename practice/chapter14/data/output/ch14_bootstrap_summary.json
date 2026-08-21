@@ -1,0 +1,29 @@
+{
+  "challenger_version": 2,
+  "champion_version": 1,
+  "data_fingerprint_sha256": "96f6b6b3ce9dcdd1da62e0284e0ceea1ec2afec24c522f6df3221ad0ab31f49e",
+  "decisions": [
+    {
+      "action": "champion 별칭 부여(승격)",
+      "metric_gate_pass": true,
+      "promoted": true,
+      "train_mae": 1.0,
+      "version": 1
+    },
+    {
+      "action": "승격 반려 → challenger 별칭 부여(이력 보존)",
+      "metric_gate_pass": true,
+      "promoted": false,
+      "train_mae": 1.0455,
+      "version": 2
+    }
+  ],
+  "export": {
+    "champion_version": 1,
+    "export_check_forecast": 6.0,
+    "exported_from": "models:/complaint_daily_forecaster@champion",
+    "model_name": "complaint_daily_forecaster",
+    "note": "빌드 시점의 champion을 이미지에 고정(불변 아티팩트) — 10장 규약"
+  },
+  "fingerprint_matches_ch9": true
+}

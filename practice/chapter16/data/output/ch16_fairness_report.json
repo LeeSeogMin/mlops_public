@@ -1,0 +1,193 @@
+{
+  "appeal_step_count": 5,
+  "explanation": {
+    "challenger": {
+      "coefficient": {
+        "intercept": 3.6818,
+        "slope": 0.4091
+      },
+      "explanation": "전일 건수 1건 증가 시 익일 예측이 계수(slope=0.4091)만큼 증가한다 — 계수가 곧 설명. 다만 이 극소 표본에서 permutation importance가 0 이하로, 전일 건수의 예측 기여가 약하다(9장에서 선형 모델이 baseline보다 MAE가 높아 반려된 것과 일관).",
+      "permutation_importance": -0.0455,
+      "type": "LinearRegression — 선형"
+    },
+    "champion": {
+      "coefficient": null,
+      "explanation": "예측이 입력에 의존하지 않는다(피처를 쓰지 않음). 지역·전일 건수 차이를 반영하지 못하는 것이 그룹 편향의 근본 원인.",
+      "permutation_importance": 0.0,
+      "type": "DummyRegressor(mean) — 상수 예측"
+    },
+    "feature": "x_prev_count(전일 민원 건수)"
+  },
+  "fairness_challenger": {
+    "best_group": "마포구",
+    "groups": [
+      {
+        "actual_mean": 7.5,
+        "bias": -0.9545,
+        "lawd_cd": "11680",
+        "mae": 1.9091,
+        "n": 2,
+        "pred_mean": 6.5455,
+        "region": "강남구"
+      },
+      {
+        "actual_mean": 5.5,
+        "bias": 0.2273,
+        "lawd_cd": "11440",
+        "mae": 0.5,
+        "n": 2,
+        "pred_mean": 5.7273,
+        "region": "마포구"
+      },
+      {
+        "actual_mean": 5.0,
+        "bias": 0.7273,
+        "lawd_cd": "11620",
+        "mae": 0.7273,
+        "n": 2,
+        "pred_mean": 5.7273,
+        "region": "관악구"
+      }
+    ],
+    "mae_gap": 1.4091,
+    "mae_ratio": 3.8182,
+    "overall_mae": 1.0455,
+    "worst_group": "강남구"
+  },
+  "fairness_champion": {
+    "best_group": "마포구",
+    "groups": [
+      {
+        "actual_mean": 7.5,
+        "bias": -1.5,
+        "lawd_cd": "11680",
+        "mae": 1.5,
+        "n": 2,
+        "pred_mean": 6.0,
+        "region": "강남구"
+      },
+      {
+        "actual_mean": 5.5,
+        "bias": 0.5,
+        "lawd_cd": "11440",
+        "mae": 0.5,
+        "n": 2,
+        "pred_mean": 6.0,
+        "region": "마포구"
+      },
+      {
+        "actual_mean": 5.0,
+        "bias": 1.0,
+        "lawd_cd": "11620",
+        "mae": 1.0,
+        "n": 2,
+        "pred_mean": 6.0,
+        "region": "관악구"
+      }
+    ],
+    "mae_gap": 1.0,
+    "mae_ratio": 3.0,
+    "overall_mae": 1.0,
+    "worst_group": "강남구"
+  },
+  "fingerprint": {
+    "matches_ch9": true,
+    "recomputed_16": "96f6b6b3ce9dcdd1"
+  },
+  "inputs": {
+    "groups": [
+      "강남구",
+      "마포구",
+      "관악구"
+    ],
+    "n_pairs": 6,
+    "source": "ch9_experiment_report.json(9장 산출물 스냅숏)"
+  },
+  "pia_checkpoint_count": 6,
+  "policy_rubric_criteria": [
+    "법적 정합성(legal alignment)",
+    "정치적 중립성(neutrality)",
+    "사회적 유해성(harm)"
+  ],
+  "practice": "16.1 그룹별 성능 비교와 설명 결과 생성",
+  "public_ai_checklist": {
+    "all_passed": true,
+    "items": [
+      {
+        "item": "편향 평가가 그룹별로 산출되었는가",
+        "no": 1,
+        "passed": true
+      },
+      {
+        "item": "그룹 MAE 격차·비율이 보고되었는가",
+        "no": 2,
+        "passed": true
+      },
+      {
+        "item": "편향의 방향(부호)이 식별되었는가",
+        "no": 3,
+        "passed": true
+      },
+      {
+        "item": "설명 결과(permutation importance)가 산출되었는가",
+        "no": 4,
+        "passed": true
+      },
+      {
+        "item": "배포 모델의 피처 의존성이 설명되었는가(상수=피처 무시 식별)",
+        "no": 5,
+        "passed": true
+      },
+      {
+        "item": "모델 카드 9절이 전부 채워졌는가",
+        "no": 6,
+        "passed": true
+      },
+      {
+        "item": "모델 카드에 윤리적 고려·한계가 명시되었는가",
+        "no": 7,
+        "passed": true
+      },
+      {
+        "item": "정책 루브릭 3기준(법적 정합성·중립성·유해성)이 정의되었는가",
+        "no": 8,
+        "passed": true
+      },
+      {
+        "item": "개인정보 영향평가 검토 지점(제33조)이 있는가",
+        "no": 9,
+        "passed": true
+      },
+      {
+        "item": "자동화된 결정 이의제기 절차(제37조의2)가 있는가",
+        "no": 10,
+        "passed": true
+      },
+      {
+        "item": "소표본 한계가 정직하게 표기되었는가",
+        "no": 11,
+        "passed": true
+      },
+      {
+        "item": "데이터 지문으로 훈련 데이터가 증명 가능한가(9장 교차)",
+        "no": 12,
+        "passed": true
+      }
+    ],
+    "passed": 12,
+    "total": 12
+  },
+  "runs": {
+    "challenger_linear": {
+      "coef": {
+        "intercept": 3.6818,
+        "slope": 0.4091
+      },
+      "train_mae": 1.0455
+    },
+    "champion_baseline_mean": {
+      "constant_prediction": 6.0,
+      "train_mae": 1.0
+    }
+  }
+}

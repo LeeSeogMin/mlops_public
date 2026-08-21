@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-07-07T02:20:25.311665+00:00",
+  "topic": "public.complaint.received.v1",
+  "scenario": "amo",
+  "acks": "all",
+  "sent": 30,
+  "elapsed_sec": 0.163,
+  "partition_distribution": {
+    "0": 7,
+    "1": 14,
+    "2": 9
+  },
+  "district_to_partitions": {
+    "강남구": [
+      1
+    ],
+    "관악구": [
+      0
+    ],
+    "마포구": [
+      1
+    ],
+    "성동구": [
+      0
+    ],
+    "송파구": [
+      2
+    ],
+    "용산구": [
+      2
+    ],
+    "종로구": [
+      2
+    ],
+    "중구": [
+      1
+    ]
+  },
+  "key_to_single_partition": true
+}

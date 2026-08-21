@@ -1,0 +1,36 @@
+{
+  "champion_version": 1,
+  "data_fingerprint_sha256": "96f6b6b3ce9dcdd1da62e0284e0ceea1ec2afec24c522f6df3221ad0ab31f49e",
+  "decisions": [
+    {
+      "action": "champion 별칭 부여(승격)",
+      "metric_gate": "train_mae <= 1.05",
+      "metric_gate_pass": true,
+      "promoted": true,
+      "train_mae": 1.0,
+      "version": 1
+    },
+    {
+      "action": "승격 반려 — 절대 게이트 통과했으나 기존 champion 대비 개선 없음",
+      "metric_gate": "train_mae <= 1.05",
+      "metric_gate_pass": true,
+      "promoted": false,
+      "train_mae": 1.0455,
+      "version": 2
+    }
+  ],
+  "gate_rule": "train_mae <= 1.05 그리고 기존 champion 대비 개선",
+  "model_name": "complaint_daily_forecaster",
+  "notes": "훈련 데이터 6쌍(교육용 극소 데이터) — 성능 수치는 메커니즘 관찰용",
+  "reproducibility_check": {
+    "coef": {
+      "intercept": 3.6818,
+      "slope": 0.4091
+    },
+    "coef_equal": true,
+    "mae_equal": true,
+    "mae_first": 1.0455,
+    "mae_rerun": 1.0455
+  },
+  "reviewer": "검수 담당(가상 — 시뮬레이션 표기)"
+}

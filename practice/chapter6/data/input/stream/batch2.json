@@ -1,0 +1,5 @@
+{"event_id": "E07", "district": "강남구", "category": "소음", "event_time": "2026-07-07 22:11:00"}
+{"event_id": "E08", "district": "마포구", "category": "불법주차", "event_time": "2026-07-07 22:12:00"}
+{"event_id": "LATE_OK", "district": "강남구", "category": "쓰레기", "event_time": "2026-07-07 22:04:00"}
+{"event_id": "E09", "district": "강남구", "category": "도로파손", "event_time": "2026-07-07 22:14:00"}
+{"event_id": "E10", "district": "마포구", "category": "소음", "event_time": "2026-07-07 22:18:00"}

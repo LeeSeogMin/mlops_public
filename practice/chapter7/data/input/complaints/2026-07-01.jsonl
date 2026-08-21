@@ -1,0 +1,20 @@
+{"complaint_id": "C260701-001", "region_raw": "강남구", "category": "도로", "created_at": "2026-07-01T08:00:00+09:00"}
+{"complaint_id": "C260701-002", "region_raw": "강남구", "category": "소음", "created_at": "2026-07-01T08:32:00+09:00"}
+{"complaint_id": "C260701-003", "region_raw": "강남구", "category": "도로", "created_at": "2026-07-01T09:04:00+09:00"}
+{"complaint_id": "C260701-004", "region_raw": "강남구", "category": "환경", "created_at": "2026-07-01T09:36:00+09:00"}
+{"complaint_id": "C260701-005", "region_raw": "강남구", "category": "청소", "created_at": "2026-07-01T10:08:00+09:00"}
+{"complaint_id": "C260701-006", "region_raw": " 강남구 ", "category": "도로", "created_at": "2026-07-01T10:40:00+09:00"}
+{"complaint_id": "C260701-007", "region_raw": "강남", "category": "소음", "created_at": "2026-07-01T11:12:00+09:00"}
+{"complaint_id": "C260701-008", "region_raw": "강남", "category": "도로", "created_at": "2026-07-01T11:44:00+09:00"}
+{"complaint_id": "C260701-009", "region_raw": "마포구", "category": "소음", "created_at": "2026-07-01T12:16:00+09:00"}
+{"complaint_id": "C260701-010", "region_raw": "마포구", "category": "도로", "created_at": "2026-07-01T12:48:00+09:00"}
+{"complaint_id": "C260701-011", "region_raw": "마포구", "category": "소음", "created_at": "2026-07-01T13:20:00+09:00"}
+{"complaint_id": "C260701-012", "region_raw": "마포구", "category": "청소", "created_at": "2026-07-01T13:52:00+09:00"}
+{"complaint_id": "C260701-013", "region_raw": "마포", "category": "환경", "created_at": "2026-07-01T14:24:00+09:00"}
+{"complaint_id": "C260701-014", "region_raw": "관악구", "category": "도로", "created_at": "2026-07-01T14:56:00+09:00"}
+{"complaint_id": "C260701-015", "region_raw": "관악구", "category": "환경", "created_at": "2026-07-01T15:28:00+09:00"}
+{"complaint_id": "C260701-016", "region_raw": "관악구", "category": "도로", "created_at": "2026-07-01T16:00:00+09:00"}
+{"complaint_id": "C260701-017", "region_raw": "관악구", "category": "소음", "created_at": "2026-07-01T16:32:00+09:00"}
+{"complaint_id": "C260701-018", "region_raw": "관악", "category": "청소", "created_at": "2026-07-01T17:04:00+09:00"}
+{"complaint_id": "C260701-019", "region_raw": null, "category": "도로", "created_at": "2026-07-01T17:36:00+09:00"}
+{"complaint_id": "C260701-020", "region_raw": "판교", "category": "소음", "created_at": "2026-07-01T18:08:00+09:00"}

@@ -1,0 +1,91 @@
+{
+  "data_fingerprint_sha256": "96f6b6b3ce9dcdd1da62e0284e0ceea1ec2afec24c522f6df3221ad0ab31f49e",
+  "mlflow_version": "3.14.0",
+  "registry": {
+    "champion_version": 1,
+    "decisions": [
+      {
+        "action": "champion 별칭 부여(승격)",
+        "metric_gate": "train_mae <= 1.05",
+        "metric_gate_pass": true,
+        "promoted": true,
+        "train_mae": 1.0,
+        "version": 1
+      },
+      {
+        "action": "승격 반려 — 절대 게이트 통과했으나 기존 champion 대비 개선 없음",
+        "metric_gate": "train_mae <= 1.05",
+        "metric_gate_pass": true,
+        "promoted": false,
+        "train_mae": 1.0455,
+        "version": 2
+      }
+    ]
+  },
+  "reproducibility": {
+    "coef": {
+      "intercept": 3.6818,
+      "slope": 0.4091
+    },
+    "coef_equal": true,
+    "mae_equal": true,
+    "mae_first": 1.0455,
+    "mae_rerun": 1.0455
+  },
+  "runs": {
+    "baseline_mean": {
+      "train_mae": 1.0
+    },
+    "linear": {
+      "coef": {
+        "intercept": 3.6818,
+        "slope": 0.4091
+      },
+      "train_mae": 1.0455
+    },
+    "linear_rerun": {
+      "coef": {
+        "intercept": 3.6818,
+        "slope": 0.4091
+      },
+      "train_mae": 1.0455
+    }
+  },
+  "serving_via_alias": {
+    "forecast": 6.0,
+    "input_prev_count": 9.0
+  },
+  "sklearn_version": "1.9.0",
+  "training_pairs": [
+    {
+      "lawd_cd": "11440",
+      "x_prev_count": 5,
+      "y_count": 5
+    },
+    {
+      "lawd_cd": "11440",
+      "x_prev_count": 5,
+      "y_count": 6
+    },
+    {
+      "lawd_cd": "11620",
+      "x_prev_count": 5,
+      "y_count": 5
+    },
+    {
+      "lawd_cd": "11620",
+      "x_prev_count": 5,
+      "y_count": 5
+    },
+    {
+      "lawd_cd": "11680",
+      "x_prev_count": 6,
+      "y_count": 9
+    },
+    {
+      "lawd_cd": "11680",
+      "x_prev_count": 8,
+      "y_count": 6
+    }
+  ]
+}

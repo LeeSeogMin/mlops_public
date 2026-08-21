@@ -1,0 +1,189 @@
+{
+  "app_sha256": "ec7ec65397a3194af06d041841d1e3157d5ef7a610bb3dcf24cacf55d8f110b4",
+  "app_sha256_matches_ch10": true,
+  "bootstrap": {
+    "challenger_version": 2,
+    "champion_check_forecast": 6.0,
+    "champion_version": 1,
+    "data_fingerprint_sha256": "96f6b6b3ce9dcdd1da62e0284e0ceea1ec2afec24c522f6df3221ad0ab31f49e",
+    "decisions": [
+      {
+        "action": "champion 별칭 부여(승격)",
+        "metric_gate_pass": true,
+        "promoted": true,
+        "train_mae": 1.0,
+        "version": 1
+      },
+      {
+        "action": "승격 반려 → challenger 별칭 부여(shadow 평가 대상)",
+        "metric_gate_pass": true,
+        "promoted": false,
+        "train_mae": 1.0455,
+        "version": 2
+      }
+    ],
+    "fingerprint_matches_ch9": true
+  },
+  "cpu_count": 8,
+  "findings": {
+    "all_forecasts_correct": true,
+    "io_vs_baseline": {
+      "baseline_rps": 2498.3,
+      "ratio": 0.68,
+      "shadow_io_lowers_throughput": true,
+      "shadow_on_rps": 1702.8
+    },
+    "scale_vs_baseline": {
+      "baseline_rps": 2498.3,
+      "ratio": 1.26,
+      "workers2_rps": 3153.0,
+      "workers_raise_throughput": true
+    },
+    "spike_tail": {
+      "p50_ms": 34.0,
+      "p99_ms": 66.0,
+      "p99_over_p50": 1.9
+    },
+    "total_failures": 0
+  },
+  "load_generator": "locust 2.44.4, closed-loop(wait_time=0)",
+  "scenarios": {
+    "baseline": {
+      "avg_ms": 7.6,
+      "cpu_pct_mean": 94.4,
+      "cpu_pct_peak": 106.3,
+      "duration_s": 12,
+      "failures": 0,
+      "max_ms": 72.5,
+      "p50_ms": 7.0,
+      "p95_ms": 11.0,
+      "p99_ms": 18.0,
+      "requests": 27496,
+      "rps": 2498.3,
+      "rss_mb_peak": 312.3,
+      "shadow": false,
+      "users": 20,
+      "workers": 1
+    },
+    "io": {
+      "avg_ms": 11.4,
+      "cpu_pct_mean": 106.3,
+      "cpu_pct_peak": 115.4,
+      "duration_s": 12,
+      "failures": 0,
+      "max_ms": 293.1,
+      "p50_ms": 11.0,
+      "p95_ms": 14.0,
+      "p99_ms": 26.0,
+      "requests": 18751,
+      "rps": 1702.8,
+      "rss_mb_peak": 311.2,
+      "shadow": true,
+      "shadow_log_lines": 19958,
+      "users": 20,
+      "workers": 1
+    },
+    "ramp": {
+      "avg_ms": 14.5,
+      "cpu_pct_mean": 102.6,
+      "cpu_pct_peak": 107.2,
+      "duration_s": 24,
+      "failures": 0,
+      "knee": [
+        {
+          "p95_ms": 0.0,
+          "users": 5
+        },
+        {
+          "p95_ms": 5.0,
+          "users": 10
+        },
+        {
+          "p95_ms": 7.0,
+          "users": 15
+        },
+        {
+          "p95_ms": 9.0,
+          "users": 20
+        },
+        {
+          "p95_ms": 12.0,
+          "users": 25
+        },
+        {
+          "p95_ms": 13.0,
+          "users": 30
+        },
+        {
+          "p95_ms": 14.0,
+          "users": 35
+        },
+        {
+          "p95_ms": 16.0,
+          "users": 40
+        },
+        {
+          "p95_ms": 17.0,
+          "users": 45
+        },
+        {
+          "p95_ms": 18.0,
+          "users": 50
+        }
+      ],
+      "max_ms": 99.7,
+      "p50_ms": 15.0,
+      "p95_ms": 21.0,
+      "p99_ms": 32.0,
+      "requests": 60980,
+      "rps": 2648.5,
+      "rss_mb_peak": 313.5,
+      "shadow": false,
+      "users": 50,
+      "workers": 1
+    },
+    "scale": {
+      "avg_ms": 5.6,
+      "cpu_pct_mean": 152.4,
+      "cpu_pct_peak": 181.3,
+      "duration_s": 12,
+      "failures": 0,
+      "max_ms": 40.8,
+      "p50_ms": 6.0,
+      "p95_ms": 9.0,
+      "p99_ms": 12.0,
+      "requests": 34713,
+      "rps": 3153.0,
+      "rss_mb_peak": 610.1,
+      "shadow": false,
+      "users": 20,
+      "workers": 2
+    },
+    "spike": {
+      "avg_ms": 35.2,
+      "cpu_pct_mean": 98.6,
+      "cpu_pct_peak": 106.9,
+      "duration_s": 12,
+      "failures": 0,
+      "max_ms": 123.3,
+      "p50_ms": 34.0,
+      "p95_ms": 42.0,
+      "p99_ms": 66.0,
+      "requests": 30693,
+      "rps": 2788.5,
+      "rss_mb_peak": 314.1,
+      "shadow": false,
+      "users": 100,
+      "workers": 1
+    }
+  },
+  "versions": {
+    "fastapi": "0.139.0",
+    "locust": "2.44.4",
+    "mlflow": "3.14.0",
+    "psutil": "7.2.2",
+    "python": "3.13.7",
+    "sklearn": "1.9.0",
+    "uvicorn": "0.50.2"
+  }
+}

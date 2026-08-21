@@ -1,0 +1,8 @@
+{"micro_batch": 0, "window_start": "22:00", "window_end": "22:10", "district": "마포구", "count": 2}
+{"micro_batch": 0, "window_start": "22:00", "window_end": "22:10", "district": "관악구", "count": 1}
+{"micro_batch": 0, "window_start": "22:00", "window_end": "22:10", "district": "강남구", "count": 3}
+{"micro_batch": 2, "window_start": "22:10", "window_end": "22:20", "district": "강남구", "count": 2}
+{"micro_batch": 2, "window_start": "22:10", "window_end": "22:20", "district": "마포구", "count": 2}
+{"micro_batch": 2, "window_start": "22:00", "window_end": "22:10", "district": "강남구", "count": 4}
+{"micro_batch": 4, "window_start": "22:20", "window_end": "22:30", "district": "관악구", "count": 1}
+{"micro_batch": 4, "window_start": "22:20", "window_end": "22:30", "district": "강남구", "count": 1}

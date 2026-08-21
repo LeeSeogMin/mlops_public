@@ -1,0 +1,308 @@
+{
+  "airflow_version": "3.3.0",
+  "daily_runs": [
+    {
+      "by_region": [
+        {
+          "count": 5,
+          "lawd_cd": "11440",
+          "region": "마포구"
+        },
+        {
+          "count": 5,
+          "lawd_cd": "11620",
+          "region": "관악구"
+        },
+        {
+          "count": 8,
+          "lawd_cd": "11680",
+          "region": "강남구"
+        }
+      ],
+      "dagrun_state": "success",
+      "logical_date": "2026-07-01",
+      "quality": {
+        "alias_fixed": 4,
+        "date": "2026-07-01",
+        "dup_removed": 0,
+        "gate": "PASS",
+        "mapped": 18,
+        "missing": 1,
+        "missing_rate": 0.05,
+        "physical": 20,
+        "preservation_ok": true,
+        "unmapped": 1,
+        "unmapped_rate": 0.05,
+        "valid": 20,
+        "ws_stripped": 1
+      },
+      "tasks": [
+        {
+          "start": "2026-07-07T03:36:43.064962+00:00",
+          "state": "success",
+          "task_id": "validate_input"
+        },
+        {
+          "start": "2026-07-07T03:36:44.878387+00:00",
+          "state": "success",
+          "task_id": "clean_and_map"
+        },
+        {
+          "start": "2026-07-07T03:36:44.907082+00:00",
+          "state": "success",
+          "task_id": "check_quality"
+        },
+        {
+          "start": "2026-07-07T03:36:44.934778+00:00",
+          "state": "success",
+          "task_id": "aggregate_daily"
+        },
+        {
+          "start": "2026-07-07T03:36:44.961850+00:00",
+          "state": "success",
+          "task_id": "write_report"
+        }
+      ],
+      "top_category": "도로"
+    },
+    {
+      "by_region": [
+        {
+          "count": 5,
+          "lawd_cd": "11440",
+          "region": "마포구"
+        },
+        {
+          "count": 5,
+          "lawd_cd": "11620",
+          "region": "관악구"
+        },
+        {
+          "count": 6,
+          "lawd_cd": "11680",
+          "region": "강남구"
+        }
+      ],
+      "dagrun_state": "success",
+      "logical_date": "2026-07-02",
+      "quality": {
+        "alias_fixed": 3,
+        "date": "2026-07-02",
+        "dup_removed": 1,
+        "gate": "PASS",
+        "mapped": 16,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "physical": 18,
+        "preservation_ok": true,
+        "unmapped": 1,
+        "unmapped_rate": 0.059,
+        "valid": 17,
+        "ws_stripped": 1
+      },
+      "tasks": [
+        {
+          "start": "2026-07-07T03:36:45.012814+00:00",
+          "state": "success",
+          "task_id": "validate_input"
+        },
+        {
+          "start": "2026-07-07T03:36:45.039123+00:00",
+          "state": "success",
+          "task_id": "clean_and_map"
+        },
+        {
+          "start": "2026-07-07T03:36:45.066965+00:00",
+          "state": "success",
+          "task_id": "check_quality"
+        },
+        {
+          "start": "2026-07-07T03:36:45.092128+00:00",
+          "state": "success",
+          "task_id": "aggregate_daily"
+        },
+        {
+          "start": "2026-07-07T03:36:45.118966+00:00",
+          "state": "success",
+          "task_id": "write_report"
+        }
+      ],
+      "top_category": "도로"
+    },
+    {
+      "by_region": [
+        {
+          "count": 6,
+          "lawd_cd": "11440",
+          "region": "마포구"
+        },
+        {
+          "count": 5,
+          "lawd_cd": "11620",
+          "region": "관악구"
+        },
+        {
+          "count": 9,
+          "lawd_cd": "11680",
+          "region": "강남구"
+        }
+      ],
+      "dagrun_state": "success",
+      "logical_date": "2026-07-03",
+      "quality": {
+        "alias_fixed": 3,
+        "date": "2026-07-03",
+        "dup_removed": 0,
+        "gate": "PASS",
+        "mapped": 20,
+        "missing": 1,
+        "missing_rate": 0.045,
+        "physical": 22,
+        "preservation_ok": true,
+        "unmapped": 1,
+        "unmapped_rate": 0.045,
+        "valid": 22,
+        "ws_stripped": 1
+      },
+      "tasks": [
+        {
+          "start": "2026-07-07T03:36:45.172153+00:00",
+          "state": "success",
+          "task_id": "validate_input"
+        },
+        {
+          "start": "2026-07-07T03:36:45.203269+00:00",
+          "state": "success",
+          "task_id": "clean_and_map"
+        },
+        {
+          "start": "2026-07-07T03:36:45.230723+00:00",
+          "state": "success",
+          "task_id": "check_quality"
+        },
+        {
+          "start": "2026-07-07T03:36:45.257469+00:00",
+          "state": "success",
+          "task_id": "aggregate_daily"
+        },
+        {
+          "start": "2026-07-07T03:36:45.282746+00:00",
+          "state": "success",
+          "task_id": "write_report"
+        }
+      ],
+      "top_category": "도로"
+    }
+  ],
+  "failure_run": {
+    "dagrun_state": "failed",
+    "logical_date": "2026-07-04",
+    "tasks": [
+      {
+        "start": "2026-07-07T03:36:45.513287+00:00",
+        "state": "failed",
+        "task_id": "validate_input"
+      },
+      {
+        "start": "2026-07-07T03:36:45.537289+00:00",
+        "state": "upstream_failed",
+        "task_id": "clean_and_map"
+      },
+      {
+        "start": "2026-07-07T03:36:46.551056+00:00",
+        "state": "upstream_failed",
+        "task_id": "aggregate_daily"
+      },
+      {
+        "start": "2026-07-07T03:36:46.552906+00:00",
+        "state": "upstream_failed",
+        "task_id": "check_quality"
+      },
+      {
+        "start": "2026-07-07T03:36:47.567002+00:00",
+        "state": "upstream_failed",
+        "task_id": "write_report"
+      }
+    ]
+  },
+  "idempotency_check": {
+    "identical": true,
+    "logical_date": "2026-07-01",
+    "rerun_state": "success",
+    "sha256_after": {
+      "daily_summary.json": "88a34af5412b47233bc1a011086a78d08c0b66e6c1456be42057a7a9b3e2abac",
+      "report.md": "ba2787da6c5b8a4727a6bcdf212b2dabc971c61f4af2086ca83c48f4a4927b14"
+    },
+    "sha256_before": {
+      "daily_summary.json": "88a34af5412b47233bc1a011086a78d08c0b66e6c1456be42057a7a9b3e2abac",
+      "report.md": "ba2787da6c5b8a4727a6bcdf212b2dabc971c61f4af2086ca83c48f4a4927b14"
+    }
+  },
+  "python_version": "3.13.7",
+  "weekly_run": {
+    "dagrun_state": "success",
+    "summary": {
+      "by_category": {
+        "도로": 21,
+        "소음": 15,
+        "청소": 8,
+        "환경": 10
+      },
+      "by_region": [
+        {
+          "count": 16,
+          "lawd_cd": "11440",
+          "region": "마포구"
+        },
+        {
+          "count": 15,
+          "lawd_cd": "11620",
+          "region": "관악구"
+        },
+        {
+          "count": 23,
+          "lawd_cd": "11680",
+          "region": "강남구"
+        }
+      ],
+      "days": [
+        {
+          "date": "2026-07-01",
+          "mapped": 18,
+          "physical": 20
+        },
+        {
+          "date": "2026-07-02",
+          "mapped": 16,
+          "physical": 18
+        },
+        {
+          "date": "2026-07-03",
+          "mapped": 20,
+          "physical": 22
+        }
+      ],
+      "days_absent": [
+        "2026-06-29",
+        "2026-06-30",
+        "2026-07-04",
+        "2026-07-05"
+      ],
+      "dup_removed_total": 1,
+      "mapped_total": 54,
+      "missing_total": 2,
+      "physical_total": 60,
+      "preservation_ok": true,
+      "unmapped_total": 3,
+      "window_end": "2026-07-05",
+      "window_start": "2026-06-29"
+    },
+    "tasks": [
+      {
+        "start": "2026-07-07T03:36:47.621055+00:00",
+        "state": "success",
+        "task_id": "rollup_weekly"
+      }
+    ]
+  }
+}

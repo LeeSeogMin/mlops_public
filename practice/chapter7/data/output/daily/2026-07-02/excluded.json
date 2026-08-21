@@ -1,0 +1,12 @@
+{
+  "dup_removed": [
+    "C260702-001"
+  ],
+  "missing": [],
+  "unmapped": [
+    {
+      "complaint_id": "C260702-017",
+      "region_raw": "성남시"
+    }
+  ]
+}
