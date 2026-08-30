@@ -30,7 +30,6 @@ env/
 
 # 로컬 PDF 산출물 (scripts/render_pdf.py) — 커밋하지 않는다
 docs/*.pdf
-lecture/*.pdf
 
 # 시험 문제·채점 기준 — 공개 저장소로 나가면 안 되므로 커밋하지 않는다
 exam/
