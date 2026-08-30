@@ -1,36 +1,88 @@
 # 무료 코딩 에이전트 설치 가이드
 
-> 2026년 8월 기준. 모든 도구는 **VS Code**에서 실행한다.
-> 세 도구를 함께 쓰면 무료 한도를 돌아가며 쓸 수 있다.
+> GitHub Copilot은 **VS Code**에서 사용하고, Antigravity와 TRAE는 별도 앱(IDE/워크스테이션)으로 실행한다.
 
 ---
 
-## 도구 요약
+## Git과 GitHub 먼저 이해하기
 
-| 도구 | 무료 한도 | 주 용도 | 난이도 |
-|------|----------|---------|:---:|
-| **GitHub Copilot Student** | 코드 완성 무제한 + 월 200 AI Credits | 일상 코딩 완성 | 신청 까다로움 |
-| **OpenCode** | Zen 무료 모델 + 로컬 모델(Ollama) | 에이전트 작업, 코드 분석 | 모델 설정 까다로움 |
-| **Antigravity IDE** | Gemini 기반, 5시간마다 한도 갱신 | 복잡한 멀티스텝 작업 | 설치 쉬움 |
+Git과 GitHub는 같은 프로그램이 아니다.
+
+- **Git**: 내 컴퓨터에서 파일 변경 이력을 기록하고, 이전 상태와 비교하는 버전 관리 도구다.
+- **GitHub**: Git 저장소를 인터넷에 저장하고, 공유·협업·제출에 사용하는 웹 서비스다.
+- Git은 컴퓨터에 설치하지만, GitHub는 웹 브라우저에서 계정을 만든 뒤 사용한다. GitHub Desktop을 쓰려면 별도 앱을 설치할 수 있다.
+
+### Windows에서 Git 설치하기
+
+1. [Git for Windows 공식 설치 페이지](https://git-scm.com/install/windows)를 연다.
+2. Windows용 설치 파일을 내려받아 실행한다.
+3. 설치 과정의 기본 설정을 유지하고 설치를 끝낸다.
+4. PowerShell 또는 VS Code 터미널을 새로 열고 아래 명령으로 설치를 확인한다.
+
+```powershell
+git --version
+```
+
+버전이 출력되면 Git 설치가 끝났다. 처음 한 번은 아래처럼 Git에 사용할 이름과 이메일을 등록한다. 이메일은 GitHub 계정에 등록한 이메일을 사용한다.
+
+```powershell
+git config --global user.name "내 이름"
+git config --global user.email "내 이메일"
+```
+
+### GitHub 계정 만들기
+
+1. [GitHub 가입 페이지](https://github.com/signup)를 연다.
+2. 개인 계정을 만들고 이메일 인증을 끝낸다.
+3. 과제 저장소를 공유할 때 사용할 사용자 이름을 확인한다.
+4. 계정 보안을 위해 2단계 인증을 설정한다.
+
+GitHub 저장소를 컴퓨터와 연결할 때는 Git이 필요하다. 수업에서는 먼저 Git으로 변경 사항을 기록한 뒤 GitHub에 저장소를 올리는 흐름을 사용한다.
 
 ---
 
-## 1. GitHub Copilot Student (신청 → 승인 → VS Code 설치)
+## 1. 설치 전 공통 준비물
 
-### 1-1. 왜 까다로운가
+먼저 아래 항목을 준비한다. 인터넷 연결과 프로그램 설치 권한은 네 도구에 모두 필요하다. 나머지는 사용할 도구에 따라 준비한다.
+
+### 네 도구에 공통으로 필요한 항목
+
+| 항목 | 준비 방법 | 확인 방법 |
+|------|----------|----------|
+| 인터넷 연결 | 웹사이트 접속과 로그인, 프로그램 다운로드가 가능한 네트워크 사용 | 브라우저에서 설치 페이지 접속 |
+| 웹 브라우저 | Edge, Chrome, Firefox 등 설치 | 로그인 페이지가 열리는지 확인 |
+| 프로그램 설치 권한 | 개인 PC 또는 프로그램을 설치할 수 있는 실습 PC 사용 | 설치 파일 실행 가능 여부 확인 |
+| 프로젝트 작업 폴더 | 파일을 저장하고 수정할 권한이 있는 폴더 준비 | VS Code, Antigravity 또는 TRAE에서 폴더 열기 |
+| 프로젝트 규칙 파일 | 작업 폴더 루트에 `AGENTS.md` 작성 (5절) | 도구에 "이 프로젝트 규칙을 요약해줘"라고 물어 확인 |
+
+### 도구별로 필요한 항목
+
+| 사용할 도구 | 추가 준비물 | 설치·가입 방법 | 확인 방법 |
+|------------|------------|---------------|----------|
+| GitHub Copilot | VS Code, 개인 GitHub 계정, 학생 신분 증빙 | [VS Code](https://code.visualstudio.com) 설치, [GitHub](https://github.com) 가입 | VS Code 실행, GitHub 로그인 |
+| Antigravity | Google 계정 | [Google 계정](https://accounts.google.com) 준비 | 브라우저 로그인 |
+| TRAE | TraeWork(또는 TraeCode) 데스크톱 앱 | [TRAE 개요](https://docs.trae.cn/) 참고 후 설치 | 앱 실행 후 프로젝트 폴더 열기 |
+
+Git은 설치 자체의 필수 조건은 아니지만, 수업 저장소를 내려받고 변경 이력을 관리하려면 설치하는 편이 낫다. [git-scm.com](https://git-scm.com)에서 설치한 뒤 `git --version`으로 확인한다.
+
+---
+
+## 2. GitHub Copilot Student (신청 → 승인 → VS Code 설치)
+
+### 2-1. 왜 까다로운가
 
 - GitHub Education Student Developer Pack을 먼저 승인받아야 Copilot을 쓸 수 있다
 - 학생 신분 증명을 통과해야 하고, 승인까지 수 시간~2-3일이 걸린다
 - 서류가 불분명하면 거절되고 다시 신청해야 한다
 - 2026년 4-6월에 신규 가입이 일시 중단된 적이 있다. 2026년 6월 17일부터 재개되어 현재 신규 가입이 가능하다. 다만 정책이 바뀔 수 있으므로 신청 페이지의 최신 공지를 확인한다
 
-### 1-2. 자격 조건
+### 2-2. 자격 조건
 
-- 학위·졸업장 수여 과정에 재학 중 (고등학교, 대학, 대학교, 홈스쿨 포함)
+- 학위·졸업장 수여 과정에 재학 중
 - 만 13세 이상
 - **개인 GitHub 계정** 보유 (조직 계정 불가)
 
-### 1-3. 신청 절차 (단계별)
+### 2-3. 신청 절차 (단계별)
 
 **① GitHub 계정 준비**
 - [github.com](https://github.com)에서 개인 계정을 만든다 (이미 있으면 건너뜀)
@@ -70,7 +122,7 @@
 - 보통 수 시간 ~ 2-3일
 - 거절되면 이메일에 이유가 오고, 다른 서류로 다시 신청할 수 있다
 
-### 1-4. Copilot Student 혜택 (승인 후)
+### 2-4. Copilot Student 혜택 (승인 후)
 
 | 항목 | 내용 |
 |------|------|
@@ -78,75 +130,13 @@
 | AI Credits | 월 200 (채팅·에이전트용) |
 | 모델 선택 | **Auto만 가능** (수동 선택 불가) |
 
-### 1-5. VS Code에서 Copilot 활성화
+### 2-5. VS Code에서 Copilot 활성화
 
 1. VS Code를 연다
 2. 확장(Extensions) 탭에서 **"GitHub Copilot"** 검색 → 설치
 3. 좌측 하단 사람 아이콘 → **Sign in with GitHub** → 로그인
 4. 상태 바에 Copilot 아이콘이 나타나면 활성화된 것이다
 5. 확인: [github.com/settings/copilot](https://github.com/settings/copilot) 에서 Copilot Student 상태 확인
-
----
-
-## 2. OpenCode (설치 → 모델 연결 → VS Code 연동)
-
-### 2-1. 설치부터 모델 선택까지 한 흐름으로
-
-VS Code 터미널에서 `opencode`를 실행하면 확장이 자동 설치되고, 그 안에서 모델 연결·선택까지 한 번에 끝난다. npm으로 `opencode` 명령만 먼저 설치하면 된다.
-
-**사전 준비:**
-- [Node.js LTS](https://nodejs.org) 설치 (18 이상)
-- VS Code에 `code` 명령이 PATH에 등록되어 있어야 한다
-  - 등록 방법: VS Code에서 `Ctrl+Shift+P` → "Shell Command: Install 'code' command in PATH" 실행
-
-**단계 1: opencode CLI 설치** (PowerShell에서 1회만)
-```powershell
-npm install -g opencode-ai@latest
-```
-- 확인: `opencode --version`
-- Scoop 사용자는 `scoop install opencode`, Chocolatey 사용자는 `choco install opencode -y`도 가능
-
-**단계 2: VS Code에서 실행 + 확장 자동 설치**
-1. VS Code를 연다
-2. 통합 터미널을 연다 (`Ctrl + 백틱`)
-3. 터미널에서 실행:
-   ```
-   opencode
-   ```
-4. VS Code 확장이 **자동으로 설치**된다. 안 되면 확장 마켓플레이스에서 `sst-dev.opencode` 수동 설치
-
-**단계 3: 모델 연결 (여기가 까다롭다)**
-```
-/connect
-```
-- 목록에서 **OpenCode Zen** (또는 `opencode`) 선택
-- 브라우저가 열린다 → opencode.ai에서 로그인 (GitHub 또는 Google 계정)
-- API 키가 나오면 복사 → 터미널에 붙여넣기
-
-**단계 4: 무료 모델 선택**
-```
-/models
-```
-- 목록에서 **"Free"가 붙어 있는 모델**을 선택한다
-- 2026년 8월 기준 무료 모델 예시: DeepSeek V4 Flash Free, MiMo-V2.5 Free, Nemotron 계열
-- 무료 모델 목록은 수시로 바뀌므로 사용할 때마다 `/models`로 확인한다
-
-### 2-2. 자주 쓰는 명령어
-
-| 명령어 | 하는 일 |
-|--------|---------|
-| `/connect` | 모델 제공자 연결·API 키 등록 |
-| `/models` | 사용 가능한 모델 목록 보고 선택 |
-| `/init` | 프로젝트 분석 후 `AGENTS.md` 생성 (처음 한 번 권장) |
-| `Tab` 키 | **Plan**(분석만) ↔ **Build**(코드 수정) 모드 전환 |
-
-### 2-3. VS Code 단축키
-
-| 단축키 | 동작 |
-|--------|------|
-| `Ctrl + Esc` | OpenCode 실행/포커스 |
-| `Ctrl + Shift + Esc` | 새 세션 시작 |
-| `Alt + Ctrl + K` | 파일 참조 삽입 (`@File#L37-42` 형식) |
 
 ---
 
@@ -182,88 +172,78 @@ irm https://antigravity.google/cli/install.ps1 | iex
 ```
 
 ---
-## 4. 세 도구를 돌아가며 쓰는 방법
 
-### 추천 운영 방식
+## 4. TRAE (TraeWork / TraeCode)
 
-| 상황 | 쓸 도구 | 이유 |
-|------|---------|------|
-| 평소 코딩 (자동완성) | **GitHub Copilot** | 코드 완성이 무제한이고 VS Code에서 자동으로 동작한다 |
-| 코드 분석·리팩토링 | **OpenCode** (Zen 무료 모델) | 에이전트 모드로 파일을 읽고 수정할 수 있다 |
-| 복잡한 멀티스텝 작업 | **Antigravity** | Gemini 기반으로 한도가 관대하다 (5시간마다 갱신) |
-| Copilot Credits 소진 시 | **OpenCode**로 전환 | `/connect`로 다른 무료 모델을 선택한다 |
+> 참고: TRAE는 IDE( TraeCode )와 AI 워크스테이션( TraeWork ) 등 여러 제품군으로 구성된다. 상황에 따라 하나만 설치해도 된다. ([TRAE 개요](https://docs.trae.cn/))
 
-### 한도 관리 요약
+### 4-1. 무엇을 할 수 있나
 
-| 도구 | 무료 한도 | 한도 소진 시 |
-|------|----------|------------|
-| GitHub Copilot Student | 완성 무제한 + 월 200 Credits | Credits가 소진되면 채팅·에이전트만 제한. 완성은 계속 된다 |
-| OpenCode Zen | 무료 모델별 일일 한도 | 다른 Free 모델로 전환하거나 로컬 모델(Ollama)을 쓴다 |
-| Antigravity | 5시간마다 갱신 | 한도 갱신을 기다리거나 다른 도구로 전환한다 |
+- 자연어로 목표를 주면, 작업을 쪼개서 계획하고(Plan) 실행(Build)하는 **에이전트(Agent)** 중심의 흐름을 제공한다
+- 코드뿐 아니라 문서/리포트 같은 산출물 생성, 프로젝트 맥락 기반의 수정 작업에 적합하다
 
----
+### 4-2. 설치 (Windows)
 
-## 5. 설치 전 공통 준비물
+1. 공식 문서의 다운로드 안내에서 TraeWork(또는 TraeCode) 데스크톱 앱을 설치한다: <https://docs.trae.cn/>
+2. 앱을 실행한 뒤, 과제/프로젝트 폴더를 연다
+3. Code/IDE 모드에서 채팅 또는 Agent 기능으로 작업을 진행한다
+4. $3, $10 등 저렴한 가격도 있다. 
 
-| 항목 | 설치 방법 | 확인 명령 |
-|------|----------|----------|
-| VS Code | [code.visualstudio.com](https://code.visualstudio.com) 다운로드 | 실행 확인 |
-| Git | [git-scm.com](https://git-scm.com) 다운로드 | `git --version` |
-| Node.js (OpenCode용) | [nodejs.org](https://nodejs.org) LTS 다운로드 | `node --version` |
-| GitHub 계정 | [github.com](https://github.com) 가입 | 로그인 확인 |
-| Google 계정 | [accounts.google.com](https://accounts.google.com) | Antigravity 로그인용 |
+### 4-3. 처음 사용할 때 팁
+
+- 처음엔 “현재 폴더에서 `README`를 읽고 해야 할 일을 정리해줘” 같은 작은 요청부터 시작한다
+- 계획(Plan)과 실행(Build)이 나뉘는 흐름이 있으면, 실행 전에 계획을 먼저 확인한다
 
 ---
 
-## 6. 문제 해결
+## 5. 프로젝트 규칙 파일 설정 (AGENTS.md · CLAUDE.md · context.md · todo.md)
 
-### GitHub Copilot
+에이전트가 프로젝트 규칙과 진행 상황을 이어받도록 작업 폴더 루트에 관련 파일을 둔다.
 
-| 문제 | 해결 |
-|------|------|
-| Student Pack 거절됨 | 서류가 흐리거나 날짜가 없을 수 있다. 재학증명서를 영문으로 다시 발급받아 업로드한다 |
-| VS Code에서 Copilot 아이콘이 안 보임 | 확장 설치 후 GitHub 로그인을 했는지 확인한다 |
-| "You don't have access to Copilot" | [github.com/settings/copilot](https://github.com/settings/copilot)에서 Student 플랜이 활성화되었는지 확인한다 |
+| 파일 | 역할 | 읽히는 방식 |
+|------|------|-------------|
+| `AGENTS.md` | 실행 명령, 폴더 구조, 코드 규칙, 금지 사항 | 대부분의 코딩 에이전트가 자동으로 읽음 |
+| `CLAUDE.md` | Claude Code용 규칙 파일 | Claude Code가 자동으로 읽음 |
+| `context.md` | 현재 상태와 주요 결정 | `AGENTS.md`에서 읽도록 지정 |
+| `todo.md` | 남은 작업과 완료 항목 | `AGENTS.md`에서 읽도록 지정 |
 
-### OpenCode
+규칙은 `AGENTS.md`를 원본으로 둔다. Claude Code를 함께 쓰면 같은 폴더에 `CLAUDE.md`를 만들고 다음처럼 연결한다.
 
-| 문제 | 해결 |
-|------|------|
-| `opencode` 명령을 찾을 수 없음 | 새 터미널을 열어본다. 안 되면 `npm install -g opencode-ai@latest`를 다시 실행한다 |
-| `/models`에 모델이 안 보임 | `/connect`로 제공자 연결이 되었는지 먼저 확인한다 |
-| 무료 모델이 없다고 나옴 | 무료 모델 목록은 수시로 바뀐다. 다른 시간에 다시 확인하거나 Ollama 로컬 모델을 쓴다 |
-| VS Code 확장이 자동 설치 안 됨 | `Ctrl+Shift+P` → "Shell Command: Install 'code' command in PATH" 실행 후 재시도 |
+```markdown
+@AGENTS.md
 
-### Antigravity
-
-| 문제 | 해결 |
-|------|------|
-| SmartScreen 경고 | "추가 정보" → "실행"을 클릭한다. Google 공식 앱이므로 안전하다 |
-| 로그인 안 됨 | 브라우저에서 Google 계정에 먼저 로그인한 뒤 다시 시도한다 |
-
----
-
-### 교수자의 코드에서 강의자료 클론하기
-
-내 컴퓨터 내 문서 폴더로 이동하기
-
-https://github.com/LeeSeogMin/mlops_public.git 을 현재 폴더에서 클론해줘. 
-
-### 내가 작업한 것은 그대로 남기고 교수자의 변경 강의자료 가져오기
-
-```jsx
-# 1단계: 내가 수정한 실습 코드를 임시 보관함에 안전하게 저장하기
-git stash
-
-# 2단계: 강사 최신 업데이트 자료 다운로드하기
-git pull origin main
-
-# 3단계: 임시 보관함에 넣어둔 내 코드 다시 꺼내와서 합치기
-git stash pop
+작업 시작 전 context.md와 todo.md를 읽는다.
 ```
 
-### Vscode Extension 설치
+최소 구성은 다음과 같다.
 
-vscode pdf, Markdwon PD 설치:
+```text
+my-project/
+├── AGENTS.md
+├── CLAUDE.md
+├── context.md
+└── todo.md
+```
 
-마크다운 파일을 연다. → 열린 파일의 화면에서 우클릭한다. → markdown pdf: export(pdf) 선택하면 변환됨
+설정 후 에이전트에 **“이 프로젝트 규칙을 요약해줘”**라고 요청한다. `AGENTS.md`의 내용이 답에 나오면 규칙 파일을 읽은 것이다.
+
+---
+
+부록: 
+
+### 1. 교수자의 코드에서 강의자료 클론하기
+
+- vscode에서 폴더 열기로 내 컴퓨터 내 문서 폴더 열기
+
+- https://github.com/LeeSeogMin/geoai_public.git(예시임)을 현재 폴더에서 클론해줘.
+
+### 2. 내가 작업한 것은 그대로 남기고 교수자의 변경 강의자료 가져오기
+
+- 1단계: 내가 수정한 실습 코드를 임시 보관함에 안전하게 저장하기
+git stash
+
+- 2단계: 강사 최신 업데이트 자료 다운로드하기
+git pull origin main
+
+- 3단계: 임시 보관함에 넣어둔 내 코드 다시 꺼내와서 합치기
+git stash pop
