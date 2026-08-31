@@ -104,7 +104,7 @@ output mode의 선택은 민간 실시간 시스템이 오래 다뤄 온 문제�
 창을 자르는 방식이 이 둘뿐인 것도 아니다. 민간의 클릭스트림(clickstream) 분석은 **세션 창(session window)** 을 사용한다 — 시간축을 고정 간격으로 자르지 않고, 한 이용자의 행동이 일정 시간 끊기면 거기서 창을 끊어 "세션당 페이지뷰 수"·"세션 체류 시간"을 계수한다. 창의 경계를 시계가 아니라 데이터의 공백이 정하는 방식이다. 공공에서도 한 민원의 접수부터 종결까지를 하나로 묶어 처리 소요를 확인할 때 같은 발상을 적용한다. 이 장은 tumbling과 sliding만 실측하지만, 창 방식의 선택지가 셋 이상이라는 것은 알아 두어야 한다 — "10분마다"라는 요구가 실은 "한 건의 처리 과정 단위로"인 경우가 있기 때문이다.
 
 ### 워크드 예제(worked example): 같은 이벤트, 두 가지 창(실측)
-실습 6.1의 강남구 이벤트 7건(발생 시각 22:01, 22:03, 22:04, 22:08, 22:11, 22:14, 22:24)을 두 방식으로 계수하면 다음과 같다 — 아래 수치는 실제 실행 산출물이다(`ch6_window_counts.jsonl`, `ch6_sliding_demo.json`).
+실습 6.1의 강남구 이벤트 7건(발생 시각 22:01, 22:03, 22:04, 22:08, 22:11, 22:14, 22:24)을 두 방식으로 계수하면 다음과 같다 — 아래 수치는 실제 실행 산출물이다(`ch5_window_counts.jsonl`, `ch5_sliding_demo.json`).
 
 먼저 이벤트별 창 배정을 수작업으로 검산하면 다음과 같다. 위의 배정 규칙을 7건에 적용하면:
 
@@ -142,7 +142,7 @@ F.window("event_time", "10 minutes", "5 minutes")    # sliding: 5분마다 새 �
 events.groupBy(F.window("event_time", "10 minutes"), "district").count()
 ```
 
-_전체 코드는 practice/chapter6/code/6-1-streaming-window-aggregation.py 참고_
+_전체 코드는 practice/chapter5/code/5-1-streaming-window-aggregation.py 참고_
 
 ### 민간에서 배워 공공으로: 광고 실시간 집계와 민원 현황판
 tumbling과 sliding의 구분은 광고·커머스 실시간 집계에서 매일 쓰이는 실무 도구다. 광고 시스템은 "각 5분 구간에 노출·클릭이 몇 번"이라는 겹치지 않는 확정 수치로 광고주에게 정산하고(tumbling), 동시에 "최근 10분 클릭률 추이(1분마다 갱신)"로 이상 트래픽을 조기에 검출한다(sliding). 두 수치가 같은 클릭 스트림에서 나오지만 용도가 다르다 — 하나는 정산의 근거가 되는 확정치, 하나는 감시용 추이다. sliding 쪽에서 감시하는 지표가 클릭률(CTR, Click-Through Rate)과 전환율(CVR, Conversion Rate)이며, 값이 급락하면 광고 소재의 문제이거나 도착 페이지의 장애다 — 창 집계가 장애 감지 장치로 쓰이는 것이다. 이 기법이 공공으로 오면 대상만 바뀐다: 민원 유입 실시간 현황판은 "최근 1시간 지역별 신고 추이(10분마다)"를 sliding으로 제시하고, 월간 확정 통계는 "각 시간대 접수 건수"를 tumbling으로 산출한다. 민간에서는 sliding 합을 총량으로 오독해도 대개 사후 정정으로 끝나지만, 공공에서 같은 오독은 감사 지적이 된다 — 아래 공공 사례에서 해당 집계 오류를 실측 결과로 확인한다.
@@ -185,7 +185,7 @@ events.withWatermark("event_time", "10 minutes")
 파일 3 처리 후에는 창 22:00–22:10도 닫힌다(끝 22:10 < watermark 22:14). 즉 LATE_OK(22:04)가 만약 한 파일 늦게 도착했다면 판정은 수용에서 폐기로 바뀌었을 것이다 — 같은 이벤트, 같은 지연 허용값인데 **스트림이 그 사이 얼마나 전진했는가**에 따라 판정이 달라졌다.
 
 ### 워크드 예제: 수용과 폐기를 실측으로
-실습 6.1은 지연 이벤트 두 건을 의도적으로 투입하고, 엔진의 판정을 관찰했다(`ch6_late_event_report.json`). watermark의 계산 과정을 그대로 따라가면 다음과 같다.
+실습 6.1은 지연 이벤트 두 건을 의도적으로 투입하고, 엔진의 판정을 관찰했다(`ch5_late_event_report.json`). watermark의 계산 과정을 그대로 따라가면 다음과 같다.
 
 **수용된 지연 이벤트(LATE_OK)** — 발생 22:04, 도착은 두 번째 파일(엔진이 22:09까지 관측한 뒤).
 
@@ -307,10 +307,10 @@ watermark의 "마감 시각" 발상은 민간 실시간 대시보드가 매일 �
 Java 17 이상이 필요하다(`JAVA_HOME` 설정). Python은 PySpark가 지원하는 버전을 사용한다(이 실습은 3.13에서 검증했다).
 
 ```bash
-cd practice/chapter6
+cd practice/chapter5
 python3.13 -m venv venv && source venv/bin/activate
 pip install -r code/requirements.txt
-python run_chapter6.py
+python run_chapter5.py
 ```
 
 스크립트는 이벤트 파일 3개를 스트림 입력 디렉터리에 순차로 "도착"시키고, 파일마다 `processAllAvailable()`로 micro-batch 경계를 고정한다(실행마다 같은 배치 구성이 되도록). 입력 구성과 지연 이벤트 2건의 위치는 다음과 같다.
@@ -332,7 +332,7 @@ query = counts.writeStream.outputMode("update").foreachBatch(sink).start()
 query.processAllAvailable()   # 파일 투입 후 배치 경계 고정
 ```
 
-_전체 코드는 practice/chapter6/code/6-1-streaming-window-aggregation.py 참고_
+_전체 코드는 practice/chapter5/code/5-1-streaming-window-aggregation.py 참고_
 
 ### 실행 중 확인 체크리스트
 콘솔 출력에서 다음 네 가지를 순서대로 확인하면 실습의 학습 목표를 모두 확인하게 된다.
@@ -347,14 +347,14 @@ _전체 코드는 practice/chapter6/code/6-1-streaming-window-aggregation.py 참
 
 | 산출물 | 내용 | 용도 |
 |---|---|---|
-| `ch6_window_counts.jsonl` | micro-batch별 출력 행(창·지역구·건수) | 실시간 집계 결과 파일 — update 출력의 원본 기록 |
-| `ch6_late_event_report.json` | 지연 이벤트별 판정·증거, 폐기 카운터, 배치별 출력 | **지연 이벤트 처리 평가표** — 검수 자산 |
-| `ch6_sliding_demo.json` | 같은 이벤트의 sliding 집계(배치 계산) | 표 6.2의 tumbling·sliding 비교 근거 |
+| `ch5_window_counts.jsonl` | micro-batch별 출력 행(창·지역구·건수) | 실시간 집계 결과 파일 — update 출력의 원본 기록 |
+| `ch5_late_event_report.json` | 지연 이벤트별 판정·증거, 폐기 카운터, 배치별 출력 | **지연 이벤트 처리 평가표** — 검수 자산 |
+| `ch5_sliding_demo.json` | 같은 이벤트의 sliding 집계(배치 계산) | 표 6.2의 tumbling·sliding 비교 근거 |
 
 평가표의 판정("수용"/"폐기")은 스크립트가 산출물에서 계산한 값이다 — 창 건수가 기대대로 갱신되었는지, 폐기 카운터가 증가했는지를 확인해 기록하므로, 판정 자체가 검증 가능한 증거를 동반한다.
 
 ### 실행 결과(실제)
-집계 결과는 `ch6_window_counts.jsonl`, 평가표는 `ch6_late_event_report.json`에 저장된다.
+집계 결과는 `ch5_window_counts.jsonl`, 평가표는 `ch5_late_event_report.json`에 저장된다.
 
 micro-batch별 출력(바뀐 행만 — update 모드):
 

@@ -127,7 +127,7 @@ elif not name:      missing.append(cid)         # 미기재 — 분리 기록
 else:               unmapped.append(...)        # 매핑 실패 — 원문 보존
 ```
 
-_전체 코드는 practice/chapter7/code/7-1-daily-report-dag.py 참고_
+_전체 코드는 practice/chapter6/code/6-1-daily-report-dag.py 참고_
 
 ### 현장의 방법: 총계 보존식은 수작업으로 작성한 expectation이다
 이 실습은 총계 보존을 파이썬 한 줄(`physical == mapped + missing + unmapped + dup_removed`)로 직접 검사한다. 규모가 커지고 규칙이 늘어나는 현장에서는 이런 검사를 매번 수작업으로 작성하는 대신, **데이터 품질 검증을 선언적으로 관리하는 프레임워크**를 사용한다. 두 계열을 파악하면 이 실습의 검사가 업계 표준의 축소판임이 확인된다.
@@ -171,7 +171,7 @@ weekly_complaint_rollup (@weekly): rollup_weekly (일별 산출물 합산)
 t_validate >> t_clean >> [t_aggregate, t_quality] >> t_report
 ```
 
-_전체 코드는 practice/chapter7/code/7-1-daily-report-dag.py 참고_
+_전체 코드는 practice/chapter6/code/6-1-daily-report-dag.py 참고_
 
 ### 태스크를 몇 개로 쪼갤 것인가
 실습 DAG의 태스크는 5개지만, 같은 일을 1개로도, 10개로도 구성할 수 있다. 무엇이 이 경계를 정하는가. 판단 근거는 두 가지다 — **재실행 단위**와 **실패 격리**.
@@ -191,7 +191,7 @@ backfill이 왜 실무의 필수 능력인지는 공공 시나리오로 옮기�
 
 재실행과 소급 실행은 자주 같은 말로 쓰이지만 하는 일이 다르다. **재실행(rerun)**은 이미 생성된 run을 같은 logical date로 재실행한다 — 대상 날짜에 이미 산출물이 있거나 실패 상태가 남아 있으므로, 수정하는 작업이다. **소급 실행(backfill)**은 아직 생성된 적 없는 과거 날짜의 run을 새로 생성한다 — 없던 것을 생성하는 작업이다. 실무에서는 세 가지 차이가 나타난다. 첫째, 재실행은 덮어쓰기가 일어나므로 기존 산출물이 바뀐다(그래서 재현성이 없으면 어느 쪽이 진본인지 분쟁이 된다). 둘째, backfill은 한 번에 수십·수백 개 run을 만들 수 있어 동시 실행 수를 제한하지 않으면 원천 시스템에 부하가 몰린다. 셋째, 코드 이력이 다르다 — 재실행은 대개 같은 코드로 수행하지만, backfill은 오늘 코드로 과거 날짜를 계산하므로 그때 규칙과 지금 규칙이 다르면 과거 날짜의 값이 원래 보고한 값과 달라진다. 그래서 이미 배포한 확정 통계를 backfill로 다시 만들 때는 개정판임을 표기한다(7.1).
 
-분리가 실제 기록에 어떻게 남는지 실습 증거로 확인한다(`ch7_batch_run_report.json`).
+분리가 실제 기록에 어떻게 남는지 실습 증거로 확인한다(`ch6_batch_run_report.json`).
 
 | DAG run의 logical date | 태스크가 실제로 실행된 날짜(실측) | 읽은 입력 |
 |---|---|---|
@@ -204,7 +204,7 @@ backfill이 왜 실무의 필수 능력인지는 공공 시나리오로 옮기�
 logical date를 더 정확히 정의하려면 **데이터 구간(data interval)** 개념이 필요하다. Airflow 공식 문서는 스케줄 실행에서 logical date를 그 run이 담당하는 데이터 구간의 **시작**을 가리키는 이름표로 설명한다 — 일 배치라면 "그날 00시부터 다음 날 00시 직전까지"라는 반열린 구간 `[시작, 끝)`이 한 run의 처리 대상이고, 스케줄러는 이 구간이 닫힌 뒤에(즉 그날이 다 지난 뒤에) run을 생성한다. "7월 1일치는 7월 2일 새벽에 계산한다"는 달력 마감의 직관이 바로 이 구조다. 반면 수동 실행(트리거)에서는 logical date와 data interval의 관계가 스케줄 실행과 다를 수 있으므로, 공식 문서도 둘이 같다고 가정하지 말라고 안내한다. 실제로 이 실습의 Airflow 3.3에서 `dag.test()`로 특정 날짜를 실행하면 구간의 시작·끝이 logical date 하루로 관찰됐지만, 실습 코드는 이 관찰에 의존하지 않고 두 경우를 방어적으로 분기한다. `rollup_weekly`는 data interval의 끝이 logical date와 다르면 그 끝(배타적)의 전날을, 같으면 logical date 당일을 창의 끝으로 삼아 7일 창을 계산한다 — 같은 코드가 스케줄·수동 어느 실행에서도 같은 "주"를 가리키게 하려는 설계다. logical date와 data interval을 혼동하면 이 창 계산이 하루씩 어긋난다는 것이 요점이다.
 
 ### 실측 관찰 1: 의존성은 지켜지고, 병렬 태스크의 순서는 보장되지 않는다
-실습의 사흘치 성공 실행에서 태스크 시작 시각 순서를 보면(`ch7_batch_run_report.json`), 세 실행 모두 `validate_input → clean_and_map → (분기) → write_report`의 의존성을 지켰다. 분기된 두 태스크(집계·품질 점검) 사이의 선후는 증거 파일의 start 시각으로 확인할 수 있다. **집필 과정에서 같은 코드를 반복 실행하자 이 선후가 실행마다, 날짜마다 뒤바뀌었다** — 어떤 실행에서는 집계가, 다른 실행에서는 품질 점검이 먼저였다. 오류가 아니다. 의존성을 선언하지 않은 두 태스크 사이의 상호 순서는 엔진이 보장하지 않으며, 실행 환경에 따라 병렬로 실행될 수도 있다. "선언한 순서만 보장된다"는 뜻이다. 분기된 태스크의 실행 순서에 암묵적으로 의존하는 코드(예: 품질 점검이 집계 산출물을 읽는 것)는 예고 없이 실패할 수 있다.
+실습의 사흘치 성공 실행에서 태스크 시작 시각 순서를 보면(`ch6_batch_run_report.json`), 세 실행 모두 `validate_input → clean_and_map → (분기) → write_report`의 의존성을 지켰다. 분기된 두 태스크(집계·품질 점검) 사이의 선후는 증거 파일의 start 시각으로 확인할 수 있다. **집필 과정에서 같은 코드를 반복 실행하자 이 선후가 실행마다, 날짜마다 뒤바뀌었다** — 어떤 실행에서는 집계가, 다른 실행에서는 품질 점검이 먼저였다. 오류가 아니다. 의존성을 선언하지 않은 두 태스크 사이의 상호 순서는 엔진이 보장하지 않으며, 실행 환경에 따라 병렬로 실행될 수도 있다. "선언한 순서만 보장된다"는 뜻이다. 분기된 태스크의 실행 순서에 암묵적으로 의존하는 코드(예: 품질 점검이 집계 산출물을 읽는 것)는 예고 없이 실패할 수 있다.
 
 ### 실측 관찰 2: 실패는 전파되고, 기록된다
 입력 파일이 없는 날짜(7월 4일)의 실행을 의도적으로 수행했다. 결과는 다음과 같다 — 실제 실행의 태스크 상태다.
@@ -381,11 +381,11 @@ logical date를 더 정확히 정의하려면 **데이터 구간(data interval)*
 Python 3.10 이상(이 실습은 3.13.7에서 검증)과 macOS/Linux가 필요하다 — Airflow는 Windows 네이티브 미지원이므로 Windows에서는 WSL2 또는 컨테이너로 실행한다. Airflow는 의존성이 많아 반드시 공식 constraints와 함께 설치하며(수 분 소요), constraints 파일 이름의 파이썬 버전은 **자기 인터프리터 버전에 맞춘다**(아래 예시는 검증에 사용한 3.13 기준 — 3.12를 사용한다면 `constraints-3.12.txt`).
 
 ```bash
-cd practice/chapter7
+cd practice/chapter6
 python3.13 -m venv venv && source venv/bin/activate
 pip install -r code/requirements.txt \
   --constraint https://raw.githubusercontent.com/apache/airflow/constraints-3.3.0/constraints-3.13.txt
-python run_chapter7.py
+python run_chapter6.py
 ```
 
 실행기는 Airflow 환경(`AIRFLOW_HOME`)을 실습 폴더 내부로 고정하고(사용자 홈 오염 방지), 네 시나리오를 순서대로 실행한다.
@@ -408,7 +408,7 @@ with DAG(dag_id="daily_complaint_report", schedule="@daily",
 dag.test(logical_date=pendulum.datetime(2026, 7, 1, tz="UTC"))
 ```
 
-_전체 코드는 practice/chapter7/code/7-1-daily-report-dag.py 참고_
+_전체 코드는 practice/chapter6/code/6-1-daily-report-dag.py 참고_
 
 ### 실행 중 확인 체크리스트
 콘솔 출력에서 다음을 순서대로 확인하면 실습의 학습 목표를 모두 확인하게 된다.
@@ -429,10 +429,10 @@ _전체 코드는 practice/chapter7/code/7-1-daily-report-dag.py 참고_
 | `daily/{날짜}/excluded.json` | 미기재·미매핑·중복 제거의 상세(원문 보존) | 후속 조치·분리 보고 |
 | `daily/{날짜}/_SUCCESS` | 마지막 태스크 성공 시에만 기록되는 완결 마커(재실행 시작 시 제거) | 주간 롤업의 합산 기준(7.4) |
 | `weekly/{창 끝 날짜}/weekly_report.md`·`weekly_summary.json` | 주간 롤업 보고서·요약(주 단위 파티셔닝) | 계층화 실측 |
-| `ch7_batch_run_report.json` | 전 시나리오의 태스크 상태·해시·판정 | **이 장 인용 수치의 증거 파일** |
+| `ch6_batch_run_report.json` | 전 시나리오의 태스크 상태·해시·판정 | **이 장 인용 수치의 증거 파일** |
 
 ### 2단계 실행 결과(실제)
-사흘분 일별 실행의 정제·집계 결과는 다음과 같다(시나리오 A, `ch7_batch_run_report.json`).
+사흘분 일별 실행의 정제·집계 결과는 다음과 같다(시나리오 A, `ch6_batch_run_report.json`).
 
 | 날짜 | 물리 | 중복제거 | 매핑 | 미기재 | 미매핑(원문) | 지역별(강남·마포·관악) | 최다 유형 |
 |---|---|---|---|---|---|---|---|
@@ -479,7 +479,7 @@ _전체 코드는 practice/chapter7/code/7-1-daily-report-dag.py 참고_
 
 대응 방향 칸이 "모니터링한다"로 채워지면 그 행은 검수 문서에서 유용하지 않다. **바꿀 설정값이나 바꿀 설계 결정**이 들어가야 한다.
 
-**제출물 3종**: ① 표 7.5 배치 운영 설계표(3단계 수정을 반영한 최종본), ② `ch7_batch_run_report.json`, ③ 위 위험 식별 표. ①이 설계, ②가 증거, ③이 둘을 이은 검수 자산이다.
+**제출물 3종**: ① 표 7.5 배치 운영 설계표(3단계 수정을 반영한 최종본), ② `ch6_batch_run_report.json`, ③ 위 위험 식별 표. ①이 설계, ②가 증거, ③이 둘을 이은 검수 자산이다.
 
 ---
 

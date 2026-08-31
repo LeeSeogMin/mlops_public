@@ -23,7 +23,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 
-# 장별 선행 조건. pip 이름과 import 이름이 다르면 (pip, import)로 적는다.
+# 주차별 선행 조건. pip 이름과 import 이름이 다르면 (pip, import)로 적는다.
 CHAPTERS: dict[int, dict] = {
     1: {"pkgs": ["requests"], "env_optional": ["DATA_GO_KR_API_KEY"]},
     2: {"pkgs": ["requests", "pandas", "numpy", "matplotlib", "scipy"]},
@@ -34,10 +34,9 @@ CHAPTERS: dict[int, dict] = {
         "ports": [2181, 9092, 29092],
         "compose": ("chapter3", ["zookeeper", "kafka"]),
     },
-    5: {"pkgs": [], "needs": [("chapter4", "ch4_delivery_report.json")]},
-    6: {"pkgs": ["pyspark"], "java": 17},
-    7: {"pkgs": [("apache-airflow", "airflow")], "posix_only": True, "network": True},
-    8: {"pkgs": ["feast", "pandas", "pyarrow"]},
+    5: {"pkgs": ["pyspark"], "java": 17},
+    6: {"pkgs": [("apache-airflow", "airflow")], "posix_only": True, "network": True},
+    7: {"pkgs": ["feast", "pandas", "pyarrow"]},
     9: {"pkgs": ["mlflow", ("scikit-learn", "sklearn"), "pandas", "pyarrow"]},
     10: {
         "pkgs": ["fastapi", "uvicorn", "mlflow", ("scikit-learn", "sklearn"),
@@ -45,13 +44,12 @@ CHAPTERS: dict[int, dict] = {
         "docker": "optional",
     },
     11: {"pkgs": ["numpy", "pandas", "scipy"]},
-    13: {"pkgs": []},
-    14: {
+    12: {"pkgs": [("scikit-learn", "sklearn"), "pandas", "numpy"]},
+    13: {
         "pkgs": ["mlflow", ("scikit-learn", "sklearn"), "pandas", "pyarrow", "httpx"],
         "docker": "required",
     },
-    15: {"pkgs": [], "env_optional": ["CLOVA_STUDIO_API_KEY", "OPENAI_API_KEY"]},
-    16: {"pkgs": [("scikit-learn", "sklearn"), "pandas", "numpy"]},
+    14: {"pkgs": [], "env_optional": ["CLOVA_STUDIO_API_KEY", "OPENAI_API_KEY"]},
 }
 
 OK, WARN, FAIL = "OK  ", "주의", "실패"
@@ -250,15 +248,15 @@ def start_compose(compose: tuple[str, list[str]]) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="실습 환경 점검과 준비")
-    ap.add_argument("chapter", type=int, help="장 번호 (예: 4)")
+    ap.add_argument("chapter", type=int, help="주차 번호 (예: 4)")
     ap.add_argument("--check", action="store_true", help="점검만 하고 아무것도 바꾸지 않는다")
     ap.add_argument("--no-docker", action="store_true", help="컨테이너를 띄우지 않는다")
     a = ap.parse_args()
 
     spec = CHAPTERS.get(a.chapter)
     if spec is None:
-        print(f"{a.chapter}장은 이 저장소의 실습 대상이 아니다. "
-              f"가능한 장: {', '.join(map(str, sorted(CHAPTERS)))}")
+        print(f"{a.chapter}주차는 이 저장소의 실습 대상이 아니다. "
+              f"가능한 주차: {', '.join(map(str, sorted(CHAPTERS)))}")
         return 2
 
     chapter_dir = REPO / "practice" / f"chapter{a.chapter}"
@@ -266,7 +264,7 @@ def main() -> int:
         print(f"실습 폴더가 없다: {chapter_dir}")
         return 2
 
-    print(f"\n{a.chapter}장 실습 환경 점검\n" + "-" * 44)
+    print(f"\n{a.chapter}주차 실습 환경 점검\n" + "-" * 44)
     check_python()
     if spec.get("posix_only"):
         check_posix_only()

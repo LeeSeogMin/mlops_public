@@ -115,7 +115,7 @@
 ### 워크드 예제: 실습의 이중 구조 실측
 같은 값이 두 곳에 있으므로, 두 곳이 정말 같은지가 곧 품질 항목이 된다. 실습은 세 지역구의 오프라인 최신값과 온라인 조회값을 기계적으로 대조해 **훈련-서빙 피처 일관성 점검표**를 만들었다 — 표 8.2b가 그 실측이다.
 
-실습 8.1의 피처 원천은 7장 확정 집계 9행(3일 × 3개 지역구)이다. 이 9행이 모두 들어 있는 곳이 offline store(parquet)이고, materialize 후 online store(SQLite)에는 지역구당 최신 1행씩 3행만 남는다 — 7/3 집계(강남 9·마포 6·관악 5)다. 온라인 조회와 오프라인 최신값의 대조 결과는 다음과 같다(`ch8_consistency_report.json`, 실측).
+실습 8.1의 피처 원천은 7장 확정 집계 9행(3일 × 3개 지역구)이다. 이 9행이 모두 들어 있는 곳이 offline store(parquet)이고, materialize 후 online store(SQLite)에는 지역구당 최신 1행씩 3행만 남는다 — 7/3 집계(강남 9·마포 6·관악 5)다. 온라인 조회와 오프라인 최신값의 대조 결과는 다음과 같다(`ch7_consistency_report.json`, 실측).
 
 **표 8.2b** 훈련-서빙 피처 일관성 점검표(실제 실행)
 
@@ -144,7 +144,7 @@ serving = store.get_online_features(features=svc,
                                     entity_rows=[{"lawd_cd": "11680"}])    # 서빙: 최신값
 ```
 
-_전체 코드는 practice/chapter8/code/8-1-feature-store-minimal.py 참고_
+_전체 코드는 practice/chapter7/code/7-1-feature-store-minimal.py 참고_
 
 ### 공공 사례
 재난 대응 우선순위 모델을 가정한다. 훈련은 분기마다 — 지난 2년의 지역별 피처 이력 전체를 offline store에서 읽는다. 서빙은 신고가 들어올 때마다 — 해당 지역구의 최신 피처를 온라인에서 밀리초에 읽는다. 만약 서빙이 훈련처럼 웨어하우스에 질의한다면 응답 시간이 초 단위로 증가해 상황실 시스템이 사용할 수 없고, 훈련이 서빙 저장소처럼 최신값만 있는 곳에서 읽는다면 과거 이력이 없어 시점 조인(8.3) 자체가 불가능하다. 이중화는 사치가 아니라 두 소비 패턴의 물리적 요구가 다른 데서 온 필연이다 — 검수 질문은 "두 저장소의 값이 같음을 무엇으로 보증하는가"(표 8.2b의 자동화 여부)다.
@@ -182,7 +182,7 @@ point-in-time correctness는 이것을 조회 규칙으로 막는다: 각 샘플
 이것은 이 실습만의 규칙이 아니라 피처 스토어가 공통으로 내세우는 정확성 보장이다. Tecton은 이를 "각 훈련 샘플에 대해 그 시점의 세계 상태를 point-in-time correct하게 본다(point-in-time correct views of the state of the world)"고 표현하고, Hopsworks도 point-in-time correct join(시점 정합 조인)을 미래 누출(future data leakage)을 막는 절차로 설명한다(방법론 차용). 표현은 복잡하지만 뜻은 앞서 정의한 그대로다 — 각 샘플의 기준 시점 이전에 알려진 값만 붙인다. 실습이 하는 일은 이 보장을 최소 구성에서 직접 확인하는 것이다.
 
 ### 워크드 예제: 기준 시점 4개, 실측 조인
-실습은 기준 시점이 다른 훈련 샘플 4개를 만들어 시점 조인을 실행했다(`ch8_feature_report.json`). 수작업으로 먼저 추론한다 — 각 시점에 "알려진" 집계는 어디까지인가.
+실습은 기준 시점이 다른 훈련 샘플 4개를 만들어 시점 조인을 실행했다(`ch7_feature_report.json`). 수작업으로 먼저 추론한다 — 각 시점에 "알려진" 집계는 어디까지인가.
 
 **표 8.3** point-in-time 조인 관찰(실제 실행, 피처 타임스탬프 = 집계일 다음 날 00:00)
 
@@ -245,7 +245,7 @@ point-in-time correctness는 이것을 조회 규칙으로 막는다: 각 샘플
 - **개인정보 등급**: 피처 단위로 개인정보 포함 여부를 표기한다. 지역 단위 집계(실습)는 비식별이지만, 가구·개인 단위 피처는 접근 통제와 이용 목적 제한이 붙는다(보충). 연구용 동의로 수집된 데이터의 피처를 상용·타 목적 모델이 조회하는 것은 기술적으로 가능해도 법적으로 불가할 수 있다 — 피처 스토어의 조회 권한이 이 경계를 강제하는 지점이다.
 - **타임스탬프 의미**: 8.3의 "알려진 시점" 규약도 정의서에 명시한다 — 미래 누출 감사의 근거 문서가 된다.
 
-실습은 이 항목들을 feature view의 태그로 선언하고 registry에서 추출해 정의서로 내보냈다(`ch8_feature_definitions.json`). 그 내용이 표 8.4다 — 소유자 표기는 시뮬레이션(가상 부서)임을 명시한다. 이 JSON은 이 장의 종착점이 아니라 13장의 입력이다: 13장의 피처 카탈로그는 여기서 나온 소유자·원천·개인정보 등급을 받아 접근 통제와 감사 로그로 집행한다 — 정의(8장)와 집행(13장)이 같은 명세를 공유하면 거버넌스 문서와 시스템이 분리되지 않는다.
+실습은 이 항목들을 feature view의 태그로 선언하고 registry에서 추출해 정의서로 내보냈다(`ch7_feature_definitions.json`). 그 내용이 표 8.4다 — 소유자 표기는 시뮬레이션(가상 부서)임을 명시한다. 이 JSON은 이 장의 종착점이 아니라 13장의 입력이다: 13장의 피처 카탈로그는 여기서 나온 소유자·원천·개인정보 등급을 받아 접근 통제와 감사 로그로 집행한다 — 정의(8장)와 집행(13장)이 같은 명세를 공유하면 거버넌스 문서와 시스템이 분리되지 않는다.
 
 **표 8.4** 피처 정의서(실습 등록 내용, registry에서 추출)
 
@@ -323,7 +323,7 @@ A부서가 만든 "지역별 민원 피처"를 B부서의 재난 대응 모델�
 - 훈련-서빙 일관성 점검표와 위험 식별 표로 설계 근거와 실행 증거를 검수 언어로 옮긴다(증거).
 
 ### 입력 데이터
-피처 원천은 7장 실습의 실측 산출물(일별 집계·품질 기록 3일치) 스냅숏이며 `data/input/ch7_daily/`에 동봉했다 — 민원 이벤트 자체가 4~7장과 동일한 시뮬레이션 입력이라는 표기도 그대로 승계된다. 피처 정의서의 소유자 표기도 가상이다. 이 실습의 관찰 대상은 실제 Feast 엔진(0.64.0)의 등록·시점 조인·적재·조회 동작이며, 인용 수치는 모두 실제 실행 산출물에서 산출된다.
+피처 원천은 7장 실습의 실측 산출물(일별 집계·품질 기록 3일치) 스냅숏이며 `data/input/ch6_daily/`에 동봉했다 — 민원 이벤트 자체가 4~7장과 동일한 시뮬레이션 입력이라는 표기도 그대로 승계된다. 피처 정의서의 소유자 표기도 가상이다. 이 실습의 관찰 대상은 실제 Feast 엔진(0.64.0)의 등록·시점 조인·적재·조회 동작이며, 인용 수치는 모두 실제 실행 산출물에서 산출된다.
 
 ### 1단계 설계 — 피처 설계표와 조회 결과 예측
 
@@ -366,10 +366,10 @@ A부서가 만든 "지역별 민원 피처"를 B부서의 재난 대응 모델�
 Python 3.10 이상(이 실습은 3.13에서 검증)이면 되고, 외부 인프라는 필요 없다 — offline store는 parquet 파일, online store는 SQLite, registry는 로컬 파일이다.
 
 ```bash
-cd practice/chapter8
+cd practice/chapter7
 python3 -m venv venv && source venv/bin/activate
 pip install -r code/requirements.txt
-python run_chapter8.py
+python run_chapter7.py
 ```
 
 스크립트는 다음 순서로 진행하며, 각 단계가 절 하나씩에 대응한다.
@@ -392,14 +392,14 @@ FeatureView(name="complaint_daily", entities=[district], ttl=timedelta(days=3),
     source=FileSource(path=str(parquet), timestamp_field="event_timestamp"))
 ```
 
-_전체 코드는 practice/chapter8/code/8-1-feature-store-minimal.py 참고_
+_전체 코드는 practice/chapter7/code/7-1-feature-store-minimal.py 참고_
 
 ### 실행 중 확인 체크리스트
 - [ ] 실행 전에 표 8.6과 조회 결과 예측을 적어 두었는가(실행 후에 적으면 대조가 성립하지 않는다)
 - [ ] 피처 원천이 9행(3일×3지역)으로 생성되었는가
 - [ ] `feature_repo/`에 registry.db(정의)와 online_store.db(값)가 따로 생성되었는가 — 정의·값 분리의 실물
 - [ ] apply 후 entity·view·service가 등록 로그에 기록되었는가
-- [ ] 시점 조인: 입력 4행 → 결과 3행, 탈락 1행이 (관악구, 7/1 09:00)인가 — 탈락은 `ch8_feature_report.json`의 historical_dropped_rows에서만 확인된다
+- [ ] 시점 조인: 입력 4행 → 결과 3행, 탈락 1행이 (관악구, 7/1 09:00)인가 — 탈락은 `ch7_feature_report.json`의 historical_dropped_rows에서만 확인된다
 - [ ] 강남구 두 샘플에 다른 값(8, 9)이 붙었는가 — 미래 누출 방지의 직접 증거
 - [ ] 온라인 조회 3건이 오프라인 최신값과 모두 일치(all_consistent=true)하고 마지막 줄이 `CH8_RUN_PASS`인가
 
@@ -408,9 +408,9 @@ _전체 코드는 practice/chapter8/code/8-1-feature-store-minimal.py 참고_
 |---|---|---|
 | `complaint_daily_features.parquet` | 피처 원천(offline store) 9행 | 시점 조인의 근거 데이터 |
 | `feature_repo/` | registry·online SQLite·설정 | 정의 등록과 온라인 적재의 실체 |
-| `ch8_feature_definitions.json` | **피처 정의서**(registry에서 추출) | 8.4 거버넌스 자산 — 표 8.4의 원본 |
-| `ch8_consistency_report.json` | **훈련-서빙 일관성 점검표** | 표 8.2b의 원본 |
-| `ch8_feature_report.json` | 시점 조인 결과·탈락 행·버전 | **이 장 인용 수치의 증거 파일** |
+| `ch7_feature_definitions.json` | **피처 정의서**(registry에서 추출) | 8.4 거버넌스 자산 — 표 8.4의 원본 |
+| `ch7_consistency_report.json` | **훈련-서빙 일관성 점검표** | 표 8.2b의 원본 |
+| `ch7_feature_report.json` | 시점 조인 결과·탈락 행·버전 | **이 장 인용 수치의 증거 파일** |
 | 표 8.6 피처 설계표(학습자 작성) | entity·집계 창·TTL·주기·묶음과 각각의 근거 | **피처 설계표** — 검수 자산, 3단계 대조 후 확정 |
 
 ### 실행 결과(실제)
@@ -422,14 +422,14 @@ _전체 코드는 practice/chapter8/code/8-1-feature-store-minimal.py 참고_
 ### 관찰
 - 조인된 값이 모두 7장 실측에서 수작업으로 검산된다: 8=7/1 강남, 5=7/2 마포, 9=7/3 강남, 6=7/3 마포. 피처 스토어는 값을 생성하지 않았다 — 확정 산출물을 시점 규율에 맞춰 전달했을 뿐이다. 이 "계산하지 않음"이 훈련-서빙 일치의 원천이다.
 - registry(정의)와 store(값)의 분리를 실물로 확인한다: `feature_repo/registry.db`가 정의, parquet·SQLite가 값이다. 정의만 바뀌어도, 값만 바뀌어도 각각 사고가 된다 — 9장의 버전 관리 사고방식이 필요한 이유다.
-- 피처 정의서(`ch8_feature_definitions.json`)는 수작업으로 쓴 문서가 아니라 registry에서 추출한 것이다 — 문서가 실물과 어긋나는 고전적 문제(문서 따로, 코드 따로)를 "문서를 실물에서 생성"으로 막는 패턴이며, 7장의 증거 파일과 같은 철학이다.
+- 피처 정의서(`ch7_feature_definitions.json`)는 수작업으로 쓴 문서가 아니라 registry에서 추출한 것이다 — 문서가 실물과 어긋나는 고전적 문제(문서 따로, 코드 따로)를 "문서를 실물에서 생성"으로 막는 패턴이며, 7장의 증거 파일과 같은 철학이다.
 
 ### 실행 환경에서 발생한 오류 사례
 이 실습을 준비하며 실제로 발생한 오류의 경과를 기록해 둔다. 8.2에서 제시한 빈 온라인 스토어는 처음에 materialize 단계에서 드러나지 않았다 — 적재 명령은 정상 종료 로그를 남겼다. 문제는 그다음, 온라인 조회값을 정수로 캐스팅(casting)하는 줄에서 `int() argument must be ... not 'NoneType'` 예외가 발생했다. 즉 **오류가 난 곳과 원인이 있는 곳이 달랐다**(원인: 적재 창 이탈, 발현: 조회값 사용 지점). 여기서 조회 코드가 "값이 없으면 0으로" 같은 방어적 기본값을 사용했다면 어떻게 되었을지 가정한다 — 예외조차 없이, 모든 지역구의 피처가 0인 채로 모델이 서빙되었을 것이다. 방어적 기본값은 편리하지만 침묵 실패를 한 층 더 깊이 숨긴다 — 피처 조회의 결측은 기본값으로 대체하지 말고 계측(결측률 지표)하고, 임계 초과 시 서빙을 막는 것이 안전한 쪽이다(11장 모니터링과 연결).
 
 ### 3단계 대조 — 예측과 실측의 대조
 
-1단계 예측표의 "실제" 열을 실행 산출물로 채운다. 조인 결과 행 수와 탈락 행은 `ch8_feature_report.json`의 `entity_rows_requested`·`historical_join`·`historical_dropped_rows`에, 온라인 조회는 `ch8_consistency_report.json`의 `rows`에 있다.
+1단계 예측표의 "실제" 열을 실행 산출물로 채운다. 조인 결과 행 수와 탈락 행은 `ch7_feature_report.json`의 `entity_rows_requested`·`historical_join`·`historical_dropped_rows`에, 온라인 조회는 `ch7_consistency_report.json`의 `rows`에 있다.
 
 | 항목 | 실측 |
 |---|---|
@@ -463,7 +463,7 @@ TTL 선택도 여기서 검산한다. 요구사항은 "배치가 하루 실패�
 
 셋째 열이 비어 있거나 "모니터링한다" 같은 말로 채워지면 그 행은 검수 문서에서 유용하지 않다. 대응 방향에는 **바꿀 설정값이나 바꿀 설계 결정**이 들어가야 한다.
 
-**제출물 3종**: ① 표 8.6 피처 설계표(3단계 수정 반영한 최종본), ② `ch8_feature_report.json`과 `ch8_consistency_report.json`, ③ 위 위험 식별 표. ①이 설계, ②이 증거, ③가 둘을 이은 검수 자산이다.
+**제출물 3종**: ① 표 8.6 피처 설계표(3단계 수정 반영한 최종본), ② `ch7_feature_report.json`과 `ch7_consistency_report.json`, ③ 위 위험 식별 표. ①이 설계, ②이 증거, ③가 둘을 이은 검수 자산이다.
 
 ---
 

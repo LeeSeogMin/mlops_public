@@ -227,7 +227,7 @@ ON CONFLICT(event_id) DO UPDATE SET
   last_seen_at = excluded.last_seen_at, seen_count = seen_count + 1
 ```
 
-_전체 코드는 practice/chapter5/code/5-1-deduplicate-events.py 참고_
+_전체 코드는 practice/chapter4/code/4-3-deduplicate-events.py 참고_
 
 SQL을 한 줄씩 검토한다. `INSERT ... VALUES (..., 1)`은 "처음 수신한 이벤트면 행을 생성하고 관찰 횟수를 1로 시작하라"다. `ON CONFLICT(event_id)`는 "event_id 유니크 제약에 걸리면(= 이미 수신한 이벤트면)"이고, `DO UPDATE SET`이 그때의 동작이다. `excluded`는 SQLite의 예약 이름으로 **충돌을 일으킨 새 행**(삽입되려다 거부된 값)을 가리킨다 — 그래서 `last_seen_at = excluded.last_seen_at`은 "마지막 관찰 시각을 방금 도착한 것의 시각으로 갱신"이 된다. 반면 `first_seen_at`은 DO UPDATE 목록에 없으므로 최초 삽입값이 영원히 보존된다 — 무엇을 갱신하고 무엇을 보존할지가 SQL 한 줄에 명시적으로 드러나는 것이 UPSERT의 장점이다.
 
@@ -315,13 +315,13 @@ watermark를 길게 설정하면 정확하지만 확정이 늦어지고(상태�
 | D. 전체 리플레이 | 5.1 "멱등 쓰기가 exactly-once *반영*을 만든다" |
 
 ### 입력 데이터
-입력(`practice/chapter5/data/input/ch4_alo_duplicate_stream.jsonl`)은 4장 실습 4.1 시나리오 C가 실제 Kafka 브로커에서 남긴 처리 기록의 스냅샷이다 — 40건 중 고유 이벤트 30건, 크래시 후 재수신 중복 10건. 즉 이 실습의 "중복 주입"은 시뮬레이터가 만든 것이 아니라 **실제 브로커 장애 실험이 만든 중복**이며, 스냅샷을 동봉했으므로 4장 환경 없이 단독 실행된다.
+입력(`practice/chapter4/data/input/ch4_alo_duplicate_stream.jsonl`)은 4장 실습 4.1 시나리오 C가 실제 Kafka 브로커에서 남긴 처리 기록의 스냅샷이다 — 40건 중 고유 이벤트 30건, 크래시 후 재수신 중복 10건. 즉 이 실습의 "중복 주입"은 시뮬레이터가 만든 것이 아니라 **실제 브로커 장애 실험이 만든 중복**이며, 스냅샷을 동봉했으므로 4장 환경 없이 단독 실행된다.
 
 ### 실행
 
 ```bash
-cd practice/chapter5
-python3 run_chapter5.py
+cd practice/chapter4
+python3 run_dedup.py
 ```
 
 추가 설치는 없다(표준 라이브러리 sqlite3 사용). 저장소로 SQLite를 사용하는 이유는 두 가지다 — 파이썬에 내장되어 실습 준비 부담이 없고, 유니크 제약·UPSERT라는 이 장의 핵심 개념이 주요 관계형 DB의 공통 패턴이라 PostgreSQL 등 운영 DB로 그대로 옮겨진다(DB별 문법 세부만 다르다 — 5.3 참조). 스크립트는 같은 스트림을 네 단계로 적재·비교한다: A) 제약 없는 naive INSERT, B) 유니크 제약 + INSERT OR IGNORE, C) UPSERT(재관찰 기록), D) C 상태에서 전체 스트림을 한 번 더 리플레이.
@@ -333,18 +333,18 @@ cur = conn.execute("INSERT OR IGNORE INTO complaints_unique VALUES (?, ?, ?, ?)"
 ignored += 1 - cur.rowcount   # rowcount 0 = 유니크 충돌로 무시됨
 ```
 
-_전체 코드는 practice/chapter5/code/5-1-deduplicate-events.py 참고_
+_전체 코드는 practice/chapter4/code/4-3-deduplicate-events.py 참고_
 
 ### 산출물 안내
 
 | 산출물 | 내용 | 용도 |
 |---|---|---|
-| `ch5_dedup_report.json` | 단계별 행 수·중복 수·지문 해시 | **중복 제거 검증 결과 요약** — 검수 자산 |
-| `ch5_dedup.sqlite` | 세 전략의 테이블이 공존하는 DB | 직접 질의하며 탐구(예: seen_count 분포) |
+| `ch4_dedup_report.json` | 단계별 행 수·중복 수·지문 해시 | **중복 제거 검증 결과 요약** — 검수 자산 |
+| `ch4_dedup.sqlite` | 세 전략의 테이블이 공존하는 DB | 직접 질의하며 탐구(예: seen_count 분포) |
 | `data/input/ch4_alo_duplicate_stream.jsonl` | 4장 실측 중복 스트림 스냅샷 | 입력 — 출처가 문서화된 실측 데이터 |
 
 ### 실행 결과(실제)
-검증 결과 요약은 `practice/chapter5/data/output/ch5_dedup_report.json`에 저장된다.
+검증 결과 요약은 `practice/chapter4/data/output/ch4_dedup_report.json`에 저장된다.
 
 **표 5.6** 저장 전략별 검증 결과(실제 실행 — 입력 40건, 고유 30건)
 
@@ -397,7 +397,7 @@ _전체 코드는 practice/chapter5/code/5-1-deduplicate-events.py 참고_
 ## 이 장이 남기는 검수 자산(부록 D 연계)
 - **중복 시나리오별 대응표**(표 5.1): 단계별 발생 경로와 대응의 단일 정리
 - **키 설계 점검 체크리스트**(5.2): 중복 제거 키 확정 전 점검 항목
-- **중복 제거 검증 결과 요약**(`ch5_dedup_report.json`): 전략별 실측 비교 — 지문 해시로 멱등 반영까지 증빙
+- **중복 제거 검증 결과 요약**(`ch4_dedup_report.json`): 전략별 실측 비교 — 지문 해시로 멱등 반영까지 증빙
 
 ## 핵심 용어
 - 중복 제거 키: "같은 이벤트"를 판정하는 기준 필드 — 재시도·재처리 경로에서 불변이어야 한다

@@ -406,10 +406,10 @@ compose 파일은 짧지만, 줄마다 통합의 설계 결정이 들어 있다.
 
 ### 2단계 실행 — 선수 조건과 실행
 ```bash
-cd practice/chapter14
+cd practice/chapter13
 python3 -m venv venv && source venv/bin/activate   # (Windows: venv\Scripts\activate)
 pip install -r code/requirements.txt
-python run_chapter14.py        # Docker Desktop 실행 상태여야 한다(부록 A)
+python run_chapter13.py        # Docker Desktop 실행 상태여야 한다(부록 A)
 ```
 
 오케스트레이터가 전 과정을 자동 수행한다. 단계별로 무엇을 보게 되는지 정리하면 —
@@ -446,7 +446,7 @@ if resp is None:                       # 모델 API 실패 — 마감은 계속 
 (out / "_SUCCESS").write_text("")      # 마커는 마지막에(7장) — 집계는 확정된다
 ```
 
-_전체 코드는 practice/chapter14/code/14-1-integrated-mvp/ 참고(processor.py·ingester.py·monitor.py·docker-compose.yml)_
+_전체 코드는 practice/chapter13/code/13-1-integrated-mvp/ 참고(processor.py·ingester.py·monitor.py·docker-compose.yml)_
 
 ### 실행 중 확인 체크리스트
 - [ ] bootstrap이 `지문 96f6b6b3…`을 출력하고 `CH14_BOOTSTRAP_OK`로 끝나는가(9장 스냅숏 일치)
@@ -458,7 +458,7 @@ _전체 코드는 practice/chapter14/code/14-1-integrated-mvp/ 참고(processor.
 - [ ] 실행 전에 표 14.8과 드릴 예측표를 적어 두었는가(실행 후에 적으면 대조가 성립하지 않는다)
 
 ### 실행 결과(실제)
-콘솔 출력 발췌(전체는 `data/output/ch14_run_log.txt` — 이 실행의 보존본은 `ch14_run_log_preserved.txt`):
+콘솔 출력 발췌(전체는 `data/output/ch13_run_log.txt` — 이 실행의 보존본은 `ch13_run_log_preserved.txt`):
 
 ```text
   health={'status': 'ok', 'model_name': 'complaint_daily_forecaster',
@@ -504,7 +504,7 @@ _전체 코드는 practice/chapter14/code/14-1-integrated-mvp/ 참고(processor.
 그다음 표 14.8으로 돌아가 마지막 행("이 조합이 깨지는 조건")을 다시 쓴다. 실행 전에는 추측이었지만 지금은 근거가 있다. 파티션을 3개로 올렸을 때 일 마감이 어느 조건에서 틀리는지, 표본 3건짜리 MAE로 게이트를 판정하면 7/3의 1.3333이 무엇을 유발하는지를 실측 옆에 적을 수 있다. **제출하는 설계표는 이 수정을 거친 최종본이다.**
 
 ### 4단계 검수 — 인수 검수표(정본 산출물)
-monitor가 실행 증거에서 자동 생성한 검수표다(`ch14_acceptance_checklist.json`). 각 항목은 주장이 아니라 계산된 불리언이다 — ML 시스템의 프로덕션 준비도를 "검증 가능한 항목의 목록"으로 명세하는 접근(Breck et al., 2017)을 이 시스템의 크기로 축소한 것이며, 10장의 배포 전 체크리스트(8항목)가 통합 수준으로 확장된 형태다.
+monitor가 실행 증거에서 자동 생성한 검수표다(`ch13_acceptance_checklist.json`). 각 항목은 주장이 아니라 계산된 불리언이다 — ML 시스템의 프로덕션 준비도를 "검증 가능한 항목의 목록"으로 명세하는 접근(Breck et al., 2017)을 이 시스템의 크기로 축소한 것이며, 10장의 배포 전 체크리스트(8항목)가 통합 수준으로 확장된 형태다.
 
 ML Test Score의 원 논문은 준비도 테스트를 **네 범주**로 나눈다 — 데이터·피처 테스트, 모델 개발 테스트, ML 인프라 테스트, 모니터링 테스트 — 그리고 각 테스트를 수동 수행 0.5점·반복 자동화 1점으로 계산해 범주별로 합산한 뒤, 그 **네 값의 최솟값**을 최종 점수로 삼는다(Breck et al., 2017 — 가장 약한 범주가 준비도를 지배한다는 뜻이다). 이 16항목 검수표를 그 렌즈로 재정렬하면 대응이 드러난다: 02·03·04·15가 **데이터·피처 테스트**(집계·정제 회계·보존식·피처 지문), 07·13이 **모델 테스트**(예측 재현·평가 정합), 01·05·06·08·09·10·11·14·16이 **인프라 테스트**(E2E·멱등·격리·신원·입력 검증·부분 실패·복구·서빙 동일성, 그리고 드릴 리허설은 원 논문의 롤백·비상 절차 시험에 대응), 12가 **모니터링 테스트**(지연 평가 기록)에 든다. 이 대응이 곧 이 검수표의 한계도 보여 준다 — 특히 **모니터링 범주가 지연 평가 기록 한 항목으로 가장 얇다**. 원 논문이 최솟값을 최종 점수로 삼는 논리를 적용하면, 이 시스템의 준비도는 바로 이 얇은 모니터링 범주가 결정한다. ML Test Score의 만점 루브릭이 요구하는 "의존성 변경 알림·훈련-서빙 스큐·성능 회귀의 상시 자동 감시"는 이 MVP의 크기 밖이며(단일 시나리오·소표본), 그 확장이 표 14.5의 제외 항목들(감시 시각화·알림)이 돌아오는 지점이다. 적용 자격을 밝히면 — 이는 ML Test Score의 루브릭을 방법론으로 차용해 검수표를 조직한 것이지, 원 논문의 점수 산정 절차를 그대로 집행한 것은 아니다.
 
@@ -532,10 +532,10 @@ ML Test Score의 원 논문은 준비도 테스트를 **네 범주**로 나눈�
 검수표를 읽는 법: 01~04가 기능 요구의 인수(표 14.1의 앞 절반), 05~11이 비기능 요구의 인수(뒷 절반), 12~13이 감시·평가 연결, 14~16이 재조립 증명과 운영 준비다. 발주 문서의 요구가 검수표의 항목으로, 항목이 자동 대조 코드로 이어지는 이 사슬이 — "인수 가능한 시스템"의 실체다.
 
 ### 산출물 안내
-- `data/output/ch14_integration_report.json`: 통합 리포트(일별 회계·예측·지연 평가·드릴 실측 — 재실행 바이트 동일 확인)
-- `data/output/ch14_acceptance_checklist.json`: 인수 검수표(정본 산출물 — 자동 생성)
-- `data/output/ch14_bootstrap_summary.json` · `ch14_smoke.json`: 재구성·스모크 증거
-- `data/output/ch14_run_log_preserved.txt`: 이 장 집필 시점 실행의 콘솔 보존 기록(지연 등 변동 값의 원천 — 재실행 산출물 아님)
+- `data/output/ch13_integration_report.json`: 통합 리포트(일별 회계·예측·지연 평가·드릴 실측 — 재실행 바이트 동일 확인)
+- `data/output/ch13_acceptance_checklist.json`: 인수 검수표(정본 산출물 — 자동 생성)
+- `data/output/ch13_bootstrap_summary.json` · `ch13_smoke.json`: 재구성·스모크 증거
+- `data/output/ch13_run_log_preserved.txt`: 이 장 집필 시점 실행의 콘솔 보존 기록(지연 등 변동 값의 원천 — 재실행 산출물 아님)
 - `data/output/mvp/`: 런타임 산출물(일별 확정 집계·예측 스냅샷·격리 큐·상태 DB — 커밋 제외)
 - 표 14.8 계층 결정 일관성 점검표와 드릴 예측·실측 대조표(학습자 작성 — 3단계 대조 후 확정)
 
@@ -556,7 +556,7 @@ ML Test Score의 원 논문은 준비도 테스트를 **네 범주**로 나눈�
 | 계층 결정의 불일치 | 표 14.8 점검: 파티션 3개 ↔ 일 마감 순서 전제, 게이트 1.05 ↔ 하루 표본 3건 | 결정표를 통합 산출물로 유지하고, 어느 계층의 값을 바꿀 때 충돌을 재점검 |
 | 검수표의 형식화 | 전 항목이 증거 계산식 | "주장 항목"을 검수표에서 배제 |
 
-**제출물 3종**: ① 표 14.8 계층 결정 일관성 점검표(3단계 수정을 반영한 최종본), ② `ch14_acceptance_checklist.json`, ③ 드릴 예측·실측 대조표. ①이 설계, ②가 증거, ③이 둘을 이은 대조 기록이다.
+**제출물 3종**: ① 표 14.8 계층 결정 일관성 점검표(3단계 수정을 반영한 최종본), ② `ch13_acceptance_checklist.json`, ③ 드릴 예측·실측 대조표. ①이 설계, ②가 증거, ③이 둘을 이은 대조 기록이다.
 
 ---
 

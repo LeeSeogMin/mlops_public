@@ -1,12 +1,5 @@
-# 12장 실습: 부하 테스트와 최적화
-# 부하 도구
-locust
-psutil
-# 서빙(10장 app.py 바이트 동일 복사) — 훈련·재구성·클라이언트
-fastapi
-uvicorn
-mlflow
+# 12주차 피처 거버넌스 실습은 표준 라이브러리만 사용한다.
+# 공정성·설명가능성 실습은 아래 패키지를 사용한다.
 scikit-learn
 pandas
-pyarrow
-httpx
+numpy

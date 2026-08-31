@@ -1,5 +1,0 @@
-# Python 3.10+ (이 실습은 3.13에서 검증 — 9장과 호환)
-# 그룹별 성능 비교와 permutation importance에 scikit-learn을, 데이터 처리에 pandas를 쓴다.
-scikit-learn
-pandas
-numpy

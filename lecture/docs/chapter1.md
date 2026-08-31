@@ -191,7 +191,7 @@ DE 문제가 MLOps 문제로 전파되는 경로를 시간 순서로 따라간�
 - **D+10**: 민원 배정 오류에 대한 민원이 들어온다 — 실패가 시민에게 도달했다.
 - **D+11~**: 역추적이 시작된다. 모델이 문제인가? 데이터인가? 코드인가? 배포인가? — 데이터→피처→모델→예측의 연결 기록(라인리지)이 없으면 이 역추적에 몇 주가 걸린다.
 
-![코드 개편 시나리오의 실패 연쇄 타임라인](figures/ch01/fig1-1-failure-cascade.png)
+![코드 개편 시나리오의 실패 연쇄 타임라인](figures/ch01/fig1-1-failure-cascade.svg)
 
 **그림 1.1** 실패의 연쇄: 발원지와 발현지 사이의 간극
 
@@ -216,7 +216,7 @@ Sculley 외(2015)의 "Hidden Technical Debt in Machine Learning Systems"는 ML �
 
 ### 그림으로 보는 전체 구조
 
-![실시간 데이터 파이프라인 개요](figures/ch01/fig1-2-pipeline-overview.png)
+![실시간 데이터 파이프라인 개요](figures/ch01/fig1-2-pipeline-overview.svg)
 
 **그림 1.2** 실시간 데이터 파이프라인 개요(데이터 공급망과 모델 운영의 연결)
 

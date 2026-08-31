@@ -315,7 +315,7 @@ Lab이 잘 굴러가려면 두 종류의 일이 분리되어야 한다. **연구
 Python 3.10 이상(이 실습은 3.13에서 검증)이면 충분하고 외부 인프라·의존성이 없다 — 앞 장 증거 JSON을 읽어 집계·생성할 뿐이다.
 
 ```bash
-cd practice/chapter17
+cd docs_practice/chapter17
 python3 -m venv venv && source venv/bin/activate
 pip install -r code/requirements.txt   # 외부 의존성 없음
 python run_chapter17.py
@@ -356,7 +356,7 @@ budget = {"allowed_failures": allowed_fail, "budget_consumed": total_fail,
           "verdict": "예산 내" if total_fail <= allowed_fail else "예산 초과"}
 ```
 
-_전체 코드는 practice/chapter17/code/17-1-postmortem.py 참고_
+_전체 코드는 docs_practice/chapter17/code/17-1-postmortem.py 참고_
 
 ### 결정성 설계
 이 장은 새 실행을 하지 않고 앞 장 증거를 집계하므로 `now()`를 사용하지 않는다 — 타임라인은 사건의 단계 순번으로만 서술한다. 증거 JSON은 `sort_keys=True`로 재실행해도 바이트 동일하며, 두 번 실행해 `diff`가 비어 있음을 확인했다. 입력 증거는 앞 장 output에서 `data/input/`으로 복사한 스냅숏이고 원본을 수정하지 않는다.

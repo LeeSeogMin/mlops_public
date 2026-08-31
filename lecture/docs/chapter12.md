@@ -114,7 +114,7 @@ with self.client.post("/predict", json=PAYLOAD, catch_response=True) as r:
         r.failure(f"forecast={r.json().get('forecast')}")
 ```
 
-_전체 코드는 practice/chapter12/code/12-1-load-test.py 참고_
+_전체 코드는 docs_practice/chapter12/code/12-1-load-test.py 참고_
 
 ### 표기: 부하 생성기도 자원을 소모한다
 부하 테스트의 주의점 하나는 **측정 도구가 병목이 되는 것**이다. Locust도 Python 프로세스라 CPU를 소모하고, 부하 생성기와 서버가 같은 machine에서 실행되면 둘이 코어를 경합한다. 생성기가 먼저 포화하면 "서버의 한계"가 아니라 "생성기의 한계"를 재게 된다. 이 실습은 단일 노트북에서 돌리므로 이 교란을 완전히 없애지 못한다 — 그래서 결과의 절대 수치보다 **시나리오 간 상대 비교**(워커 1 대 2, shadow off 대 on)에 무게를 둔다. 운영 규모의 부하 테스트는 생성기를 별도 machine·분산 모드로 실행해 이 교란을 제거한다(보충).
@@ -267,7 +267,7 @@ uvicorn의 `--workers N`은 서빙을 N개의 프로세스로 실행한다. 프�
 Python 3.13에서 검증했다(locust 2.44.4·psutil 7.2.2·uvicorn 0.50.2·mlflow 3.14.0·scikit-learn 1.9.0). 별도 서버·컨테이너·API 키가 필요 없다 — bootstrap이 로컬 레지스트리를 재구성하고, 오케스트레이터가 서버를 직접 기동하고 종료한다.
 
 ```bash
-cd practice/chapter12
+cd docs_practice/chapter12
 python3 -m venv venv && source venv/bin/activate   # (Windows: venv\Scripts\activate)
 pip install -r code/requirements.txt
 python run_chapter12.py
@@ -292,7 +292,7 @@ for pid, p in tracked.items():          # 프라이밍된 Process 객체를 재�
     rss_total += p.memory_info().rss
 ```
 
-_전체 코드는 practice/chapter12/run_chapter12.py, 부하 시나리오는 practice/chapter12/code/12-1-load-test.py 참고_
+_전체 코드는 docs_practice/chapter12/run_chapter12.py, 부하 시나리오는 docs_practice/chapter12/code/12-1-load-test.py 참고_
 
 ### 실행 중 확인 체크리스트
 - [ ] 시나리오 0에서 `app.py sha256 일치`가 출력되는가 — 10장과 바이트 동일이라는 증명
