@@ -79,6 +79,10 @@ data/processed/*
 logs/
 mlruns/
 
+# 장별 실행 증거는 학생이 직접 생성하고 제출할 수 있도록 추적한다
+!practice/*/results/
+!practice/*/results/**
+
 # Testing
 .pytest_cache/
 .coverage

@@ -218,10 +218,33 @@ def export_definitions(store) -> dict:
     return defs
 
 
+# 이 스크립트가 만드는 산출물. 정리 대상을 여기에만 한정한다.
+OWNED_OUTPUTS = (
+    "feature_repo",
+    "complaint_daily_features.parquet",
+    "ch7_feature_report.json",
+    "ch7_feature_definitions.json",
+    "ch7_consistency_report.json",
+)
+
+
+def reset_owned_outputs() -> None:
+    """data/output 전체가 아니라 이 스크립트가 만드는 것만 지운다.
+
+    같은 폴더에 7-2~7-4의 산출물과 학생이 제출할 파일이 함께 있으므로,
+    통째로 비우면 이 실행과 무관한 파일까지 사라진다.
+    """
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    for name in OWNED_OUTPUTS:
+        target = OUTPUT_DIR / name
+        if target.is_dir():
+            shutil.rmtree(target)
+        elif target.exists():
+            target.unlink()
+
+
 def main() -> int:
-    if OUTPUT_DIR.exists():
-        shutil.rmtree(OUTPUT_DIR)
-    OUTPUT_DIR.mkdir(parents=True)
+    reset_owned_outputs()
 
     source_path = build_source_parquet()
     store = make_repo(source_path)
