@@ -49,7 +49,21 @@ python scripts/setup_practice.py {N}
 
 이 스크립트는 Python·Java 버전, Docker 데몬, 포트, 선행 장의 산출물, 환경변수를 점검한 뒤 가상환경을 만들고 패키지를 설치한다. `--check`를 붙이면 점검만 하고 아무것도 바꾸지 않는다. 장별 선행 조건은 스크립트의 `CHAPTERS` 표에 적혀 있으므로, 실습 구성이 바뀌면 그 표도 함께 고친다.
 
-선행 조건이 없는 장에는 이 절을 만들지 않는다. 현재 두는 장은 1(인증키 선택)·4(Docker 필수)·6(Java 17)·7(WSL2·네트워크)·10(Docker 선택)·14(Docker 필수)다.
+선행 조건이 없는 장에는 이 절을 만들지 않는다. 어느 주차에 무엇이 필요한지는 `scripts/setup_practice.py`의 `CHAPTERS` 표가 정하며, 2026-09-13 기준으로 다음과 같다.
+
+| 주차 | 선행 조건 |
+|---:|---|
+| 1 | 공공데이터포털 인증키(선택) |
+| 4 | Docker 필수, `kafka-python`, 포트 2181·9092·29092 |
+| 5 | Java 17, `pyspark` |
+| 6 | POSIX 전용(Windows 네이티브 불가), 네트워크, `apache-airflow` |
+| 7 | `feast`·`pandas`·`pyarrow` |
+| 9 | `mlflow`·`scikit-learn`·`pandas`·`pyarrow` |
+| 10 | Docker 선택, `fastapi`·`uvicorn`·`mlflow` 등 |
+| 13 | Docker 필수, `mlflow`·`httpx` 등 |
+| 14 | LLM API 키(선택). Docker는 필요 없다 |
+
+이 표와 본문이 어긋나면 스크립트 쪽이 사실이다. 실습 구성이 바뀌면 스크립트의 `CHAPTERS`와 이 표를 함께 고친다.
 
 - `practice/` 아래에서 **기존 JSON 산출물의 스키마와 값은 바꾸지 않는다.** 시험과 과제가 그 파일을 참조한다.
 - 다만 교차형 배치를 위한 다음 두 가지는 허용한다(2026-09-13 개정).

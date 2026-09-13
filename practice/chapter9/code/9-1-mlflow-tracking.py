@@ -25,23 +25,16 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 INPUT_DIR = BASE_DIR / "data" / "input"
 OUTPUT_DIR = BASE_DIR / "data" / "output"
 
-# 이 스크립트가 만드는 산출물. 정리 대상을 여기에만 한정한다.
-OWNED_OUTPUTS = (
-    "mlflow.db",
-    "mlruns",
-    "ch9_promotion_record.json",
-    "ch9_experiment_report.json",
-)
-
-
 def reset_owned_outputs() -> None:
-    """data/output 전체가 아니라 이 스크립트가 만드는 것만 지운다.
+    """이 실행을 다시 돌리는 데 방해가 되는 것만 비운다.
 
-    같은 폴더에 9-2~9-5의 산출물과 학생이 제출할 파일이 함께 있으므로,
-    통째로 비우면 이 실행과 무관한 파일까지 사라진다.
+    실험 추적 DB와 run 디렉터리는 지난 실행 기록이 섞이지 않도록 지운다.
+    산출물 JSON은 지우지 않는다 — 계산이 끝난 뒤 덮어쓰므로, 실행이 중간에
+    실패해도 지난 실행의 산출물이 그대로 남는다.
+    data/output에는 9-2~9-5의 산출물과 학생이 제출할 파일도 함께 있다.
     """
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    targets = [OUTPUT_DIR / name for name in OWNED_OUTPUTS]
+    targets = [OUTPUT_DIR / "mlflow.db", OUTPUT_DIR / "mlruns"]
     targets += sorted(OUTPUT_DIR.glob("training_pairs_*.csv"))
     for target in targets:
         if target.is_dir():

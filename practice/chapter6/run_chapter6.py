@@ -68,7 +68,7 @@ def main() -> int:
     # data/output 전체가 아니라 이 실행이 다시 만드는 것만 지운다.
     # 같은 폴더에 6-2~6-5의 산출물과 학생이 제출할 파일이 함께 있기 때문이다.
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    for name in ("airflow_home", "daily", "weekly", "ch6_batch_run_report.json"):
+    for name in ("airflow_home", "daily", "weekly"):
         target = OUTPUT_DIR / name
         if target.is_dir():
             shutil.rmtree(target)

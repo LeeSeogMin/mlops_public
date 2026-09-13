@@ -218,29 +218,17 @@ def export_definitions(store) -> dict:
     return defs
 
 
-# 이 스크립트가 만드는 산출물. 정리 대상을 여기에만 한정한다.
-OWNED_OUTPUTS = (
-    "feature_repo",
-    "complaint_daily_features.parquet",
-    "ch7_feature_report.json",
-    "ch7_feature_definitions.json",
-    "ch7_consistency_report.json",
-)
-
-
 def reset_owned_outputs() -> None:
-    """data/output 전체가 아니라 이 스크립트가 만드는 것만 지운다.
+    """이 실행을 다시 돌리는 데 방해가 되는 것만 비운다.
 
-    같은 폴더에 7-2~7-4의 산출물과 학생이 제출할 파일이 함께 있으므로,
-    통째로 비우면 이 실행과 무관한 파일까지 사라진다.
+    피처 저장소 디렉터리는 지난 실행의 등록 정보가 섞이지 않도록 지운다.
+    산출물 JSON과 parquet은 지우지 않는다 — 계산이 끝난 뒤 덮어쓰므로,
+    실행이 중간에 실패해도 지난 실행의 산출물이 그대로 남는다.
+    data/output에는 7-2~7-4의 산출물과 학생이 제출할 파일도 함께 있다.
     """
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    for name in OWNED_OUTPUTS:
-        target = OUTPUT_DIR / name
-        if target.is_dir():
-            shutil.rmtree(target)
-        elif target.exists():
-            target.unlink()
+    if REPO_DIR.exists():
+        shutil.rmtree(REPO_DIR)
 
 
 def main() -> int:
