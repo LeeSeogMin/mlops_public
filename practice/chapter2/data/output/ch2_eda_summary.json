@@ -24,7 +24,7 @@
   "pm10_grade_counts": {
     "1": 28,
     "2": 11,
-    "nan": 1
+    "None": 1
   },
   "source": "file:airquality_seoul_2200.json"
 }
