@@ -125,7 +125,7 @@ def check_java(minimum: int) -> None:
 def check_docker(level: str) -> bool:
     mark = FAIL if level == "required" else WARN
     if not shutil.which("docker"):
-        say(mark, "docker 명령을 찾을 수 없다", "Docker Desktop을 설치한다(부록 A).")
+        say(mark, "docker 명령을 찾을 수 없다", "Docker Desktop을 설치한다(4주차 강의자료 '시작 전 준비' 참조).")
         return False
     r = run(["docker", "info", "--format", "{{.ServerVersion}}"])
     if r.returncode != 0 or not r.stdout.strip():
