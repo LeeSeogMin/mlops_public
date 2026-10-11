@@ -18,7 +18,7 @@
         "name": "complaint_count"
       },
       {
-        "description": "전일 정제 품질 — 매핑 실패율(7장 quality_check)",
+        "description": "전일 정제 품질 — 매핑 실패율(6주차 quality_check)",
         "dtype": "Float64",
         "name": "day_unmapped_rate"
       }

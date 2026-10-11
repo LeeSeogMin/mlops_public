@@ -108,7 +108,8 @@ practice/*/data/output/*.sqlite
 # 7장 Airflow 런타임 상태(로컬 절대경로 cfg·메타데이터 DB·로그)는 커밋하지 않는다
 practice/chapter7/data/output/airflow_home/
 
-# 8장 Feast 생성물(yaml·registry·online DB에 로컬 절대경로 포함)·9장 MLflow DB는 커밋하지 않는다
+# 7·8장 Feast 생성물(registry·online DB에 parquet 원천의 로컬 절대경로 포함)·9장 MLflow DB는 커밋하지 않는다
+practice/chapter7/data/output/feature_repo/
 practice/chapter8/data/output/feature_repo/
 practice/chapter9/data/output/mlflow.db
 
