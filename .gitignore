@@ -131,7 +131,3 @@ practice/chapter14/code/14-1-integrated-mvp/model-api/model_export/
 !practice/chapter14/data/input/complaint_daily_features.parquet
 !practice/chapter14/data/input/lawd_cd_seoul.csv
 
-# 중간 미니 프로젝트 — 학번으로 만든 개인 데이터·산출물은 커밋하지 않는다
-practice/midterm/student_id.txt
-practice/midterm/data/
-practice/midterm/results/
