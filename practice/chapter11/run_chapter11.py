@@ -51,12 +51,12 @@ def main() -> int:
             return 2
     OUTPUT.mkdir(parents=True, exist_ok=True)
 
-    print("=== 비교 A: 22:00 vs 23:00 (6/28, 2장 재현 검증) ===")
+    print("=== 비교 A: 22:00 vs 23:00 (6/28, 2장 재현 검증) ===", flush=True)
     a = run_compare(CURRENT_A, "a_1hour")
     matches_ch2 = all(abs(a[k] - v) < 1e-9 for k, v in CH2_EXPECTED.items())
-    print(f"2장 실측 재현: {matches_ch2}")
+    print(f"\n2장 실측 재현: {matches_ch2}", flush=True)
 
-    print("\n=== 비교 B: 6/28 22:00 vs 7/7 22:00 (시각 정렬 9일 간격) ===")
+    print("\n=== 비교 B: 6/28 22:00 vs 7/7 22:00 (시각 정렬 9일 간격) ===", flush=True)
     b = run_compare(CURRENT_B, "b_9days")
 
     report = {
@@ -80,7 +80,7 @@ def main() -> int:
     report_path.write_text(
         json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
         encoding="utf-8")
-    print(f"\n보고서 저장: {report_path}")
+    print(f"\n보고서 저장: {report_path.relative_to(BASE_DIR).as_posix()}")
 
     # PASS 게이트 — 비교 A(2장 재현)만이 아니라 비교 B와 보고서 경로까지 검증한다.
     failures = []

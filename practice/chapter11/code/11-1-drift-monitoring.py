@@ -172,6 +172,90 @@ def compare(baseline_path: Path, current_path: Path, col: str,
     }
 
 
+def display_path(path: Path) -> str:
+    """로그에 남길 경로 — 실습 폴더 기준 상대 경로(실행 환경의 절대 경로를 남기지 않는다)."""
+    try:
+        return path.resolve().relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        return path.name
+
+
+def station_values(path: Path, col: str) -> dict[str, float]:
+    """측정소 이름 → 측정값(결측 제외). 같은 측정소끼리 짝지어 보여 주기 위한 출력용."""
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    items = payload.get("response", {}).get("body", {}).get("items", [])
+    out: dict[str, float] = {}
+    for r in items:
+        v = pd.to_numeric(r.get(col), errors="coerce") if isinstance(r, dict) else np.nan
+        if isinstance(r, dict) and r.get("stationName") and not pd.isna(v):
+            out[str(r["stationName"])] = float(v)
+    return out
+
+
+def print_steps(result: dict, baseline_path: Path, current_path: Path, col: str) -> None:
+    """compare() 결과를 계산 순서대로 [1]~[6] 단계로 출력한다(계산은 하지 않고 보여 주기만)."""
+    b = result["bins"]
+
+    # [1] 무엇을 비교하는가 — 같은 측정소의 값이 어떻게 바뀌었는지부터 본다
+    base_st, curr_st = station_values(baseline_path, col), station_values(current_path, col)
+    common = sorted(set(base_st) & set(curr_st))
+    up = sum(curr_st[s] > base_st[s] for s in common)
+    down = sum(curr_st[s] < base_st[s] for s in common)
+    print(f"[1] 입력 — 서울 측정소의 {col} 값 두 묶음")
+    print(f"    기준 {baseline_path.name}  시각 {result['baseline_time']}  "
+          f"측정소 {result['baseline_n']}곳  평균 {result['baseline_mean']}")
+    print(f"    현재 {current_path.name}  시각 {result['current_time']}  "
+          f"측정소 {result['current_n']}곳  평균 {result['current_mean']}")
+    print(f"    두 시각에 모두 있는 측정소 {len(common)}곳: "
+          f"오름 {up}곳, 내림 {down}곳, 같음 {len(common) - up - down}곳")
+    sample = ", ".join(f"{s} {base_st[s]:g}→{curr_st[s]:g}" for s in common[:3])
+    print(f"    예(가나다순 앞 3곳): {sample}")
+
+    # [2] 구간 나누기 — 경계는 기준 분포의 분위수로 정한다
+    print(f"\n[2] 구간 나누기 — 기준 값의 분위수로 경계를 정해 {b['bins_effective']}구간으로 나눔")
+    print("    구간           기준(곳)  현재(곳)  기준 비율  현재 비율")
+    for lab, nb, nc, pb, pc in zip(b["labels"], b["baseline_counts"], b["current_counts"],
+                                   b["baseline_props"], b["current_props"]):
+        print(f"    {lab:<14}{nb:>6}{nc:>10}{pb:>11.4f}{pc:>11.4f}")
+    print(f"    비율 = (구간 측정소 수 + 0.5) ÷ ({result['baseline_n']} + "
+          f"0.5×{b['bins_effective']}) — 0곳인 구간에서 ln 계산이 막히지 않게 0.5를 더함")
+
+    # [3] KS 검정 — 차이를 우연으로 보기 어려운가
+    sig = "작다 → 유의함" if result["ks_significant"] else "크다 → 유의하지 않음"
+    print("\n[3] KS 검정 — 이 차이를 우연으로 보기 어려운가")
+    print(f"    D = {result['ks_statistic']}  (두 누적분포가 가장 멀리 벌어진 간격)")
+    print(f"    p = {result['p_value']}  → 유의수준 {result['alpha']}보다 {sig}")
+
+    # [4] PSI — 구간마다 비율이 얼마나 옮겨 갔는가
+    print("\n[4] PSI — 구간마다 (현재 비율 − 기준 비율) × ln(현재 비율 ÷ 기준 비율)을 더함")
+    # 기여값은 반올림 전 비율로 계산해야 합계가 PSI와 맞는다(표시만 4자리)
+    nb = np.array(b["baseline_counts"]) + 0.5
+    nc = np.array(b["current_counts"]) + 0.5
+    exact_b, exact_c = nb / nb.sum(), nc / nc.sum()
+    for lab, pb, pc in zip(b["labels"], exact_b, exact_c):
+        contrib = (pc - pb) * np.log(pc / pb)
+        print(f"    {lab:<14}({pc:.4f} − {pb:.4f}) × ln({pc:.4f} ÷ {pb:.4f}) = {contrib:.4f}")
+    print(f"    합계 PSI = {result['psi']}  "
+          f"(관행 임계: {PSI_WATCH} 이상 주의, {PSI_ALERT} 이상 경보 → {result['psi_band']} 대역)")
+    print(f"    확인: KL(기준→현재) {result['kl_base_to_curr']} + KL(현재→기준) "
+          f"{result['kl_curr_to_base']} = PSI 와 같은가 → {result['psi_equals_kl_sum']}")
+
+    # [5] 등급 판정 — 두 지표를 규칙에 넣는다
+    ks_sig = result["ks_significant"]
+    psi_alert, psi_watch = result["psi"] >= PSI_ALERT, result["psi"] >= PSI_WATCH
+    first, second = ks_sig and psi_alert, ks_sig or psi_watch
+    print("\n[5] 등급 판정 — 경보 = KS 유의 AND PSI≥0.25, 주의 = KS 유의 OR PSI≥0.1")
+    print(f"    KS 유의 = {ks_sig}, PSI≥{PSI_ALERT} = {psi_alert}, PSI≥{PSI_WATCH} = {psi_watch}")
+    print(f"    경보 조건: {ks_sig} AND {psi_alert} → {first}")
+    if not first:
+        print(f"    주의 조건: {ks_sig} OR {psi_watch} → {second}")
+    print(f"    등급 = {result['alert_level']}")
+
+    # [6] 권고 — 등급에서 바로 재학습으로 가지 않는다
+    print("\n[6] 권고 조치")
+    print(f"    {result['recommended_action']}")
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description="Chapter 11 practice 11.1: drift monitoring")
     parser.add_argument("--baseline", default=str(INPUT_DIR / "airquality_seoul_2200_0628.json"))
@@ -182,25 +266,16 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--json-out", default=None, help="비교 결과 JSON 저장 경로")
     args = parser.parse_args(argv)
 
-    result = compare(Path(args.baseline), Path(args.current), args.col, args.alpha, args.bins)
-
-    print(f"[기준] {result['baseline_time']} n={result['baseline_n']} "
-          f"평균 {result['baseline_mean']}")
-    print(f"[현재] {result['current_time']} n={result['current_n']} "
-          f"평균 {result['current_mean']}")
-    print(f"KS={result['ks_statistic']} p={result['p_value']} (alpha={result['alpha']}) | "
-          f"PSI={result['psi']} | KL(b→c)={result['kl_base_to_curr']} "
-          f"KL(c→b)={result['kl_curr_to_base']}")
-    print(f"알림: KS유의={result['ks_significant']} PSI대역={result['psi_band']} "
-          f"→ 등급 {result['alert_level']}")
-    print(f"권고: {result['recommended_action']}")
+    baseline_path, current_path = Path(args.baseline), Path(args.current)
+    result = compare(baseline_path, current_path, args.col, args.alpha, args.bins)
+    print_steps(result, baseline_path, current_path, args.col)
 
     if args.json_out:
         out = Path(args.json_out)
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
                        encoding="utf-8")
-        print(f"저장: {out}")
+        print(f"\n저장: {display_path(out)}")
     return 0
 
 
