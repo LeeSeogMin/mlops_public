@@ -1,14 +1,14 @@
 {
   "file": "12-5-group-bias.py",
-  "chapter_relpath": "practice\\chapter12\\code\\12-5-group-bias.py",
-  "started_at": "2026-09-13T16:09:41.658761+09:00",
-  "duration_sec": 1.94,
+  "chapter_relpath": "practice/chapter12/code/12-5-group-bias.py",
+  "started_at": "2026-11-15T19:03:29.447303+09:00",
+  "duration_sec": 0.81,
   "exit_code": 0,
   "timed_out": false,
   "success": true,
-  "python_version": "3.13.14",
-  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.14.6",
+  "platform": "macOS-14.3.1-arm64-arm-64bit-Mach-O",
   "source_sha256": "a6516bf753044c251c0caac5b738a97feef9a9c7c01be610f620ebc110f87344",
-  "output_sha256": "4f091497946bc229a515e6cc6a6093f902883e09d17a9dfb686526ba4de252ac",
-  "output_log": "practice\\chapter12\\results\\12-5-group-bias.log"
+  "output_sha256": "28b15355bc3cc795a9786e6e572d42042a8126d1ab1be826260fdd8687ea81a6",
+  "output_log": "practice/chapter12/results/12-5-group-bias.log"
 }

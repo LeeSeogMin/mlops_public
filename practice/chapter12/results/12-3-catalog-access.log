@@ -1,4 +1,4 @@
-$ C:\Users\user\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe 12-3-catalog-access.py
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 12-3-catalog-access.py
 
 === STDOUT ===
 [1] 카탈로그 — 정의를 손으로 적지 않고 7주차 등록 파일에서 가져온다
@@ -8,7 +8,7 @@ $ C:\Users\user\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Pyt
         정의      전일 확정 민원 건수(7장 일별 집계)
         소유자    민원데이터팀(가상 — 시뮬레이션 표기)
         개인정보  개인정보 없음(지역 단위 집계)
-        소비자    3곳 — complaint_model_v1 훈련(9장), champion 서빙(10장), 통합 MVP(13주차)
+        소비자    3곳 — complaint_model_v1 훈련(9장), champion 서빙(10장), 통합 MVP(14주차)
         보존기간  3일, 등록 서비스 complaint_model_v1
     - day_unmapped_rate(Float64)
         정의      전일 정제 품질 — 매핑 실패율(7장 quality_check)

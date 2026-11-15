@@ -348,8 +348,8 @@
       "zookeeper": "confluentinc/cp-zookeeper:7.5.0"
     },
     "kafka_python_pinned": "3.0.7",
-    "mlflow": "3.14.0",
-    "pandas": "2.3.3",
-    "sklearn": "1.9.0"
+    "mlflow": "3.18.0",
+    "pandas": "3.1.1",
+    "sklearn": "1.9.1"
   }
 }

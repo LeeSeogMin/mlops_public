@@ -5,17 +5,17 @@
 [bootstrap] run linear: train_mae=1.0455
 [bootstrap] champion=v1, challenger=v2
 [bootstrap] export 로드 검증 예측=6.0 (champion=v1)
-CH13_BOOTSTRAP_OK
+CH14_BOOTSTRAP_OK
   서빙 앱 재조립 확인: sha256 일치 (ec7ec65397a3194a…)
 
 == 1. 스택 초기화·이미지 빌드 ==
-  빌드 완료 (2s — 캐시 상태에 따라 변동)
-  이미지 ch13-model-api: 278 MB (환경·시점에 따라 변동)
-  이미지 ch13-pipeline: 48 MB (환경·시점에 따라 변동)
+  빌드 완료 (134s — 캐시 상태에 따라 변동)
+  이미지 ch14-model-api: 283 MB (환경·시점에 따라 변동)
+  이미지 ch14-pipeline: 48 MB (환경·시점에 따라 변동)
 
 == 2. 스택 기동·스모크 ==
   health={'status': 'ok', 'model_name': 'complaint_daily_forecaster', 'model_version': '1', 'model_source': 'local-dir', 'shadow_enabled': False}
-  predict(전일 9) → 6.0 (4.7ms) / 잘못된 입력 → 422
+  predict(전일 9) → 6.0 (8.6ms) / 잘못된 입력 → 422
 
 == 3. 3일 운영 시뮬레이션 ==
 -- 1일차(2026-07-01): 정상 --
@@ -61,21 +61,21 @@ CH13_BOOTSTRAP_OK
   [PASS] 15_재조립_증명_피처_지문일치(9장_96f6b6b3…)
   [PASS] 16_장애_드릴_3종_리허설_완료(runbook_검증)
 == 지연 평가: 일별 MAE {'2026-07-02': 0.6667, '2026-07-03': 1.3333}, 전체 1.0 (9장 훈련 MAE 1.0), 미채점 3건 ==
-CH13_MONITOR_PASS
+CH14_MONITOR_PASS
 
 == processor 관찰 로그(발췌 아님 — 전체) ==
 processor-1  | [processor] 시작 — 토픽 complaints.raw, 모델 API http://model-api:8000
 processor-1  | [processor] 토픽 생성: complaints.raw (partitions=1)
 processor-1  | [processor] 2026-07-01 마감: 물리수신 20 / 고유 20 (중복 흡수 0) → 매핑 18 · 미기재 1 · 미매핑 1 · 보존 True
-processor-1  | [processor] 예측 2026-07-02 마포구: 입력 5 → 6.0 (11.5ms)
-processor-1  | [processor] 예측 2026-07-02 관악구: 입력 5 → 6.0 (1.7ms)
-processor-1  | [processor] 예측 2026-07-02 강남구: 입력 8 → 6.0 (1.4ms)
+processor-1  | [processor] 예측 2026-07-02 마포구: 입력 5 → 6.0 (20.2ms)
+processor-1  | [processor] 예측 2026-07-02 관악구: 입력 5 → 6.0 (4.6ms)
+processor-1  | [processor] 예측 2026-07-02 강남구: 입력 8 → 6.0 (4.7ms)
 processor-1  | [processor] 2026-07-01: _SUCCESS 확정
 processor-1  | [processor] 2026-07-02 마감: 물리수신 28 / 고유 17 (중복 흡수 11) → 매핑 16 · 미기재 0 · 미매핑 1 · 보존 True
 processor-1  | [processor] 2026-07-02: 지연 레이블 도착 — 예측 3건 채점, 일 MAE 0.6667
-processor-1  | [processor] 예측 2026-07-03 마포구: 입력 5 → 6.0 (4.9ms)
-processor-1  | [processor] 예측 2026-07-03 관악구: 입력 5 → 6.0 (4.4ms)
-processor-1  | [processor] 예측 2026-07-03 강남구: 입력 6 → 6.0 (3.0ms)
+processor-1  | [processor] 예측 2026-07-03 마포구: 입력 5 → 6.0 (10.4ms)
+processor-1  | [processor] 예측 2026-07-03 관악구: 입력 5 → 6.0 (2.7ms)
+processor-1  | [processor] 예측 2026-07-03 강남구: 입력 6 → 6.0 (2.0ms)
 processor-1  | [processor] 2026-07-02: _SUCCESS 확정
 processor-1  | [processor] 오염 이벤트 격리(json_parse_error) — 파이프라인은 계속
 processor-1  | [processor] 2026-07-03 마감: 물리수신 22 / 고유 22 (중복 흡수 0) → 매핑 20 · 미기재 1 · 미매핑 1 · 보존 True
@@ -85,9 +85,9 @@ processor-1  | [processor] 예측 2026-07-04 관악구: 실패(api_unreachable) 
 processor-1  | [processor] 예측 2026-07-04 강남구: 실패(api_unreachable) → pending_retry
 processor-1  | [processor] 2026-07-03: _SUCCESS 확정
 processor-1  | [processor] 재시도 대상 3건
-processor-1  | [processor] 재시도 성공 2026-07-04 마포구: 입력 6 → 6.0 (5.7ms, 2회째)
-processor-1  | [processor] 재시도 성공 2026-07-04 관악구: 입력 5 → 6.0 (2.4ms, 2회째)
-processor-1  | [processor] 재시도 성공 2026-07-04 강남구: 입력 9 → 6.0 (1.9ms, 2회째)
+processor-1  | [processor] 재시도 성공 2026-07-04 마포구: 입력 6 → 6.0 (5.5ms, 2회째)
+processor-1  | [processor] 재시도 성공 2026-07-04 관악구: 입력 5 → 6.0 (3.3ms, 2회째)
+processor-1  | [processor] 재시도 성공 2026-07-04 강남구: 입력 9 → 6.0 (2.8ms, 2회째)
 
-증거 파일: /Users/callii/Documents/class/2026-2/mlops/practice/chapter13/data/output/ch13_integration_report.json
-CH13_RUN_PASS
+증거 파일: /Users/callii/Documents/class/2026-2/mlops_public/practice/chapter14/data/output/ch14_integration_report.json
+CH14_RUN_PASS

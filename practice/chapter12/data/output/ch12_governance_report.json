@@ -195,7 +195,7 @@
         "consumers": [
           "complaint_model_v1 훈련(9장)",
           "champion 서빙(10장)",
-          "통합 MVP(14장)"
+          "통합 MVP(14주차)"
         ],
         "definition": "전일 확정 민원 건수(7장 일별 집계)",
         "dtype": "Int64",
@@ -279,7 +279,7 @@
       "2026-07-02",
       "2026-07-03"
     ],
-    "feature_definition_source": "ch8_feature_definitions.json(8장 registry 추출)",
+    "feature_definition_source": "ch7_feature_definitions.json(7주차 registry 추출)",
     "feature_rows": 9
   },
   "practice": "13.1 피처 카탈로그와 접근 로그",

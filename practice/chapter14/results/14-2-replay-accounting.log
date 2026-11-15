@@ -1,8 +1,8 @@
-$ C:\Users\user\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe 13-2-replay-accounting.py
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 14-2-replay-accounting.py
 
 === STDOUT ===
-== 13주차 오프라인 재생: 정제·멱등·마감 회계 ==
-   champion 예측값 6.0 (출처: data/output/ch13_bootstrap_summary.json)
+== 14주차 오프라인 재생: 정제·멱등·마감 회계 ==
+   champion 예측값 6.0 (출처: data/output/ch14_bootstrap_summary.json)
 [replay] 2026-07-01 마감: 물리수신 20 / 고유 20 (중복 흡수 0) → 매핑 18 · 미기재 1 · 미매핑 1 · 보존 True
 [replay] 2026-07-02 마감: 물리수신 28 / 고유 17 (중복 흡수 11) → 매핑 16 · 미기재 0 · 미매핑 1 · 보존 True
 [replay] 2026-07-02: 지연 레이블 도착 — 예측 3건 채점, 일 MAE 0.6667
@@ -26,6 +26,6 @@ $ C:\Users\user\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Pyt
   [PASS] 격리_1건
   [PASS] 지연MAE가_통합실행과_일치
 == 지연 평가: 일별 MAE {'2026-07-02': 0.6667, '2026-07-03': 1.3333}, 전체 1.0, 미채점 3건 ==
-CH13_REPLAY_PASS
+CH14_REPLAY_PASS
 
 === STDERR ===

@@ -1,5 +1,5 @@
 {
-  "champion_forecast_source": "data/output/ch13_bootstrap_summary.json",
+  "champion_forecast_source": "data/output/ch14_bootstrap_summary.json",
   "cross_checks": {
     "2026-07-01_정제회계가_6주차_배치와_일치": true,
     "2026-07-01_통합실행_회계와_일치": true,

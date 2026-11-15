@@ -1,4 +1,4 @@
-$ C:\Users\user\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe 12-4-quality-change.py
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 12-4-quality-change.py
 
 === STDOUT ===
 [1] 검사 대상 — 6주차 확정 집계 3일 × 3지역

@@ -1,6 +1,6 @@
 # 강의 실습
 
-`practice/chapterN/`의 `N`은 상세 원고의 장 번호가 아니라 강의 주차 번호다. 중간고사 8주차와 기말고사 15주차에는 실습 폴더가 없다.
+`practice/chapterN/`의 `N`은 상세 원고의 장 번호가 아니라 강의 주차 번호다. 중간고사 8주차와 기말과제를 제출하는 15주차에는 실습 폴더가 없다.
 
 | 주차 | 강의 문서 | 실습 폴더 | 실습 내용 |
 |---:|---|---|---|
@@ -15,8 +15,8 @@
 | 10 | `lecture/ch10.md` | `chapter10/` | 모델 서빙 |
 | 11 | `lecture/ch11.md` | `chapter11/` | 모니터링 |
 | 12 | `lecture/ch12.md` | `chapter12/` | 피처 거버넌스와 공정성·설명가능성 |
-| 13 | `lecture/ch13.md` | `chapter13/` | 통합 MLOps 파이프라인 |
-| 14 | `lecture/ch14.md` | `chapter14/` | LLMOps |
+| 13 | `lecture/ch13.md` | `chapter13/` | LLMOps |
+| 14 | `lecture/ch14.md` | `chapter14/` | 통합 MLOps 파이프라인(기말과제 본보기) |
 
 각 폴더의 기본 실행 파일은 `run_chapterN.py`다. 4주차와 12주차의 통합 실행 파일은 두 세부 실습을 순서대로 호출한다.
 

@@ -32,10 +32,10 @@ UTC = timezone.utc
 REGION_NAME = {"11440": "마포구", "11620": "관악구", "11680": "강남구"}
 
 # 피처별 소비자 — 저장소에 문서화된 사실(장 간 연결)에서만 구성한다.
-#   complaint_count : 9장 훈련 쌍의 입력, 10장 champion 서빙 입력, 13주차 통합 MVP 소비
+#   complaint_count : 9장 훈련 쌍의 입력, 10장 champion 서빙 입력, 14주차 통합 MVP 소비
 #   day_unmapped_rate: complaint_model_v1 서비스에 등록된 품질 피처(9장 훈련 서비스)
 FEATURE_CONSUMERS = {
-    "complaint_count": ["complaint_model_v1 훈련(9장)", "champion 서빙(10장)", "통합 MVP(13주차)"],
+    "complaint_count": ["complaint_model_v1 훈련(9장)", "champion 서빙(10장)", "통합 MVP(14주차)"],
     "day_unmapped_rate": ["complaint_model_v1 서비스(9장 훈련)"],
 }
 
@@ -247,7 +247,7 @@ def manage_change(conn: sqlite3.Connection, quality_by_day: list[dict],
 
 def build_audit_checklist(catalog: list[dict], access: dict,
                           quality: dict, change: dict) -> dict:
-    """access_log·카탈로그·품질·변경 이력에서 감사 점검표를 자동 생성한다(13주차 선례)."""
+    """access_log·카탈로그·품질·변경 이력에서 감사 점검표를 자동 생성한다(14주차 선례)."""
     log = access["log"]
     value_reads = [r for r in log if r["action"] == "read_value"]
     allowed_value_reads = [r for r in value_reads if r["decision"] == "ALLOW"]

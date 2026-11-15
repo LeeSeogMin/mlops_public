@@ -39,7 +39,7 @@ REGION_NAME = {"11440": "마포구", "11620": "관악구", "11680": "강남구"}
 REGION_ORDER = ["11680", "11440", "11620"]
 
 MODEL_NAME = "complaint_daily_forecaster"
-FINGERPRINT_PREFIX = "96f6b6b3"  # 9·13주차과 교차 확인하는 훈련 데이터 지문
+FINGERPRINT_PREFIX = "96f6b6b3"  # 9·14주차와 교차 확인하는 훈련 데이터 지문
 
 
 def _round(x: float, n: int = 4) -> float:
@@ -223,7 +223,7 @@ def build_policy_rubric() -> dict:
     ]
     return {"title": "정책 AI 평가 루브릭 초안", "scale": scale,
             "criteria": criteria, "criteria_count": len(criteria),
-            "note": "채점 주체는 사람·독립 검증 — LLM-as-a-judge는 보조이며 단독 승인 근거로 쓰지 않는다(14주차)."}
+            "note": "채점 주체는 사람·독립 검증 — LLM-as-a-judge는 보조이며 단독 승인 근거로 쓰지 않는다(13주차)."}
 
 
 def policy_rubric_md(rub: dict) -> str:

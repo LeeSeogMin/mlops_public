@@ -1,14 +1,14 @@
 {
-  "file": "13-2-replay-accounting.py",
-  "chapter_relpath": "practice\\chapter13\\code\\13-2-replay-accounting.py",
-  "started_at": "2026-09-13T16:45:07.699227+09:00",
-  "duration_sec": 0.15,
+  "file": "14-2-replay-accounting.py",
+  "chapter_relpath": "practice/chapter14/code/14-2-replay-accounting.py",
+  "started_at": "2026-11-15T19:00:52.399343+09:00",
+  "duration_sec": 0.03,
   "exit_code": 0,
   "timed_out": false,
   "success": true,
-  "python_version": "3.13.14",
-  "platform": "Windows-11-10.0.26200-SP0",
-  "source_sha256": "2d6f1af635125116e09d831593b4fd6fcca8e2e00842158078c31456b688d160",
-  "output_sha256": "654c8c2c636bd5b0e2ecaa3821be2136c0d9fabbfd4de18ee7d7b426e327ae4d",
-  "output_log": "practice\\chapter13\\results\\13-2-replay-accounting.log"
+  "python_version": "3.14.6",
+  "platform": "macOS-14.3.1-arm64-arm-64bit-Mach-O",
+  "source_sha256": "8c6ba41a7f589a645120d91e6e2ef5a5548b76265eb6b0b1eb06bc66f38475e6",
+  "output_sha256": "770f15466ec93e724af6d77762744adf7af8603d06be3625915ec7ab7b9bf759",
+  "output_log": "practice/chapter14/results/14-2-replay-accounting.log"
 }

@@ -60,8 +60,8 @@ python scripts/setup_practice.py {N}
 | 7 | `feast`·`pandas`·`pyarrow` |
 | 9 | `mlflow`·`scikit-learn`·`pandas`·`pyarrow` |
 | 10 | Docker 선택, `fastapi`·`uvicorn`·`mlflow` 등 |
-| 13 | Docker 필수, `mlflow`·`httpx` 등 |
-| 14 | LLM API 키(선택). Docker는 필요 없다 |
+| 13 | LLM API 키(선택). Docker는 필요 없다 |
+| 14 | Docker 필수, `mlflow`·`httpx` 등 |
 
 이 표와 본문이 어긋나면 스크립트 쪽이 사실이다. 실습 구성이 바뀌면 스크립트의 `CHAPTERS`와 이 표를 함께 고친다.
 
@@ -182,11 +182,11 @@ python scripts/setup_practice.py {N}
 | 10 | 모델 배포와 CI/CD | `ch10.md` |
 | 11 | 모니터링 | `ch11.md` |
 | 12 | 피처 거버넌스 | `ch12.md` |
-| 13 | 공공 AI 통합 사례 | `ch13.md` |
-| 14 | LLMOps | `ch14.md` |
-| 15 | 기말고사 | — |
+| 13 | LLMOps | `ch13.md` |
+| 14 | 공공 AI 통합 사례 구축 | `ch14.md` |
+| 15 | 기말과제 제출 | — |
 
-4주차 `ch04.md`는 상세 원고 4·5장과 실습 `practice/chapter4`를 한 흐름으로 묶는다. 12주차 `ch12.md`는 상세 원고 13장을 중심으로 16장의 설명·이의제기 부분을 선별하며, 본 실습은 기말고사와 연결된 `practice/chapter12`를 사용한다.
+4주차 `ch04.md`는 상세 원고 4·5장과 실습 `practice/chapter4`를 한 흐름으로 묶는다. 12주차 `ch12.md`는 상세 원고 13장을 중심으로 16장의 설명·이의제기 부분을 선별하며, 본 실습은 `practice/chapter12`를 사용한다.
 
 **주차용 강의본에서 뺀 상세 장**: 상세 원고 12장(부하 테스트)과 17장(베스트 프랙티스)은 강의계획서에 배정하지 않았다. 두 장의 내용은 비공개 저장소에만 있으므로 강의자료에서 경로로 가리키지 않는다. `lecture/ch12.md`는 상세 12장이 아니라 12주차 강의본이다.
 

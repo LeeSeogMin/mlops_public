@@ -1,4 +1,4 @@
-$ C:\Users\user\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe 12-5-group-bias.py
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 12-5-group-bias.py
 
 === STDOUT ===
 [1] 입력 — 9주차가 남긴 훈련 쌍을 그대로 다시 읽는다
