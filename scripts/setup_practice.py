@@ -47,11 +47,11 @@ CHAPTERS: dict[int, dict] = {
     },
     11: {"pkgs": ["numpy", "pandas", "scipy"]},
     12: {"pkgs": [("scikit-learn", "sklearn"), "pandas", "numpy"]},
-    13: {
+    13: {"pkgs": [], "env_optional": ["CLOVA_STUDIO_API_KEY", "OPENAI_API_KEY"]},
+    14: {
         "pkgs": ["mlflow", ("scikit-learn", "sklearn"), "pandas", "pyarrow", "httpx"],
         "docker": "required",
     },
-    14: {"pkgs": [], "env_optional": ["CLOVA_STUDIO_API_KEY", "OPENAI_API_KEY"]},
 }
 
 OK, WARN, FAIL = "OK  ", "주의", "실패"

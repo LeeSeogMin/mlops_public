@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""13주차 오프라인 재생(replay): Kafka·Docker 없이 통합 MVP의 회계를 다시 계산한다.
+"""14주차 오프라인 재생(replay): Kafka·Docker 없이 통합 MVP의 회계를 다시 계산한다.
 
-13-1의 통합 MVP는 Docker 데몬과 Kafka 브로커를 요구하므로 강의실에서 바로
+14-1의 통합 MVP는 Docker 데몬과 Kafka 브로커를 요구하므로 강의실에서 바로
 돌리기 어렵다. 이 스크립트는 **같은 입력·같은 규칙**을 표준 라이브러리만으로
 다시 실행해, 통합 실행이 남긴 산출물의 수치를 재현한다.
 
@@ -15,12 +15,12 @@
 
 무엇을 못 하는가:
   - 모델 API를 호출하지 않는다. champion 예측값은 커밋된 산출물
-    data/output/ch13_bootstrap_summary.json의 export.export_check_forecast에서 읽는다.
+    data/output/ch14_bootstrap_summary.json의 export.export_check_forecast에서 읽는다.
     (9주차 champion은 평균 예측기라 입력과 무관하게 같은 값을 낸다 — 9·10주차 실측)
 
-산출물: data/output/ch13_replay_accounting.json (새 파일 — 기존 산출물은 건드리지 않는다)
-실행:   py scripts/run_and_capture.py 13 --file 13-2-replay-accounting.py
-        또는 py practice/chapter13/code/13-2-replay-accounting.py
+산출물: data/output/ch14_replay_accounting.json (새 파일 — 기존 산출물은 건드리지 않는다)
+실행:   py scripts/run_and_capture.py 14 --file 14-2-replay-accounting.py
+        또는 py practice/chapter14/code/14-2-replay-accounting.py
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ from collections import Counter
 from datetime import date, timedelta
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parents[1]          # practice/chapter13
+BASE_DIR = Path(__file__).resolve().parents[1]          # practice/chapter14
 IN_DIR = BASE_DIR / "data" / "input"
 OUT_DIR = BASE_DIR / "data" / "output"
 REPO_ROOT = BASE_DIR.parents[1]
@@ -40,7 +40,7 @@ CH6_DAILY = REPO_ROOT / "practice" / "chapter6" / "data" / "output" / "daily"
 DAYS = ["2026-07-01", "2026-07-02", "2026-07-03"]
 ALIASES = {"강남": "강남구", "마포": "마포구", "관악": "관악구"}   # processor.py와 동일
 POISON_PAYLOAD = "{poison: not-json, drill=D1"                    # ingester.py와 동일
-# ingester.py에 넘긴 드릴 인자 — run_chapter13.py의 3절과 같다
+# ingester.py에 넘긴 드릴 인자 — run_chapter14.py의 3절과 같다
 DRILLS = {
     "2026-07-01": {"resend_last": 0, "poison": 0},
     "2026-07-02": {"resend_last": 10, "poison": 0},
@@ -90,7 +90,7 @@ def next_day(d: str) -> str:
 
 def main() -> int:
     mapping = load_mapping()
-    boot = json.loads((OUT_DIR / "ch13_bootstrap_summary.json").read_text(encoding="utf-8"))
+    boot = json.loads((OUT_DIR / "ch14_bootstrap_summary.json").read_text(encoding="utf-8"))
     forecast = boot["export"]["export_check_forecast"]   # 커밋된 champion 실측값
 
     state: dict[str, dict] = {}          # complaint_id → 업무 상태(멱등 UPSERT 대상)
@@ -99,8 +99,8 @@ def main() -> int:
     days_out: dict[str, dict] = {}
     predictions: list[dict] = []
 
-    print("== 13주차 오프라인 재생: 정제·멱등·마감 회계 ==")
-    print(f"   champion 예측값 {forecast} (출처: data/output/ch13_bootstrap_summary.json)")
+    print("== 14주차 오프라인 재생: 정제·멱등·마감 회계 ==")
+    print(f"   champion 예측값 {forecast} (출처: data/output/ch14_bootstrap_summary.json)")
 
     for day in DAYS:
         # ── 1. 발행·소비: 오염은 격리하고 파이프라인은 계속 간다 ──
@@ -177,7 +177,7 @@ def main() -> int:
         mae_by_day[d] = round(sum(errs) / len(errs), 4)
     overall_mae = round(sum(p["abs_error"] for p in labeled) / len(labeled), 4)
 
-    report = json.loads((OUT_DIR / "ch13_integration_report.json").read_text(encoding="utf-8"))
+    report = json.loads((OUT_DIR / "ch14_integration_report.json").read_text(encoding="utf-8"))
     checks: dict[str, object] = {}
     for d in DAYS:
         ch6q = json.loads((CH6_DAILY / d / "quality.json").read_text(encoding="utf-8"))
@@ -209,10 +209,10 @@ def main() -> int:
         "predictions": predictions,
         "quarantined": len(quarantine),
         "quarantine_reasons": sorted(set(quarantine)),
-        "champion_forecast_source": "data/output/ch13_bootstrap_summary.json",
+        "champion_forecast_source": "data/output/ch14_bootstrap_summary.json",
         "cross_checks": checks,
     }
-    (OUT_DIR / "ch13_replay_accounting.json").write_text(
+    (OUT_DIR / "ch14_replay_accounting.json").write_text(
         json.dumps(out, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
         encoding="utf-8")
 
@@ -222,7 +222,7 @@ def main() -> int:
     print(f"== 지연 평가: 일별 MAE {mae_by_day}, 전체 {overall_mae}, 미채점"
           f" {len(predictions) - len(labeled)}건 ==")
     ok = all(checks.values())
-    print("CH13_REPLAY_" + ("PASS" if ok else "FAIL"))
+    print("CH14_REPLAY_" + ("PASS" if ok else "FAIL"))
     return 0 if ok else 1
 
 

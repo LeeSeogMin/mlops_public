@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """실습 15.1 보강: 실제 LLM 생성 멀티벤더 스냅샷(비결정 — 재현 게이트 밖).
 
-결정적 코어(14-1)가 "어느 조문이 근거인가"와 "생성해도 되는가"를 정한다.
+결정적 코어(13-1)가 "어느 조문이 근거인가"와 "생성해도 되는가"를 정한다.
 이 스크립트는 그 판정을 신뢰해, **동일한 결정적 코어(프롬프트 v2·검색 결과·근거 조문)**를
 서로 다른 두 제공자에게 그대로 넣어 생성시킨다 — 프롬프트·검색·근거 추적을 제공자에
 독립적으로 두면 제공자를 갈아끼울 수 있다는 이 장의 설계를 실측으로 증명한다.
@@ -11,12 +11,12 @@
 
 원칙
   - 출력은 확률적 문장이라 재실행 바이트 동일을 보장하지 않는다 → "비결정 스냅샷"으로 표기.
-  - 이 파일은 run_chapter14.py(PASS 게이트)에 포함되지 않는다(키 없이 오프라인 통과 보장).
+  - 이 파일은 run_chapter13.py(PASS 게이트)에 포함되지 않는다(키 없이 오프라인 통과 보장).
   - API 키는 환경변수에서만 읽는다(평문 커밋 금지). 키·환경변수 이름을 출력에 남기지 않는다.
   - 한 제공자가 실패해도(키·요금제·장애) 정직히 기록하고, 다른 제공자 결과는 남긴다(우회 금지).
 
-실행: cd practice/chapter14 && \
-      CLOVA_STUDIO_API_KEY=... OPENAI_API_KEY=... venv/bin/python code/14-2-llm-snapshot.py
+실행: cd practice/chapter13 && \
+      CLOVA_STUDIO_API_KEY=... OPENAI_API_KEY=... venv/bin/python code/13-2-llm-snapshot.py
 """
 
 from __future__ import annotations
@@ -31,8 +31,8 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent.parent
 INPUT = BASE / "data" / "input"
 OUTPUT = BASE / "data" / "output"
-REPORT = OUTPUT / "ch14_llmops_report.json"
-SNAPSHOT = OUTPUT / "ch14_llm_snapshot.json"
+REPORT = OUTPUT / "ch13_llmops_report.json"
+SNAPSHOT = OUTPUT / "ch13_llm_snapshot.json"
 
 # .env에서 로드할 화이트리스트 — 정확한 변수명만(무관한 비밀은 흡수하지 않는다, codex 규약).
 # 접두 매칭이 아니라 정확 매칭이라 같은 접두어 아래 다른 비밀도 흡수하지 않는다.
@@ -138,7 +138,7 @@ def run_provider(cfg: dict, targets: list[str], log: dict, qtext: dict,
 
 def main() -> int:
     if not REPORT.exists():
-        print("증거 없음 — run_chapter14.py 먼저 실행", file=sys.stderr)
+        print("증거 없음 — run_chapter13.py 먼저 실행", file=sys.stderr)
         return 2
     load_provider_env_from_dotenv()
 
@@ -148,10 +148,10 @@ def main() -> int:
     active = next(v for v in report["prompt_registry"]["versions"]
                   if v["version"] == report["prompt_registry"]["active_version"])
 
-    # 활성 프롬프트 원문·질의 텍스트는 결정적 코어(14-1)의 상수를 임포트해 재현한다.
+    # 활성 프롬프트 원문·질의 텍스트는 결정적 코어(13-1)의 상수를 임포트해 재현한다.
     import importlib.util
     spec = importlib.util.spec_from_file_location(
-        "prompt_registry", BASE / "code" / "14-1-prompt-registry.py")
+        "prompt_registry", BASE / "code" / "13-1-prompt-registry.py")
     pr = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(pr)
     system_text = pr.PROMPT_V2
@@ -198,7 +198,7 @@ def main() -> int:
         "note": ("동일한 결정적 코어(프롬프트 v2·검색·근거 조문)를 두 제공자에 그대로 넣어 실행했다. "
                  "temperature=0이라도 제공자 인프라 변화로 완전 재현은 보장되지 않으며, "
                  "제공자 가용성(키·요금제·장애)도 실행 시점에 따라 달라진다 → 재현 게이트 밖. "
-                 "결정적 코어(근거·생성 허용 여부)는 ch14_llmops_report.json에 있다(12장 지연 스냅샷 선례)."),
+                 "결정적 코어(근거·생성 허용 여부)는 ch13_llmops_report.json에 있다(12장 지연 스냅샷 선례)."),
         "providers": provider_blocks,
     }
     SNAPSHOT.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", "utf-8")

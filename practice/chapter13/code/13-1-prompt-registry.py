@@ -2,7 +2,7 @@
 """실습 15.1 프롬프트 레지스트리와 RAG 근거 추적·평가 로그(결정적 코어).
 
 공공 LLM 서비스(정책·법령 질의응답)의 운영 통제를 SQLite와 표준 라이브러리만으로
-결정적으로 구현한다. LLM의 실제 생성(비결정)은 14-2 스냅샷으로 분리한다.
+결정적으로 구현한다. LLM의 실제 생성(비결정)은 13-2 스냅샷으로 분리한다.
 
   15.3 RAG 검색     : 개인정보 보호법 조문 코퍼스(법제처 OPEN API 원문)에 BM25 검색
                       → 상위 조문·점수·출처 매핑(임베딩 API 금지 — 오프라인 결정성)
@@ -15,9 +15,9 @@
   - 모든 수치는 결정적으로 산출한다(입력 코퍼스 + 고정 질의 시퀀스). now() 금지.
   - PII는 전부 합성(가짜)이며 마스킹 후에만 로그에 적재한다 → 증거 JSON에 원시 PII 없음.
   - SQLite(.sqlite)는 빌드 산출물(gitignore), 커밋 증거는 결정적 JSON.
-  - 실제 생성 호출은 이 파일에 없다(비결정) — 14-2-llm-snapshot.py가 담당.
+  - 실제 생성 호출은 이 파일에 없다(비결정) — 13-2-llm-snapshot.py가 담당.
 
-실행: cd practice/chapter14 && venv/bin/python run_chapter14.py
+실행: cd practice/chapter13 && venv/bin/python run_chapter13.py
 """
 
 from __future__ import annotations
@@ -410,12 +410,12 @@ def build_report(input_dir: Path, output_dir: Path) -> dict:
         "generation": {
             "eligible_queries": [q["qid"] for q in queries["log"]
                                  if q["decision"] == "ALLOW_GENERATION"],
-            "note": "실제 생성은 14-2-llm-snapshot.py의 비결정 스냅샷(재현 게이트 밖)",
+            "note": "실제 생성은 13-2-llm-snapshot.py의 비결정 스냅샷(재현 게이트 밖)",
         },
     }
-    (output_dir / "ch14_llmops_report.json").write_text(
+    (output_dir / "ch13_llmops_report.json").write_text(
         json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\n", "utf-8")
-    (output_dir / "ch14_audit_checklist.json").write_text(
+    (output_dir / "ch13_audit_checklist.json").write_text(
         json.dumps(checklist, ensure_ascii=False, sort_keys=True, indent=2) + "\n", "utf-8")
     _write_policy_doc(output_dir, registry, approval)
     return report
@@ -452,7 +452,7 @@ def _write_policy_doc(output_dir: Path, registry: dict, approval: dict) -> None:
         "- 요청자·검토자가 분리되어 있는가(HITL)",
         "",
     ]
-    (output_dir / "ch14_prompt_governance_policy.md").write_text("\n".join(lines), "utf-8")
+    (output_dir / "ch13_prompt_governance_policy.md").write_text("\n".join(lines), "utf-8")
 
 
 if __name__ == "__main__":

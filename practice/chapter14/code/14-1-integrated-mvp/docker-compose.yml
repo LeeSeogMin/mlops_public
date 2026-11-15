@@ -1,9 +1,9 @@
-# 13주차 통합 실습: 통합 MVP — 수집(ingester) → Kafka → 처리(processor) → 모델 API
+# 14주차 통합 실습: 통합 MVP — 수집(ingester) → Kafka → 처리(processor) → 모델 API
 #
 # 3장 로컬 스택의 Kafka·Zookeeper 구성을 재사용하되, 3장 compose와 공존하도록
 # Kafka·Zookeeper의 호스트 포트는 공개하지 않는다(컨테이너 네트워크 내부 전용).
 # 호스트에 노출되는 것은 모델 API(8014) 하나 — 나머지 연결은 전부 내부 네트워크다.
-name: ch13-mvp
+name: ch14-mvp
 
 services:
   zookeeper:
@@ -42,13 +42,13 @@ services:
 
   model-api:
     build: ./model-api
-    image: ch13-model-api
+    image: ch14-model-api
     ports:
       - "8014:8000"
 
   processor:
     build: ./pipeline
-    image: ch13-pipeline
+    image: ch14-pipeline
     command: ["python", "-u", "processor.py"]
     depends_on:
       kafka:
@@ -67,7 +67,7 @@ services:
   # 빌드 선언은 processor 한 곳에만 둔다: 같은 태그를 두 서비스가 병렬 빌드하면
   # "image already exists" 경합으로 빌드가 깨진다(이 장 실제 오류 — 14.5)
   ingester:
-    image: ch13-pipeline
+    image: ch14-pipeline
     entrypoint: ["python", "-u", "ingester.py"]
     depends_on:
       kafka:

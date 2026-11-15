@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""13주차 통합 MVP: ingester — 민원 이벤트와 제어 이벤트를 Kafka에 발행한다.
+"""14주차 통합 MVP: ingester — 민원 이벤트와 제어 이벤트를 Kafka에 발행한다.
 
 접수 채널(웹·전화·현장)을 대신하는 수집기다. 하루치 원천 파일(6주차 커밋 입력)을
 `complaints.raw` 토픽으로 흘리고, 일 마감은 같은 토픽의 제어 이벤트(day_close)로

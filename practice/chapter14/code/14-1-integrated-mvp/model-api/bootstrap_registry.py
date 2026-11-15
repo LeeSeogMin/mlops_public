@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""13주차 통합 MVP 준비: 모델 레지스트리 재구성(bootstrap) — 10장과 동일 절차.
+"""14주차 통합 MVP 준비: 모델 레지스트리 재구성(bootstrap) — 10장과 동일 절차.
 
 통합 장은 부품을 새로 만들지 않는다. 이 파일은 10장 bootstrap의 경로 적응 재구성이며,
-같은 피처 스냅숏(지문 강제 확인)·같은 게이트·같은 별칭 규약으로 chapter13 로컬
+같은 피처 스냅숏(지문 강제 확인)·같은 게이트·같은 별칭 규약으로 chapter14 로컬
 레지스트리를 만들고 champion 실물을 model_export/에 내려받아 이미지 빌드에 고정한다.
-서빙 앱(app.py)은 10장 파일의 바이트 동일 복사본이다 — run_chapter13.py가 sha256
+서빙 앱(app.py)은 10장 파일의 바이트 동일 복사본이다 — run_chapter14.py가 sha256
 일치를 확인한다("통합은 재발명이 아니라 재조립"의 증명).
 
-실행: python code/13-1-integrated-mvp/model-api/bootstrap_registry.py
-      (chapter13 venv — 또는 run_chapter13.py가 호출)
+실행: python code/14-1-integrated-mvp/model-api/bootstrap_registry.py
+      (chapter14 venv — 또는 run_chapter14.py가 호출)
 """
 
 from __future__ import annotations
@@ -20,8 +20,8 @@ from pathlib import Path
 
 import pandas as pd
 
-API_DIR = Path(__file__).resolve().parent          # .../code/13-1-integrated-mvp/model-api
-BASE_DIR = API_DIR.parents[2]                      # practice/chapter13
+API_DIR = Path(__file__).resolve().parent          # .../code/14-1-integrated-mvp/model-api
+BASE_DIR = API_DIR.parents[2]                      # practice/chapter14
 INPUT_DIR = BASE_DIR / "data" / "input"
 OUTPUT_DIR = BASE_DIR / "data" / "output"
 MLRUNS_DIR = BASE_DIR / "mlruns"
@@ -76,7 +76,7 @@ def train_and_log(candidate: str, df: pd.DataFrame, fingerprint: str):
         mlflow.log_metric("train_mae", mae)
         mlflow.set_tags({
             "owner": "민원데이터팀(가상)",
-            "purpose": "지역구별 익일 민원 건수 예측(교육용) — 13주차 통합 MVP",
+            "purpose": "지역구별 익일 민원 건수 예측(교육용) — 14주차 통합 MVP",
             "data_source": "7주차 피처 스냅숏(원천: 시뮬레이션 민원 확정 집계 7/1~7/3)",
             "data_period": "2026-07-01~2026-07-03",
         })
@@ -183,10 +183,10 @@ def main() -> int:
         "challenger_version": challenger_v,
         "export": {**export_info, **exp},
     }
-    (OUTPUT_DIR / "ch13_bootstrap_summary.json").write_text(
+    (OUTPUT_DIR / "ch14_bootstrap_summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
     print(f"[bootstrap] export 로드 검증 예측={exp['export_check_forecast']} (champion=v{champion_v})")
-    print("CH13_BOOTSTRAP_OK")
+    print("CH14_BOOTSTRAP_OK")
     return 0
 
 

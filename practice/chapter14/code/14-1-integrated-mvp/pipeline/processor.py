@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""13주차 통합 MVP: processor — 소비·정제·멱등 반영·일 마감 집계·예측 호출.
+"""14주차 통합 MVP: processor — 소비·정제·멱등 반영·일 마감 집계·예측 호출.
 
 앞 장 부품의 재조립이다(새 규칙 없음):
 - 정제 4갈래(공백 보정·약칭 보정·표준코드 매핑·미기재/미매핑 분리 보고): 6주차 규약
@@ -325,7 +325,7 @@ def main() -> None:
     # 강등). 처리 완료 후 수동 커밋이 at-least-once의 실체이며, 재생이 안전한
     # 이유는 멱등 설계(UPSERT·마커·키 쓰기)다 — 4·4주차 규약의 소비자판.
     consumer = KafkaConsumer(TOPIC, bootstrap_servers=BOOTSTRAP,
-                             group_id="ch13-processor",
+                             group_id="ch14-processor",
                              auto_offset_reset="earliest",
                              enable_auto_commit=False)
     for msg in consumer:

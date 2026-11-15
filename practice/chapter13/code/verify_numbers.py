@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """상세 원고(lecture/docs/chapter15.md) 핵심 수치 ↔ 결정적 증거 JSON 대조.
 
-결정적 증거(ch14_llmops_report.json)에서 기대값을 읽어, 본문이 인용하는 핵심 수치가
+결정적 증거(ch13_llmops_report.json)에서 기대값을 읽어, 본문이 인용하는 핵심 수치가
 (1) 증거와 일치하고 (2) 본문에 실제로 등장하는지 검사한다(맥락 고정 문구 포함). 모두 통과 시 ALL_PASS.
 
 범위 한계(의도적):
-  - LLM 생성 스냅샷(ch14_llm_snapshot.json)의 문장은 비결정이므로 대조 대상이 아니다.
+  - LLM 생성 스냅샷(ch13_llm_snapshot.json)의 문장은 비결정이므로 대조 대상이 아니다.
     본문의 스냅샷 서술("이번 스냅샷에서 …")은 게이트 밖이며 여기서 검증하지 않는다.
   - 이 검증기는 결정적 코어의 핵심 지표·해시·대표 점수만 확인한다(모든 문장의 전수 검증 아님).
 
-실행: cd practice/chapter14 && venv/bin/python code/verify_numbers.py
+실행: cd practice/chapter13 && venv/bin/python code/verify_numbers.py
 """
 
 from __future__ import annotations
@@ -19,13 +19,13 @@ import sys
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent
-REPORT = BASE / "data" / "output" / "ch14_llmops_report.json"
+REPORT = BASE / "data" / "output" / "ch13_llmops_report.json"
 DOCS = BASE.parent.parent / "lecture" / "docs" / "chapter15.md"
 
 
 def main() -> int:
     if not REPORT.exists():
-        print(f"증거 없음: {REPORT} — run_chapter14.py 먼저 실행", file=sys.stderr)
+        print(f"증거 없음: {REPORT} — run_chapter13.py 먼저 실행", file=sys.stderr)
         return 2
     r = json.loads(REPORT.read_text("utf-8"))
     corpus = r["corpus"]

@@ -44,7 +44,7 @@
       "Q9",
       "Q10"
     ],
-    "note": "실제 생성은 15-2-llm-snapshot.py의 비결정 스냅샷(재현 게이트 밖)"
+    "note": "실제 생성은 13-2-llm-snapshot.py의 비결정 스냅샷(재현 게이트 밖)"
   },
   "practice": "15.1 프롬프트 레지스트리와 RAG 근거 추적·평가 로그",
   "prompt_registry": {

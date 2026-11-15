@@ -1,4 +1,4 @@
-# 13주차 통합 MVP: 파이프라인 이미지 — ingester(발행)와 processor(소비·정제·집계·예측 호출)가
+# 14주차 통합 MVP: 파이프라인 이미지 — ingester(발행)와 processor(소비·정제·집계·예측 호출)가
 # 같은 이미지를 공유한다(compose의 command로 역할이 갈린다)
 FROM python:3.13-slim
 

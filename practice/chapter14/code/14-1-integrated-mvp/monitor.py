@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""13주차 통합 MVP: monitor — 실행 증거에서 통합 리포트와 인수 검수표를 생성한다.
+"""14주차 통합 MVP: monitor — 실행 증거에서 통합 리포트와 인수 검수표를 생성한다.
 
 이 파일이 감시 계층의 축소 구현이다(11장 표 11.2의 MVP판): 파이프라인·모델 API가
 남긴 증거 파일(집계·품질·예측 스냅샷·운영 카운터)을 읽어,
-  1) 통합 리포트(ch13_integration_report.json) — 일별 회계·예측·지연 평가·드릴 실측
-  2) 통합 시스템 인수 검수표(ch13_acceptance_checklist.json) — 정본 산출물
+  1) 통합 리포트(ch14_integration_report.json) — 일별 회계·예측·지연 평가·드릴 실측
+  2) 통합 시스템 인수 검수표(ch14_acceptance_checklist.json) — 정본 산출물
 를 만든다. 검수표의 각 항목은 사람의 주장이 아니라 실행 증거에서 계산된 불리언이다
 (10장 배포 전 체크리스트의 확장 — ML Test Score의 "검수를 검증 가능한 항목으로
 명세한다" 접근).
@@ -12,7 +12,7 @@
 기대값 상수는 앞 장의 커밋된 실측이다(6주차 집계·9장 훈련 MAE·9/10장 예측) —
 이 값들과의 일치가 곧 "재조립이 원본과 같은 값을 낸다"는 교차 검증이다.
 
-실행: python code/13-1-integrated-mvp/monitor.py  (chapter13 venv, run_chapter13.py가 호출)
+실행: python code/14-1-integrated-mvp/monitor.py  (chapter14 venv, run_chapter14.py가 호출)
 """
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ import sys
 from pathlib import Path
 
 MVP_DIR = Path(__file__).resolve().parent
-BASE_DIR = MVP_DIR.parents[1]                 # practice/chapter13
+BASE_DIR = MVP_DIR.parents[1]                 # practice/chapter14
 OUT_DIR = BASE_DIR / "data" / "output"
 MVP_OUT = OUT_DIR / "mvp"
 REPO_ROOT = BASE_DIR.parents[1]
@@ -79,8 +79,8 @@ def main() -> int:
     qfile = MVP_OUT / "quarantine" / "quarantine.jsonl"
     quarantined = [json.loads(l) for l in qfile.read_text(encoding="utf-8").splitlines()] \
         if qfile.exists() else []
-    smoke = read_json(OUT_DIR / "ch13_smoke.json")
-    boot = read_json(OUT_DIR / "ch13_bootstrap_summary.json")
+    smoke = read_json(OUT_DIR / "ch14_smoke.json")
+    boot = read_json(OUT_DIR / "ch14_bootstrap_summary.json")
 
     # ── 지연 평가(11장): 레이블이 도착한 예측의 일별·전체 MAE ──
     labeled = [p for p in predictions if p["abs_error"] is not None]
@@ -190,8 +190,8 @@ def main() -> int:
         "ops_counters": counters,
         "smoke": smoke,
     }
-    dump_json(OUT_DIR / "ch13_integration_report.json", report)
-    dump_json(OUT_DIR / "ch13_acceptance_checklist.json", checklist)
+    dump_json(OUT_DIR / "ch14_integration_report.json", report)
+    dump_json(OUT_DIR / "ch14_acceptance_checklist.json", checklist)
 
     print("== 인수 검수표 ==")
     for k, v in checklist.items():
@@ -199,7 +199,7 @@ def main() -> int:
     print(f"== 지연 평가: 일별 MAE {mae_by_day}, 전체 {overall_mae}"
           f" (9장 훈련 MAE {EXPECTED_CH9_TRAIN_MAE}), 미채점 {len(unlabeled)}건 ==")
     ok = all(checklist.values())
-    print("CH13_MONITOR_" + ("PASS" if ok else "FAIL"))
+    print("CH14_MONITOR_" + ("PASS" if ok else "FAIL"))
     return 0 if ok else 1
 
 

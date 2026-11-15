@@ -42,7 +42,7 @@ ALIAS_URI = re.compile(r"^models:/(?P<name>[^/@]+)@(?P<alias>.+)$")
 
 class PredictRequest(BaseModel):
     lawd_cd: str = Field(pattern=r"^\d{5}$", description="법정동코드 5자리(7장 표준코드)")
-    x_prev_count: int = Field(ge=0, description="전일 민원 건수(7주차 피처)")
+    x_prev_count: int = Field(ge=0, description="전일 민원 건수(8장 피처)")
 
 
 class PredictResponse(BaseModel):

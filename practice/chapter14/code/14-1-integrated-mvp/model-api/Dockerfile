@@ -1,5 +1,5 @@
-# 13주차 통합 MVP: 모델 API 이미지 — 10장 Dockerfile 규약 그대로(코드+의존성+champion 고정)
-# app.py는 10장 파일의 바이트 동일 복사본이다(run_chapter13.py가 sha256 일치 확인).
+# 14주차 통합 MVP: 모델 API 이미지 — 10장 Dockerfile 규약 그대로(코드+의존성+champion 고정)
+# app.py는 10장 파일의 바이트 동일 복사본이다(run_chapter14.py가 sha256 일치 확인).
 FROM python:3.13-slim
 
 WORKDIR /app

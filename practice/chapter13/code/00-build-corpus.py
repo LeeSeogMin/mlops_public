@@ -4,7 +4,7 @@ data/input/corpus_pipa.json으로 저장한다.
 
 - 실재 공공 문서만 사용한다(하드룰): 조문 텍스트는 법제처 OPEN API의 원문이다.
 - 이 스크립트는 코퍼스를 한 번 만들어 커밋하기 위한 provenance 도구다.
-  실습 본체(14-1)는 네트워크 없이 이 커밋된 코퍼스를 읽어 결정적으로 동작한다.
+  실습 본체(13-1)는 네트워크 없이 이 커밋된 코퍼스를 읽어 결정적으로 동작한다.
 - OC(기관코드)는 환경변수 LAW_OPEN_API_OC에서만 읽는다(평문 커밋 금지).
 
 실행: LAW_OPEN_API_OC=... venv/bin/python code/00-build-corpus.py
