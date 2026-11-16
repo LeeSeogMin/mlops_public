@@ -1,9 +1,9 @@
-$ C:\Users\user\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe 3-1-compose-plan.py
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 3-1-compose-plan.py
 
 === STDOUT ===
 [1] compose 파일
-    경로      : C:\Users\user\Documents\lee\class\2026-2\mlops_public\practice\chapter3\docker-compose.yml
-    생성 시각 : 2026-09-13T06:29:08+00:00
+    경로      : /Users/callii/Documents/class/2026-2/mlops_public/practice/chapter3/docker-compose.yml
+    생성 시각 : 2026-11-16T13:23:18+00:00
 
 [2] 서비스 6개
     zookeeper    confluentinc/cp-zookeeper:7.5.0      ports=2181:2181
@@ -26,6 +26,6 @@ $ C:\Users\user\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Pyt
     postgres: weak/default password in POSTGRES_PASSWORD
     grafana: weak/default password in GF_SECURITY_ADMIN_PASSWORD
 
-output=C:\Users\user\Documents\lee\class\2026-2\mlops_public\practice\chapter3\data\output\ch3_compose_plan.json services=6
+output=/Users/callii/Documents/class/2026-2/mlops_public/practice/chapter3/data/output/ch3_compose_plan.json services=6
 
 === STDERR ===

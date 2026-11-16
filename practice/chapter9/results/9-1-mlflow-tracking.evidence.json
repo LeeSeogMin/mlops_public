@@ -1,14 +1,14 @@
 {
   "file": "9-1-mlflow-tracking.py",
-  "chapter_relpath": "practice\\chapter9\\code\\9-1-mlflow-tracking.py",
-  "started_at": "2026-09-13T16:02:44.649957+09:00",
-  "duration_sec": 0.78,
-  "exit_code": 1,
+  "chapter_relpath": "practice/chapter9/code/9-1-mlflow-tracking.py",
+  "started_at": "2026-11-16T22:25:27.814775+09:00",
+  "duration_sec": 18.91,
+  "exit_code": 0,
   "timed_out": false,
-  "success": false,
-  "python_version": "3.13.14",
-  "platform": "Windows-11-10.0.26200-SP0",
-  "source_sha256": "8263d12af73e50c17734b5648578ae84ccfe8cfa1fc1676b49a5c01d5ca219c5",
-  "output_sha256": "ac0285a563450a1eabfffcc18b5270eabcd356a6cf413a31620efc982a4efde4",
-  "output_log": "practice\\chapter9\\results\\9-1-mlflow-tracking.log"
+  "success": true,
+  "python_version": "3.13.7",
+  "platform": "macOS-14.3.1-arm64-arm-64bit-Mach-O",
+  "source_sha256": "6630f8befaf30ac82be18051aa9e380b2b0e9a0423a26f41688589ddda314fc0",
+  "output_sha256": "6bac81bbee2719410f43efa37bc13a87d625084c7042133c2d4b769572df5de9",
+  "output_log": "practice/chapter9/results/9-1-mlflow-tracking.log"
 }

@@ -1,12 +1,33 @@
-$ C:\Users\user\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe 9-1-mlflow-tracking.py
+$ /Users/callii/Documents/class/2026-2/mlops_public/practice/chapter9/venv/bin/python 9-1-mlflow-tracking.py
 
 === STDOUT ===
+[data] 훈련 쌍 6개, 지문 96f6b6b3ce9dcdd1…
+lawd_cd  x_prev_count  y_count
+  11440             5        5
+  11440             5        6
+  11620             5        5
+  11620             5        5
+  11680             6        9
+  11680             8        6
+
+== 시나리오 1: 후보 2개 실험 기록 ==
+[run] baseline_mean: train_mae=1.0000 run_id=40eaf092… coef=None
+[run] linear: train_mae=1.0455 run_id=995be977… coef={'slope': 0.4091, 'intercept': 3.6818}
+
+== 시나리오 2: 같은 설정 재실행(재현성) ==
+[run] linear: train_mae=1.0455 run_id=9f5a85fb… coef={'slope': 0.4091, 'intercept': 3.6818}
+  메트릭 동일=True, 계수 동일=True
+
+== 시나리오 3: 모델 등록과 승격 게이트 ==
+  v1: champion 별칭 부여(승격) / v2: 승격 반려 — 절대 게이트 통과했으나 기존 champion 대비 개선 없음 → champion=v1
+
+== 시나리오 4: 별칭(champion)으로 로드·예측 ==
+  입력(전일 건수)=9.0 → 예측=6.00 (champion=v1)
+
+증거 파일: /Users/callii/Documents/class/2026-2/mlops_public/practice/chapter9/data/output/ch9_experiment_report.json
+CH9_RUN_PASS
 
 === STDERR ===
-Traceback (most recent call last):
-  File "C:\Users\user\Documents\lee\class\2026-2\mlops_public\practice\chapter9\code\9-1-mlflow-tracking.py", line 257, in <module>
-    raise SystemExit(main())
-                     ~~~~^^
-  File "C:\Users\user\Documents\lee\class\2026-2\mlops_public\practice\chapter9\code\9-1-mlflow-tracking.py", line 146, in main
-    import mlflow
-ModuleNotFoundError: No module named 'mlflow'
+2026/11/16 22:25:30 INFO mlflow.store.db.utils: Creating initial MLflow database tables...
+2026/11/16 22:25:30 INFO mlflow.store.db.utils: Updating database tables
+2026/11/16 22:25:30 INFO mlflow.tracking.fluent: Experiment with name 'complaint_forecast' does not exist. Creating a new experiment.
