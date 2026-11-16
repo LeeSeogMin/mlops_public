@@ -26,10 +26,12 @@ python scripts/run_and_capture.py 10 --file 10-1-model-serving.py
 python scripts/run_and_capture.py 10 --verify
 ```
 
-### Lint + Test 게이트
+### 학기 운영 게이트 + PDF (세부: `harness.md`)
 ```bash
-./scripts/harness.sh      # install → lint → test → build → HARNESS_PASS
-./scripts/verify.sh        # lint + test → VERIFY_PASS
+./scripts/harness.sh      # lint·test(있으면) + 게이트 G1·G2·G3 → HARNESS_PASS
+./scripts/verify.sh        # lint·test(있으면) + 게이트 G1·G2 → VERIFY_PASS
+python3 scripts/course_gates.py --verbose   # 게이트만, 면제 사유까지
+python3 scripts/md2pdf.py lecture/ch11.md    # PDF + 생성 기록(lecture/ch11.pdf.evidence.json)
 ```
 
 ### MS Word 변환
@@ -76,8 +78,10 @@ cd ms-word && npm install && npm run convert:chapter 2
 | 하네스 | 역할 | 성공 조건 |
 |--------|------|-----------|
 | `scripts/run_and_capture.py N` | 실행 증거 게이트 — 코드 실행 + SHA-256 해시 기록 | 모든 파일 exit_code=0 |
-| `scripts/harness.sh` | Lint + Test 게이트 — ruff·pytest 자동 감지 실행 | `HARNESS_PASS` 출력 |
-| `scripts/verify.sh` | 빠른 점검 (lint + test) | `VERIFY_PASS` 출력 |
+| `scripts/course_gates.py` | G1 실행 증거 무결성 · G2 원고 인용 경로 실존 · G3 원고-PDF 동기 | `COURSE_GATES_PASS` 출력 |
+| `scripts/md2pdf.py` | 원고 PDF 변환 + 원고 해시 생성 기록(G3 근거) | 생성 기록 파일 작성 |
+| `scripts/harness.sh` | ruff·pytest 자동 감지 + 게이트 G1~G3. 검사 0건이면 실패 | `HARNESS_PASS` 출력 |
+| `scripts/verify.sh` | 빠른 점검 — ruff·pytest 자동 감지 + 게이트 G1·G2 | `VERIFY_PASS` 출력 |
 
 ### run_and_capture.py 산출물
 ```
