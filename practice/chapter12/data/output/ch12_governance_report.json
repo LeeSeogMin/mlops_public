@@ -98,7 +98,7 @@
         "decision": "DENY",
         "feature": "complaint_count",
         "purpose": "원시 값 확인 시도",
-        "reason": "감사 역할은 원시 값 조회 불가 — 메타데이터·로그만(목적 제한)",
+        "reason": "감사 역할은 값 조회 불가",
         "role": "external_auditor",
         "seq": 9,
         "ts": "2026-07-04T00:09:00+00:00"
@@ -108,7 +108,7 @@
         "decision": "DENY",
         "feature": "complaint_count",
         "purpose": "미등록 역할 조회",
-        "reason": "미등록 역할 — 정책에 없음",
+        "reason": "정책에 없는 역할",
         "role": "marketing_bot",
         "seq": 10,
         "ts": "2026-07-04T00:10:00+00:00"
@@ -118,7 +118,7 @@
         "decision": "DENY",
         "feature": "resident_arrears",
         "purpose": "가구 단위 민감 피처 조회",
-        "reason": "카탈로그 미등록 피처 — 접근의 전제는 등록",
+        "reason": "카탈로그에 없는 피처",
         "role": "analyst",
         "seq": 11,
         "ts": "2026-07-04T00:11:00+00:00"

@@ -28,9 +28,9 @@ $ /opt/homebrew/opt/python@3.14/bin/python3.14 12-3-catalog-access.py
       6 analyst             complaint_count     read_log         DENY   로그 열람은 감사 권한 필요
       7 external_auditor    day_unmapped_rate   read_definition  ALLOW  정책 허용
       8 external_auditor    complaint_count     read_log         ALLOW  정책 허용
-      9 external_auditor    complaint_count     read_value       DENY   감사 역할은 원시 값 조회 불가 — 메타데이터·로그만(목적 제한)
-     10 marketing_bot       complaint_count     read_value       DENY   미등록 역할 — 정책에 없음
-     11 analyst             resident_arrears    read_value       DENY   카탈로그 미등록 피처 — 접근의 전제는 등록
+      9 external_auditor    complaint_count     read_value       DENY   감사 역할은 값 조회 불가
+     10 marketing_bot       complaint_count     read_value       DENY   정책에 없는 역할
+     11 analyst             resident_arrears    read_value       DENY   카탈로그에 없는 피처
     요청 12건 — 허용 8 / 거부 4
 
 [3] 거부 4건이 걸린 관문 — 서로 다른 지점에서 막혔다

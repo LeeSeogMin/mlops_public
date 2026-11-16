@@ -1,7 +1,7 @@
 {
   "file": "12-3-catalog-access.py",
   "chapter_relpath": "practice/chapter12/code/12-3-catalog-access.py",
-  "started_at": "2026-11-15T19:03:29.387604+09:00",
+  "started_at": "2026-11-16T21:47:59.006101+09:00",
   "duration_sec": 0.03,
   "exit_code": 0,
   "timed_out": false,
@@ -9,6 +9,6 @@
   "python_version": "3.14.6",
   "platform": "macOS-14.3.1-arm64-arm-64bit-Mach-O",
   "source_sha256": "d8a0ecaba760b55da378db86b80d23bbae6bea7955155140e180d4d82a330c50",
-  "output_sha256": "26aebe58dc50e1646319d1bf2dff4a5d8992e11fded95f8a135a1653c9f0f29f",
+  "output_sha256": "ce5adbfc9bbd85ff07ce2423ba6f3de302631ad46d683bfedf2c949ec447d660",
   "output_log": "practice/chapter12/results/12-3-catalog-access.log"
 }

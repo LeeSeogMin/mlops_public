@@ -150,12 +150,12 @@ def evaluate_access(conn: sqlite3.Connection, catalog_names: set[str],
     for i, (role, feature, action, purpose) in enumerate(ACCESS_REQUESTS):
         ts = _iso(base_time + timedelta(minutes=i))  # 결정적 타임스탬프(요청 순번)
         if role not in ACCESS_POLICY:
-            decision, reason = "DENY", "미등록 역할 — 정책에 없음"
+            decision, reason = "DENY", "정책에 없는 역할"
         elif feature not in catalog_names:
-            decision, reason = "DENY", "카탈로그 미등록 피처 — 접근의 전제는 등록"
+            decision, reason = "DENY", "카탈로그에 없는 피처"
         elif action not in ACCESS_POLICY[role]:
             if action == "read_value" and role == "external_auditor":
-                reason = "감사 역할은 원시 값 조회 불가 — 메타데이터·로그만(목적 제한)"
+                reason = "감사 역할은 값 조회 불가"
             elif action == "read_log":
                 reason = "로그 열람은 감사 권한 필요"
             else:
