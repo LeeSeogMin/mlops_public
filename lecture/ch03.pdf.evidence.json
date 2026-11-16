@@ -1,0 +1,9 @@
+{
+  "source_markdown": "lecture/ch03.md",
+  "source_sha256": "8493125fd6140493841e058cb007ad6f7a3812937d303c8d903ea724ec474757",
+  "output_pdf": "lecture/ch03.pdf",
+  "output_bytes": 934992,
+  "generated_at": "2026-11-16T22:27:44.115740+09:00",
+  "pandoc": "pandoc 3.9.0.2",
+  "engine": "scripts/md2pdf_engine.py"
+}

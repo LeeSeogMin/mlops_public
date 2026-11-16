@@ -1,5 +1,5 @@
 # Python 3.10+ (이 실습은 3.13에서 검증)
 mlflow==3.14.0
-scikit-learn
+scikit-learn==1.9.0
 pandas
 pyarrow
