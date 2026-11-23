@@ -16,4 +16,9 @@
   인젝션 차단 2 / PII 질의 2(마스킹 토큰 3) / 검색 8 / 근거충분 7 / 근거부족 1
 === 15.6 승인: v1→v2 APPROVED ===
 === 위험 체크리스트: 10/10 ===
+=== 출력 검증: NAVER CLOVA Studio HCX-DASH-002 ===
+  답변 판정 {'FLAG': 2, 'PASS': 3, 'REFUSAL': 3} / 주장 28건 {'FRAMING': 3, 'SUPPORTED': 21, 'SUPPORTED_UNCITED': 3, 'UNSUPPORTED': 1}
+=== 출력 검증: OpenAI gpt-4o-mini ===
+  답변 판정 {'NO_OUTPUT': 8} / 주장 0건 {}
+  게이트 허용 후 모델 거절: ['Q9', 'Q10']
 CH13_RUN_PASS

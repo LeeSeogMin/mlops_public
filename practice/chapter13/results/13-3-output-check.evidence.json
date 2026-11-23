@@ -1,0 +1,14 @@
+{
+  "file": "13-3-output-check.py",
+  "chapter_relpath": "practice/chapter13/code/13-3-output-check.py",
+  "started_at": "2026-11-23T17:56:19.090166+09:00",
+  "duration_sec": 0.04,
+  "exit_code": 0,
+  "timed_out": false,
+  "success": true,
+  "python_version": "3.14.6",
+  "platform": "macOS-14.3.1-arm64-arm-64bit-Mach-O",
+  "source_sha256": "b732b132d305ba9ad87d1cf46390c447c080d7469b170ad744ba597e43d0afad",
+  "output_sha256": "33f8bd45688f9bf0f4e378d8972d888dc07bb2670b66cb152a0f1f3628107644",
+  "output_log": "practice/chapter13/results/13-3-output-check.log"
+}

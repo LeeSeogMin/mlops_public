@@ -19,12 +19,13 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 CODE = BASE_DIR / "code" / "13-1-prompt-registry.py"
+OUTPUT_CHECK = BASE_DIR / "code" / "13-3-output-check.py"
 INPUT = BASE_DIR / "data" / "input"
 OUTPUT = BASE_DIR / "data" / "output"
 
 
-def _load_module():
-    spec = importlib.util.spec_from_file_location("prompt_registry", CODE)
+def _load_module(path: Path = CODE, name: str = "prompt_registry"):
+    spec = importlib.util.spec_from_file_location(name, path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -61,6 +62,13 @@ def main() -> int:
     print(f"=== 15.6 승인: {ap['from_version']}→{ap['to_version']} {ap['decision']} ===")
     print(f"=== 위험 체크리스트: {audit['passed']}/{audit['total']} ===")
 
+    # 출력 쪽 근거 검증 — 커밋된 스냅샷을 입력으로 하므로 결정적이다(13-3)
+    oc = _load_module(OUTPUT_CHECK, "output_check").build(OUTPUT)
+    for p in oc["providers"]:
+        print(f"=== 출력 검증: {p['provider']} {p['model']} ===")
+        print(f"  답변 판정 {p['answer_verdicts']} / 주장 {p['claims_total']}건 {p['claim_verdicts']}")
+    print(f"  게이트 허용 후 모델 거절: {oc['gate_allowed_but_model_refused']}")
+
     # PASS 게이트 — 결정적 불변식
     failures = []
     if report["corpus"]["documents"] != 7:
@@ -83,6 +91,12 @@ def main() -> int:
     if any(not q["cited_sources"] for q in rr["query_log"]
            if q["decision"] == "ALLOW_GENERATION"):
         failures.append("생성 허용 질의에 출처 없음")
+
+    if oc["gate_allowed_but_model_refused"] != ["Q9", "Q10"]:
+        failures.append(f"게이트 허용 후 거절 {oc['gate_allowed_but_model_refused']}≠['Q9','Q10']")
+    if any(a["answer_verdict"] == "FLAG" and not a["flag_reasons"]
+           for p in oc["providers"] for a in p["answers"]):
+        failures.append("FLAG 답변에 사유 없음")
 
     print("CH13_RUN_PASS" if not failures else f"CH13_RUN_FAIL({'; '.join(failures)})")
     return 0 if not failures else 1

@@ -20,6 +20,7 @@ from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent
 REPORT = BASE / "data" / "output" / "ch13_llmops_report.json"
+OUTPUT_CHECK = BASE / "data" / "output" / "ch13_output_check.json"
 DOCS = BASE.parent.parent / "lecture" / "docs" / "chapter15.md"
 
 
@@ -56,6 +57,16 @@ def main() -> int:
         ("Q5 BM25 상위 점수", log["Q5"]["top_score"], "30.827"),
         ("Q6 BM25 상위 점수(근거부족)", log["Q6"]["top_score"], "1.641"),
         ("코퍼스 무결성 해시8", corpus["content_hash8"], corpus["content_hash8"]),
+    ]
+    # 출력 쪽 근거 검증(13-3) — 커밋된 스냅샷에서 결정적으로 나온 값
+    oc = json.loads(OUTPUT_CHECK.read_text("utf-8"))
+    clova = next(p for p in oc["providers"] if p["provider"] == "NAVER CLOVA Studio")
+    checks += [
+        ("출력 검증 주장 수", clova["claims_total"], "28"),
+        ("출력 검증 SUPPORTED", clova["claim_verdicts"].get("SUPPORTED"), "21"),
+        ("출력 검증 FLAG 답변", clova["answer_verdicts"].get("FLAG"), "2"),
+        ("출력 검증 PASS 답변", clova["answer_verdicts"].get("PASS"), "3"),
+        ("출력 검증 REFUSAL 답변", clova["answer_verdicts"].get("REFUSAL"), "3"),
     ]
 
     failures = []

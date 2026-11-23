@@ -1,0 +1,551 @@
+{
+  "convention": "OpenTelemetry semantic-conventions-genai v0.1.0 (status: Development)",
+  "traces": [
+    {
+      "qid": "Q1",
+      "spans": [
+        {
+          "name": "retrieval",
+          "kind": "INTERNAL",
+          "attributes": {
+            "gen_ai.operation.name": "retrieval",
+            "gen_ai.data_source.id": "pipa_core_articles",
+            "gen_ai.retrieval.top_k": 2,
+            "gen_ai.retrieval.documents": [
+              {
+                "id": "pipa-art15",
+                "score": 26.1575
+              },
+              {
+                "id": "pipa-art18",
+                "score": 13.3777
+              }
+            ],
+            "app.gate.decision": "ALLOW_GENERATION"
+          }
+        },
+        {
+          "name": "chat HCX-DASH-002",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art15",
+              "pipa-art18"
+            ]
+          }
+        },
+        {
+          "name": "chat gpt-4o-mini",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "error"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art15",
+              "pipa-art18"
+            ],
+            "error.type": "HTTP 429 billing_not_active"
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q2",
+      "spans": [
+        {
+          "name": "retrieval",
+          "kind": "INTERNAL",
+          "attributes": {
+            "gen_ai.operation.name": "retrieval",
+            "gen_ai.data_source.id": "pipa_core_articles",
+            "gen_ai.retrieval.top_k": 2,
+            "gen_ai.retrieval.documents": [
+              {
+                "id": "pipa-art23",
+                "score": 10.416
+              },
+              {
+                "id": "pipa-art3",
+                "score": 2.9765
+              }
+            ],
+            "app.gate.decision": "ALLOW_GENERATION"
+          }
+        },
+        {
+          "name": "chat HCX-DASH-002",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art23",
+              "pipa-art3"
+            ]
+          }
+        },
+        {
+          "name": "chat gpt-4o-mini",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "error"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art23",
+              "pipa-art3"
+            ],
+            "error.type": "HTTP 429 billing_not_active"
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q3",
+      "spans": [
+        {
+          "name": "retrieval",
+          "kind": "INTERNAL",
+          "attributes": {
+            "gen_ai.operation.name": "retrieval",
+            "gen_ai.data_source.id": "pipa_core_articles",
+            "gen_ai.retrieval.top_k": 2,
+            "gen_ai.retrieval.documents": [
+              {
+                "id": "pipa-art18",
+                "score": 27.9702
+              },
+              {
+                "id": "pipa-art3",
+                "score": 10.4865
+              }
+            ],
+            "app.gate.decision": "ALLOW_GENERATION"
+          }
+        },
+        {
+          "name": "chat HCX-DASH-002",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "length"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art18",
+              "pipa-art3"
+            ]
+          }
+        },
+        {
+          "name": "chat gpt-4o-mini",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "error"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art18",
+              "pipa-art3"
+            ],
+            "error.type": "HTTP 429 billing_not_active"
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q4",
+      "spans": [
+        {
+          "name": "retrieval",
+          "kind": "INTERNAL",
+          "attributes": {
+            "gen_ai.operation.name": "retrieval",
+            "gen_ai.data_source.id": "pipa_core_articles",
+            "gen_ai.retrieval.top_k": 2,
+            "gen_ai.retrieval.documents": [
+              {
+                "id": "pipa-art21",
+                "score": 14.4005
+              },
+              {
+                "id": "pipa-art15",
+                "score": 5.6823
+              }
+            ],
+            "app.gate.decision": "ALLOW_GENERATION"
+          }
+        },
+        {
+          "name": "chat HCX-DASH-002",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art21",
+              "pipa-art15"
+            ]
+          }
+        },
+        {
+          "name": "chat gpt-4o-mini",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "error"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art21",
+              "pipa-art15"
+            ],
+            "error.type": "HTTP 429 billing_not_active"
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q5",
+      "spans": [
+        {
+          "name": "retrieval",
+          "kind": "INTERNAL",
+          "attributes": {
+            "gen_ai.operation.name": "retrieval",
+            "gen_ai.data_source.id": "pipa_core_articles",
+            "gen_ai.retrieval.top_k": 2,
+            "gen_ai.retrieval.documents": [
+              {
+                "id": "pipa-art35",
+                "score": 30.827
+              },
+              {
+                "id": "pipa-art3",
+                "score": 6.637
+              }
+            ],
+            "app.gate.decision": "ALLOW_GENERATION"
+          }
+        },
+        {
+          "name": "chat HCX-DASH-002",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art35",
+              "pipa-art3"
+            ]
+          }
+        },
+        {
+          "name": "chat gpt-4o-mini",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "error"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art35",
+              "pipa-art3"
+            ],
+            "error.type": "HTTP 429 billing_not_active"
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q6",
+      "spans": [
+        {
+          "name": "retrieval",
+          "kind": "INTERNAL",
+          "attributes": {
+            "gen_ai.operation.name": "retrieval",
+            "gen_ai.data_source.id": "pipa_core_articles",
+            "gen_ai.retrieval.top_k": 2,
+            "gen_ai.retrieval.documents": [
+              {
+                "id": "pipa-art3",
+                "score": 1.641
+              },
+              {
+                "id": "pipa-art23",
+                "score": 0.8771
+              }
+            ],
+            "app.gate.decision": "BLOCKED_INSUFFICIENT_GROUNDING"
+          }
+        },
+        {
+          "name": "chat HCX-DASH-002",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": []
+          }
+        },
+        {
+          "name": "chat gpt-4o-mini",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "error"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [],
+            "error.type": "HTTP 429 billing_not_active"
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q7",
+      "spans": []
+    },
+    {
+      "qid": "Q8",
+      "spans": []
+    },
+    {
+      "qid": "Q9",
+      "spans": [
+        {
+          "name": "retrieval",
+          "kind": "INTERNAL",
+          "attributes": {
+            "gen_ai.operation.name": "retrieval",
+            "gen_ai.data_source.id": "pipa_core_articles",
+            "gen_ai.retrieval.top_k": 2,
+            "gen_ai.retrieval.documents": [
+              {
+                "id": "pipa-art21",
+                "score": 10.2318
+              },
+              {
+                "id": "pipa-art18",
+                "score": 4.7746
+              }
+            ],
+            "app.gate.decision": "ALLOW_GENERATION"
+          }
+        },
+        {
+          "name": "chat HCX-DASH-002",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art21",
+              "pipa-art18"
+            ]
+          }
+        },
+        {
+          "name": "chat gpt-4o-mini",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "error"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art21",
+              "pipa-art18"
+            ],
+            "error.type": "HTTP 429 billing_not_active"
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q10",
+      "spans": [
+        {
+          "name": "retrieval",
+          "kind": "INTERNAL",
+          "attributes": {
+            "gen_ai.operation.name": "retrieval",
+            "gen_ai.data_source.id": "pipa_core_articles",
+            "gen_ai.retrieval.top_k": 2,
+            "gen_ai.retrieval.documents": [
+              {
+                "id": "pipa-art35",
+                "score": 6.9108
+              },
+              {
+                "id": "pipa-art3",
+                "score": 4.6513
+              }
+            ],
+            "app.gate.decision": "ALLOW_GENERATION"
+          }
+        },
+        {
+          "name": "chat HCX-DASH-002",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art35",
+              "pipa-art3"
+            ]
+          }
+        },
+        {
+          "name": "chat gpt-4o-mini",
+          "kind": "CLIENT",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.finish_reasons": [
+              "error"
+            ],
+            "gen_ai.usage.input_tokens": null,
+            "gen_ai.usage.output_tokens": null,
+            "app.prompt.hash8": "f99c1b55",
+            "app.provided_sources": [
+              "pipa-art35",
+              "pipa-art3"
+            ],
+            "error.type": "HTTP 429 billing_not_active"
+          }
+        }
+      ]
+    }
+  ]
+}

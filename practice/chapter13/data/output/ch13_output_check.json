@@ -1,0 +1,629 @@
+{
+  "kind": "출력 쪽 근거 검증(결정적 — 커밋된 스냅샷을 입력으로 함)",
+  "support_threshold": 0.5,
+  "snapshot_prompt_hash8": "f99c1b55",
+  "providers": [
+    {
+      "provider": "NAVER CLOVA Studio",
+      "model": "HCX-DASH-002",
+      "answer_verdicts": {
+        "FLAG": 2,
+        "PASS": 3,
+        "REFUSAL": 3
+      },
+      "claim_verdicts": {
+        "FRAMING": 3,
+        "SUPPORTED": 21,
+        "SUPPORTED_UNCITED": 3,
+        "UNSUPPORTED": 1
+      },
+      "claims_total": 28,
+      "answers": [
+        {
+          "qid": "Q1",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art15",
+            "pipa-art18"
+          ],
+          "finish_reason": "stop",
+          "answer_verdict": "PASS",
+          "flag_reasons": [],
+          "claims": [
+            {
+              "claim": "개인정보처리자가 정보주체의 동의 없이 개인정보를 수집·이용할 수 있는 경우는 다음과 같습니다.",
+              "verdict": "FRAMING",
+              "citations": []
+            },
+            {
+              "claim": "1. 법률에 특별한 규정이 있거나 법령상 의무를 준수하기 위하여 불가피한 경우 (제15조 2호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "15",
+                  "paragraphs": [],
+                  "item": 2
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "2. 공공기관이 법령 등에서 정하는 소관 업무의 수행을 위하여 불가피한 경우 (제15조 3호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "15",
+                  "paragraphs": [],
+                  "item": 3
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "3. 정보주체와 체결한 계약을 이행하거나 계약을 체결하는 과정에서 정보주체의 요청에 따른 조치를 이행하기 위하여 필요한 경우 (제15조 4호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "15",
+                  "paragraphs": [],
+                  "item": 4
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "4. 명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을 위하여 필요하다고 인정되는 경우 (제15조 5호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "15",
+                  "paragraphs": [],
+                  "item": 5
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "5. 개인정보처리자의 정당한 이익을 달성하기 위하여 필요한 경우로서 명백하게 정보주체의 권리보다 우선하는 경우 (제15조 6호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "15",
+                  "paragraphs": [],
+                  "item": 6
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "6. 공중위생 등 공공의 안전과 안녕을 위하여 긴급히 필요한 경우 (제15조 7호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "15",
+                  "paragraphs": [],
+                  "item": 7
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "이러한 경우에도 개인정보처리자는 대통령령으로 정하는 바에 따라 정보주체의 동의 없이 개인정보를 이용할 수 있습니다. (제15조 3항)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "15",
+                  "paragraphs": [
+                    3
+                  ],
+                  "item": null
+                }
+              ],
+              "keyword_recall": 0.909,
+              "missing_keywords": [
+                "경우에"
+              ],
+              "citation_problems": []
+            }
+          ]
+        },
+        {
+          "qid": "Q2",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art23",
+            "pipa-art3"
+          ],
+          "finish_reason": "stop",
+          "answer_verdict": "PASS",
+          "flag_reasons": [],
+          "claims": [
+            {
+              "claim": "민감정보를 처리할 수 있는 예외 조건은 다음과 같습니다.",
+              "verdict": "FRAMING",
+              "citations": []
+            },
+            {
+              "claim": "1. 정보주체에게 제15조제2항 각 호 또는 제17조제2항 각 호의 사항을 알리고 다른 개인정보의 처리에 대한 동의와 별도로 동의를 받은 경우 (제23조 1항 1호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "23",
+                  "paragraphs": [
+                    1
+                  ],
+                  "item": 1
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "2. 법령에서 민감정보의 처리를 요구하거나 허용하는 경우 (제23조 1항 2호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "23",
+                  "paragraphs": [
+                    1
+                  ],
+                  "item": 2
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "이 두 가지 경우에 해당하는 경우 민감정보를 처리할 수 있습니다. (관련 조문 번호: 제23조 1항)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "23",
+                  "paragraphs": [
+                    1
+                  ],
+                  "item": null
+                }
+              ],
+              "keyword_recall": 0.667,
+              "missing_keywords": [
+                "처리할"
+              ],
+              "citation_problems": []
+            }
+          ]
+        },
+        {
+          "qid": "Q3",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art18",
+            "pipa-art3"
+          ],
+          "finish_reason": "length",
+          "answer_verdict": "FLAG",
+          "flag_reasons": [
+            "TRUNCATED"
+          ],
+          "claims": [
+            {
+              "claim": "개인정보를 목적 외 용도로 제3자에게 제공할 수 있는 경우는 다음과 같습니다:",
+              "verdict": "FRAMING",
+              "citations": []
+            },
+            {
+              "claim": "1. 정보주체로부터 별도의 동의를 받은 경우 (제18조 2항 1호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "18",
+                  "paragraphs": [
+                    2
+                  ],
+                  "item": 1
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "2. 다른 법률에 특별한 규정이 있는 경우 (제18조 2항 2호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "18",
+                  "paragraphs": [
+                    2
+                  ],
+                  "item": 2
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "3. 명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을 위하여 필요하다고 인정되는 경우 (제18조 2항 3호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "18",
+                  "paragraphs": [
+                    2
+                  ],
+                  "item": 3
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "4. 개인정보를 목적 외의 용도로 이용하거나 이를 제3자에게 제공하지 아니하면 다른 법률에서 정하는 소관 업무를 수행할 수 없는 경우로서 보호위원회의 심의·의결을 거친 경우 (제18조 2항 5호, 공공기관의 경우로 한정)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "18",
+                  "paragraphs": [
+                    2
+                  ],
+                  "item": 5
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "5. 조약, 그 밖의 국제협정의 이행을 위하여 외국정부 또는 국제기구에 제공하기 위하여 필요한 경우 (제18조 2항 6호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "18",
+                  "paragraphs": [
+                    2
+                  ],
+                  "item": 6
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "6. 범죄의 수사와 공소의 제기 및 유지를 위하여 필요한 경우 (제18조 2항 7호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "18",
+                  "paragraphs": [
+                    2
+                  ],
+                  "item": 7
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "7. 법원의 재판업무 수행을 위하여 필요한 경우 (제18조 2항 8호)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "18",
+                  "paragraphs": [
+                    2
+                  ],
+                  "item": 8
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "8. 형(刑) 및 감호, 보호처분의 집",
+              "verdict": "SUPPORTED_UNCITED",
+              "citations": [],
+              "keyword_recall": 1.0,
+              "missing_keywords": []
+            }
+          ]
+        },
+        {
+          "qid": "Q4",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art21",
+            "pipa-art15"
+          ],
+          "finish_reason": "stop",
+          "answer_verdict": "FLAG",
+          "flag_reasons": [
+            "주장 1건 근거 미확인"
+          ],
+          "claims": [
+            {
+              "claim": "보유기간이 지나 불필요해진 개인정보는 지체 없이 **파기**하여야 합니다.",
+              "verdict": "SUPPORTED_UNCITED",
+              "citations": [],
+              "keyword_recall": 0.75,
+              "missing_keywords": [
+                "불필요해진",
+                "지나"
+              ]
+            },
+            {
+              "claim": "이는 개인정보 보호법 제21조에 명시되어 있습니다. (제21조 ①)",
+              "verdict": "UNSUPPORTED",
+              "citations": [
+                {
+                  "article": "21",
+                  "paragraphs": [
+                    1
+                  ],
+                  "item": null
+                }
+              ],
+              "keyword_recall": 0.25,
+              "missing_keywords": [
+                "명시되어",
+                "보호법",
+                "제21조"
+              ],
+              "citation_problems": []
+            },
+            {
+              "claim": "다만, 다른 법령에 따라 보존해야 하는 예외적인 경우가 있을 수 있습니다.",
+              "verdict": "SUPPORTED_UNCITED",
+              "citations": [],
+              "keyword_recall": 0.667,
+              "missing_keywords": [
+                "보존해야",
+                "예외적인"
+              ]
+            },
+            {
+              "claim": "이 경우, 해당 정보를 다른 개인정보와 분리하여 보관해야 합니다. (제21조 ③)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "21",
+                  "paragraphs": [
+                    3
+                  ],
+                  "item": null
+                }
+              ],
+              "keyword_recall": 0.8,
+              "missing_keywords": [
+                "보관해야"
+              ],
+              "citation_problems": []
+            },
+            {
+              "claim": "또한, 파기는 복구 또는 재생이 불가능하도록 해야 하며, 이에 대한 구체적인 방법은 대통령령으로 정해져 있습니다. (제21조 ②, ④)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "21",
+                  "paragraphs": [
+                    2,
+                    4
+                  ],
+                  "item": null
+                }
+              ],
+              "keyword_recall": 0.667,
+              "missing_keywords": [
+                "구체적인",
+                "불가능하도록",
+                "정해져"
+              ],
+              "citation_problems": []
+            }
+          ]
+        },
+        {
+          "qid": "Q5",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art35",
+            "pipa-art3"
+          ],
+          "finish_reason": "stop",
+          "answer_verdict": "PASS",
+          "flag_reasons": [],
+          "claims": [
+            {
+              "claim": "네, 정보주체는 개인정보처리자가 처리하는 자신의 개인정보에 대해 열람을 요구할 수 있습니다. (제35조 1항)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "35",
+                  "paragraphs": [
+                    1
+                  ],
+                  "item": null
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            },
+            {
+              "claim": "또한 공공기관에 직접 열람을 요구하거나 보호위원회를 통해 열람을 요구할 수도 있습니다. (제35조 2항)",
+              "verdict": "SUPPORTED",
+              "citations": [
+                {
+                  "article": "35",
+                  "paragraphs": [
+                    2
+                  ],
+                  "item": null
+                }
+              ],
+              "keyword_recall": 1.0,
+              "missing_keywords": [],
+              "citation_problems": []
+            }
+          ]
+        },
+        {
+          "qid": "Q9",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art21",
+            "pipa-art18"
+          ],
+          "finish_reason": "stop",
+          "answer_verdict": "REFUSAL",
+          "claims": []
+        },
+        {
+          "qid": "Q10",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art35",
+            "pipa-art3"
+          ],
+          "finish_reason": "stop",
+          "answer_verdict": "REFUSAL",
+          "claims": []
+        },
+        {
+          "qid": "Q6",
+          "gate_decision": "BLOCKED_INSUFFICIENT_GROUNDING",
+          "provided_sources": [],
+          "finish_reason": "stop",
+          "answer_verdict": "REFUSAL",
+          "claims": []
+        }
+      ]
+    },
+    {
+      "provider": "OpenAI",
+      "model": "gpt-4o-mini",
+      "answer_verdicts": {
+        "NO_OUTPUT": 8
+      },
+      "claim_verdicts": {},
+      "claims_total": 0,
+      "answers": [
+        {
+          "qid": "Q1",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art15",
+            "pipa-art18"
+          ],
+          "finish_reason": null,
+          "answer_verdict": "NO_OUTPUT",
+          "error": "HTTP 429 billing_not_active",
+          "claims": []
+        },
+        {
+          "qid": "Q2",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art23",
+            "pipa-art3"
+          ],
+          "finish_reason": null,
+          "answer_verdict": "NO_OUTPUT",
+          "error": "HTTP 429 billing_not_active",
+          "claims": []
+        },
+        {
+          "qid": "Q3",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art18",
+            "pipa-art3"
+          ],
+          "finish_reason": null,
+          "answer_verdict": "NO_OUTPUT",
+          "error": "HTTP 429 billing_not_active",
+          "claims": []
+        },
+        {
+          "qid": "Q4",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art21",
+            "pipa-art15"
+          ],
+          "finish_reason": null,
+          "answer_verdict": "NO_OUTPUT",
+          "error": "HTTP 429 billing_not_active",
+          "claims": []
+        },
+        {
+          "qid": "Q5",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art35",
+            "pipa-art3"
+          ],
+          "finish_reason": null,
+          "answer_verdict": "NO_OUTPUT",
+          "error": "HTTP 429 billing_not_active",
+          "claims": []
+        },
+        {
+          "qid": "Q9",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art21",
+            "pipa-art18"
+          ],
+          "finish_reason": null,
+          "answer_verdict": "NO_OUTPUT",
+          "error": "HTTP 429 billing_not_active",
+          "claims": []
+        },
+        {
+          "qid": "Q10",
+          "gate_decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art35",
+            "pipa-art3"
+          ],
+          "finish_reason": null,
+          "answer_verdict": "NO_OUTPUT",
+          "error": "HTTP 429 billing_not_active",
+          "claims": []
+        },
+        {
+          "qid": "Q6",
+          "gate_decision": "BLOCKED_INSUFFICIENT_GROUNDING",
+          "provided_sources": [],
+          "finish_reason": null,
+          "answer_verdict": "NO_OUTPUT",
+          "error": "HTTP 429 billing_not_active",
+          "claims": []
+        }
+      ]
+    }
+  ],
+  "gate_allowed_but_model_refused": [
+    "Q9",
+    "Q10"
+  ]
+}

@@ -1,0 +1,15 @@
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 13-3-output-check.py
+
+=== STDOUT ===
+=== 출력 검증: NAVER CLOVA Studio HCX-DASH-002 ===
+  답변 판정 {'FLAG': 2, 'PASS': 3, 'REFUSAL': 3}
+  주장 28건 판정 {'FRAMING': 3, 'SUPPORTED': 21, 'SUPPORTED_UNCITED': 3, 'UNSUPPORTED': 1}
+  Q3 FLAG ['TRUNCATED']
+  Q4 FLAG ['주장 1건 근거 미확인']
+    - UNSUPPORTED 재현율 0.25 빠진 내용어 ['명시되어', '보호법', '제21조']
+=== 출력 검증: OpenAI gpt-4o-mini ===
+  답변 판정 {'NO_OUTPUT': 8}
+  주장 0건 판정 {}
+  게이트 허용 후 모델 거절: ['Q9', 'Q10']
+
+=== STDERR ===
