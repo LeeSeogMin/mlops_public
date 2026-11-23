@@ -77,8 +77,13 @@ MANUAL_ONLY = {
 }
 
 
-def discover_code_files(chapter_dir: Path, only: str | None) -> list[Path]:
-    """실행 대상 .py 파일 목록. requirements 등 비실습 파일과 MANUAL_ONLY는 제외."""
+def discover_code_files(chapter_dir: Path, only: str | None,
+                        include_manual: bool = False) -> list[Path]:
+    """실행 대상 .py 파일 목록. requirements 등 비실습 파일은 제외.
+
+    MANUAL_ONLY는 장 전체 실행에서 빼되, 증거 검사(course_gates G1)처럼 실행하지 않고
+    목록만 쓰는 곳은 include_manual=True로 불러 함께 검사한다.
+    """
     code_dir = chapter_dir / "code"
     if only:
         target = code_dir / only
@@ -89,6 +94,8 @@ def discover_code_files(chapter_dir: Path, only: str | None) -> list[Path]:
         p for p in code_dir.glob("*.py")
         if not p.name.startswith("_") and "requirements" not in p.name
     )
+    if include_manual:
+        return files
     skipped = [p for p in files if f"{chapter_dir.name}/{p.name}" in MANUAL_ONLY]
     for p in skipped:
         print(f"[건너뜀] {p.name} — 유료 API 호출·산출물 덮어씀. 실행하려면 --file {p.name}")

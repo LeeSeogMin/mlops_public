@@ -79,7 +79,7 @@ def gate_evidence(verbose: bool) -> tuple[int, int]:
     exempted = 0
     for chapter_dir in chapter_dirs:
         files = []
-        for f in discover_code_files(chapter_dir, None):
+        for f in discover_code_files(chapter_dir, None, include_manual=True):
             key = f"{chapter_dir.name}/{f.name}"
             if key in G1_EXEMPT:
                 exempted += 1
