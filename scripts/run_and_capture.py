@@ -68,8 +68,17 @@ def sha256_of_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+# 장 전체 실행에서 빼는 파일. 유료 LLM API를 호출하고 매번 결과가 달라지며,
+# 커밋된 산출물(원고가 인용하는 값)을 덮어쓰기 때문이다. --file로 지정하면 실행한다.
+MANUAL_ONLY = {
+    "chapter13/13-2-llm-snapshot.py",
+    "chapter13/13-4-usage-snapshot.py",
+    "chapter13/13-5-llm-judge.py",
+}
+
+
 def discover_code_files(chapter_dir: Path, only: str | None) -> list[Path]:
-    """실행 대상 .py 파일 목록. requirements 등 비실습 파일은 제외."""
+    """실행 대상 .py 파일 목록. requirements 등 비실습 파일과 MANUAL_ONLY는 제외."""
     code_dir = chapter_dir / "code"
     if only:
         target = code_dir / only
@@ -80,7 +89,10 @@ def discover_code_files(chapter_dir: Path, only: str | None) -> list[Path]:
         p for p in code_dir.glob("*.py")
         if not p.name.startswith("_") and "requirements" not in p.name
     )
-    return files
+    skipped = [p for p in files if f"{chapter_dir.name}/{p.name}" in MANUAL_ONLY]
+    for p in skipped:
+        print(f"[건너뜀] {p.name} — 유료 API 호출·산출물 덮어씀. 실행하려면 --file {p.name}")
+    return [p for p in files if p not in skipped]
 
 
 def run_one(py_file: Path, timeout: int) -> tuple[dict, str]:
