@@ -1,0 +1,50 @@
+{
+  "label_status": "DRAFT: Claude가 조문 원문을 읽고 단 라벨이다. 사람 검토를 거치지 않았으므로 사람 판정으로 인용하지 않는다.",
+  "raters": {
+    "규칙 검사(13-3)": {
+      "n": 25,
+      "agree": 18,
+      "agreement_rate": 0.72,
+      "cohen_kappa": -0.074,
+      "missed": [
+        "Q1-c5",
+        "Q1-c7",
+        "Q3-c5",
+        "Q3-c6",
+        "Q3-c7",
+        "Q3-c8"
+      ],
+      "false_alarm": [
+        "Q4-c1"
+      ]
+    },
+    "LLM 채점 gpt-5.2-2025-12-11": {
+      "n": 25,
+      "agree": 20,
+      "agreement_rate": 0.8,
+      "cohen_kappa": 0.233,
+      "missed": [
+        "Q1-c5",
+        "Q1-c7",
+        "Q3-c5",
+        "Q3-c6",
+        "Q3-c7"
+      ],
+      "false_alarm": []
+    },
+    "LLM 채점 gpt-4o-mini": {
+      "n": 25,
+      "agree": 20,
+      "agreement_rate": 0.8,
+      "cohen_kappa": 0.233,
+      "missed": [
+        "Q1-c5",
+        "Q1-c7",
+        "Q3-c5",
+        "Q3-c6",
+        "Q3-c7"
+      ],
+      "false_alarm": []
+    }
+  }
+}

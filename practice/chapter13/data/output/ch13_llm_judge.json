@@ -1,0 +1,421 @@
+{
+  "kind": "비결정 스냅샷(재현 게이트 밖) — LLM 채점 결과",
+  "target": "ch13_output_check.json의 NAVER CLOVA Studio 주장 25건",
+  "system_prompt": "너는 법령 질의응답 서비스의 답변을 검수하는 채점자다. 주어진 '근거 조문'만을 기준으로 '주장'을 판정한다. 근거 조문 밖의 지식은 쓰지 않는다.\n판정 기준:\n- SUPPORTED: 주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.\n- NOT_SUPPORTED: 원문에 없는 내용을 더했거나, 원문의 조건·한정·단서를 빼서 적용 범위가 넓어졌거나, 문장이 끊겨 내용을 판정할 수 없다.\n- 조문 번호 표기가 원문과 다른 것(예: 항을 빼고 호만 적음)만으로는 NOT_SUPPORTED로 보지 않는다.\n출력은 JSON 하나만: {\"verdict\": \"SUPPORTED\" 또는 \"NOT_SUPPORTED\", \"reason\": \"한 문장\"}",
+  "judges": [
+    {
+      "judge_model": "gpt-5.2-2025-12-11",
+      "verdicts": [
+        {
+          "claim_id": "Q1-c1",
+          "verdict": "SUPPORTED",
+          "reason": "제15조제1항제2호에 '법률에 특별한 규정이 있거나 법령상 의무를 준수하기 위하여 불가피한 경우'가 그대로 규정되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1650,
+          "output_tokens": 60
+        },
+        {
+          "claim_id": "Q1-c2",
+          "verdict": "SUPPORTED",
+          "reason": "제15조제1항제3호에 '공공기관이 법령 등에서 정하는 소관 업무의 수행을 위하여 불가피한 경우'가 그대로 규정되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1647,
+          "output_tokens": 57
+        },
+        {
+          "claim_id": "Q1-c3",
+          "verdict": "SUPPORTED",
+          "reason": "제15조제1항제4호에 '정보주체와 체결한 계약을 이행하거나 계약을 체결하는 과정에서 정보주체의 요청에 따른 조치를 이행하기 위하여 필요한 경우'가 그대로 규정되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1659,
+          "output_tokens": 69
+        },
+        {
+          "claim_id": "Q1-c4",
+          "verdict": "SUPPORTED",
+          "reason": "제15조제1항제5호에 '명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을 위하여 필요하다고 인정되는 경우'가 그대로 규정되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1657,
+          "output_tokens": 67
+        },
+        {
+          "claim_id": "Q1-c5",
+          "verdict": "SUPPORTED",
+          "reason": "제15조제1항제6호는 '개인정보처리자의 정당한 이익을 달성하기 위하여 필요한 경우로서 명백하게 정보주체의 권리보다 우선하는 경우'를 개인정보 수집·이용 가능 사유로 규정하고 있어 주장과 일치한다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1657,
+          "output_tokens": 83
+        },
+        {
+          "claim_id": "Q1-c6",
+          "verdict": "SUPPORTED",
+          "reason": "제15조제1항제7호에 '공중위생 등 공공의 안전과 안녕을 위하여 긴급히 필요한 경우'가 개인정보 수집·이용 가능 사유로 명시되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1644,
+          "output_tokens": 63
+        },
+        {
+          "claim_id": "Q1-c7",
+          "verdict": "SUPPORTED",
+          "reason": "제15조 제3항은 개인정보처리자가 대통령령으로 정하는 바에 따라 당초 수집 목적과 합리적으로 관련된 범위에서 정보주체의 동의 없이 개인정보를 이용할 수 있다고 규정하고 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1652,
+          "output_tokens": 66
+        },
+        {
+          "claim_id": "Q2-c1",
+          "verdict": "SUPPORTED",
+          "reason": "제23조제1항제1호에 정보주체에게 제15조제2항 또는 제17조제2항의 사항을 알리고 별도 동의를 받은 경우 민감정보 처리가 예외적으로 허용된다고 그대로 규정되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 999,
+          "output_tokens": 71
+        },
+        {
+          "claim_id": "Q2-c2",
+          "verdict": "SUPPORTED",
+          "reason": "제23조제1항은 민감정보 처리 금지를 원칙으로 하되 예외로 제2호에서 '법령에서 민감정보의 처리를 요구하거나 허용하는 경우'를 명시하고 있어 주장과 일치한다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 973,
+          "output_tokens": 68
+        },
+        {
+          "claim_id": "Q2-c3",
+          "verdict": "SUPPORTED",
+          "reason": "제23조제1항은 민감정보를 원칙적으로 처리할 수 없으나 예외로 제1호(별도 동의) 또는 제2호(법령상 요구·허용) 두 가지 경우에는 처리할 수 있다고 규정한다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 975,
+          "output_tokens": 72
+        },
+        {
+          "claim_id": "Q3-c1",
+          "verdict": "SUPPORTED",
+          "reason": "제18조제2항제1호는 정보주체로부터 별도의 동의를 받은 경우 목적 외 이용 또는 제3자 제공이 가능하다고 규정하고 있어 주장과 일치한다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1486,
+          "output_tokens": 58
+        },
+        {
+          "claim_id": "Q3-c2",
+          "verdict": "SUPPORTED",
+          "reason": "제18조제2항제2호에 '다른 법률에 특별한 규정이 있는 경우'가 목적 외 이용·제공이 가능한 사유로 명시되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1486,
+          "output_tokens": 56
+        },
+        {
+          "claim_id": "Q3-c3",
+          "verdict": "SUPPORTED",
+          "reason": "제18조제2항제3호에 '명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을 위하여 필요하다고 인정되는 경우'가 그대로 규정되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1508,
+          "output_tokens": 67
+        },
+        {
+          "claim_id": "Q3-c4",
+          "verdict": "SUPPORTED",
+          "reason": "제18조제2항제5호에 해당 문구가 그대로 규정되어 있고, 같은 항 단서에서 제5호부터 제9호까지는 공공기관의 경우로 한정한다고 명시한다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1531,
+          "output_tokens": 62
+        },
+        {
+          "claim_id": "Q3-c5",
+          "verdict": "SUPPORTED",
+          "reason": "제18조 제2항 제6호에 '조약, 그 밖의 국제협정의 이행을 위하여 외국정부 또는 국제기구에 제공하기 위하여 필요한 경우'가 그대로 규정되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1504,
+          "output_tokens": 63
+        },
+        {
+          "claim_id": "Q3-c6",
+          "verdict": "SUPPORTED",
+          "reason": "제18조제2항제7호에 '범죄의 수사와 공소의 제기 및 유지를 위하여 필요한 경우'가 목적 외 이용·제공이 가능한 사유로 명시되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1493,
+          "output_tokens": 62
+        },
+        {
+          "claim_id": "Q3-c7",
+          "verdict": "SUPPORTED",
+          "reason": "제18조 제2항 제8호에 '법원의 재판업무 수행을 위하여 필요한 경우'가 목적 외 이용·제공이 가능한 사유로 명시되어 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1487,
+          "output_tokens": 56
+        },
+        {
+          "claim_id": "Q3-c8",
+          "verdict": "NOT_SUPPORTED",
+          "reason": "주장은 문장이 중간에서 끊겨 있어(‘집’으로 종료) 제18조제2항제9호의 내용과 일치하는지 여부를 판단할 수 없다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1477,
+          "output_tokens": 57
+        },
+        {
+          "claim_id": "Q4-c0",
+          "verdict": "SUPPORTED",
+          "reason": "제21조 제1항은 보유기간의 경과 등으로 개인정보가 불필요하게 되었을 때에는 지체 없이 그 개인정보를 파기하여야 한다고 규정하고 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 955,
+          "output_tokens": 57
+        },
+        {
+          "claim_id": "Q4-c1",
+          "verdict": "SUPPORTED",
+          "reason": "근거 조문에 개인정보 보호법 제21조 제1항이 포함되어 있어 ‘제21조 ①에 명시’되었다는 주장은 조문 원문과 부합한다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 952,
+          "output_tokens": 57
+        },
+        {
+          "claim_id": "Q4-c2",
+          "verdict": "SUPPORTED",
+          "reason": "제21조 제1항 단서에서 다른 법령에 따라 보존하여야 하는 경우에는 파기 의무가 적용되지 않는다고 규정하고 있어, 다른 법령에 따른 보존 예외가 있을 수 있다는 주장은 조문에 부합한다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 953,
+          "output_tokens": 72
+        },
+        {
+          "claim_id": "Q4-c3",
+          "verdict": "SUPPORTED",
+          "reason": "제21조 제3항은 제1항 단서에 따라 개인정보를 파기하지 않고 보존해야 하는 경우 해당 개인정보 또는 개인정보파일을 다른 개인정보와 분리하여 저장·관리해야 한다고 규정한다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 955,
+          "output_tokens": 62
+        },
+        {
+          "claim_id": "Q4-c4",
+          "verdict": "SUPPORTED",
+          "reason": "제21조 제2항은 파기 시 복구 또는 재생되지 아니하도록 조치할 것을 규정하고, 제4항은 파기방법 및 절차 등에 필요한 사항을 대통령령으로 정한다고 규정한다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 975,
+          "output_tokens": 64
+        },
+        {
+          "claim_id": "Q5-c0",
+          "verdict": "SUPPORTED",
+          "reason": "제35조 제1항에서 정보주체는 개인정보처리자가 처리하는 자신의 개인정보에 대한 열람을 해당 개인정보처리자에게 요구할 수 있다고 규정하고 있다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1039,
+          "output_tokens": 54
+        },
+        {
+          "claim_id": "Q5-c1",
+          "verdict": "SUPPORTED",
+          "reason": "제35조 제2항은 정보주체가 공공기관에 개인정보 열람을 요구할 때 공공기관에 직접 요구하거나 대통령령에 따라 보호위원회를 통하여 요구할 수 있다고 규정한다.",
+          "response_model": "gpt-5.2-2025-12-11",
+          "input_tokens": 1039,
+          "output_tokens": 61
+        }
+      ],
+      "input_tokens_total": 33353,
+      "output_tokens_total": 1584
+    },
+    {
+      "judge_model": "gpt-4o-mini",
+      "verdicts": [
+        {
+          "claim_id": "Q1-c1",
+          "verdict": "SUPPORTED",
+          "reason": "법률에 특별한 규정이 있거나 법령상 의무를 준수하기 위하여 불가피한 경우 (제15조 2호)",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1651,
+          "output_tokens": 46
+        },
+        {
+          "claim_id": "Q1-c2",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1648,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q1-c3",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1660,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q1-c4",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1658,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q1-c5",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1658,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q1-c6",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1645,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q1-c7",
+          "verdict": "SUPPORTED",
+          "reason": "개인정보처리자는 당초 수집 목적과 합리적으로 관련된 범위에서 정보주체의 동의 없이 개인정보를 이용할 수 있다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1653,
+          "output_tokens": 46
+        },
+        {
+          "claim_id": "Q2-c1",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1000,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q2-c2",
+          "verdict": "SUPPORTED",
+          "reason": "법령에서 민감정보의 처리를 요구하거나 허용하는 경우라는 내용이 제23조 1항 2호에 그대로 나타나 있다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 974,
+          "output_tokens": 45
+        },
+        {
+          "claim_id": "Q2-c3",
+          "verdict": "SUPPORTED",
+          "reason": "이 두 가지 경우에 해당하는 경우 민감정보를 처리할 수 있습니다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 976,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q3-c1",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1487,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q3-c2",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1487,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q3-c3",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1509,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q3-c4",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1532,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q3-c5",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1505,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q3-c6",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1494,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q3-c7",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1488,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q3-c8",
+          "verdict": "NOT_SUPPORTED",
+          "reason": "주장이 불완전하여 내용을 판별할 수 없다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1478,
+          "output_tokens": 26
+        },
+        {
+          "claim_id": "Q4-c0",
+          "verdict": "SUPPORTED",
+          "reason": "보유기간의 경과 등 그 개인정보가 불필요하게 되었을 때에는 지체 없이 그 개인정보를 파기하여야 한다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 956,
+          "output_tokens": 42
+        },
+        {
+          "claim_id": "Q4-c1",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 953,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q4-c2",
+          "verdict": "SUPPORTED",
+          "reason": "다만, 다른 법령에 따라 보존하여야 하는 경우에는 그러하지 아니하다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 954,
+          "output_tokens": 32
+        },
+        {
+          "claim_id": "Q4-c3",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 956,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q4-c4",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 976,
+          "output_tokens": 29
+        },
+        {
+          "claim_id": "Q5-c0",
+          "verdict": "SUPPORTED",
+          "reason": "정보주체는 개인정보처리자가 처리하는 자신의 개인정보에 대한 열람을 해당 개인정보처리자에게 요구할 수 있다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1040,
+          "output_tokens": 40
+        },
+        {
+          "claim_id": "Q5-c1",
+          "verdict": "SUPPORTED",
+          "reason": "주장의 내용이 넘겨준 조문 원문에서 그대로 따라 나온다.",
+          "response_model": "gpt-4o-mini-2024-07-18",
+          "input_tokens": 1040,
+          "output_tokens": 29
+        }
+      ],
+      "input_tokens_total": 33378,
+      "output_tokens_total": 799
+    }
+  ]
+}

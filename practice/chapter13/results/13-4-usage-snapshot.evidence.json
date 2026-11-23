@@ -1,0 +1,14 @@
+{
+  "file": "13-4-usage-snapshot.py",
+  "chapter_relpath": "practice/chapter13/code/13-4-usage-snapshot.py",
+  "started_at": "2026-11-23T18:11:46.243813+09:00",
+  "duration_sec": 37.26,
+  "exit_code": 0,
+  "timed_out": false,
+  "success": true,
+  "python_version": "3.14.6",
+  "platform": "macOS-14.3.1-arm64-arm-64bit-Mach-O",
+  "source_sha256": "78fc2c7a25a954492fcd82ef974e139eebbee46b80f1eab4b88d4b9c6583c664",
+  "output_sha256": "10f18bbdc26eb0bd394aa0a5b45ba5df48a6c662e9760e170a4a79d0a56cbc4c",
+  "output_log": "practice/chapter13/results/13-4-usage-snapshot.log"
+}

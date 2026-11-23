@@ -1,0 +1,14 @@
+{
+  "file": "13-6-judge-agreement.py",
+  "chapter_relpath": "practice/chapter13/code/13-6-judge-agreement.py",
+  "started_at": "2026-11-23T18:14:50.396827+09:00",
+  "duration_sec": 0.02,
+  "exit_code": 0,
+  "timed_out": false,
+  "success": true,
+  "python_version": "3.14.6",
+  "platform": "macOS-14.3.1-arm64-arm-64bit-Mach-O",
+  "source_sha256": "3225bc2e343810c8198f3fa632eaf0bb48e3f9f82b13a3287c03681f8510075e",
+  "output_sha256": "e80931ff0d1c05c52d5cf31e7ca2c97f607cd46be7523f84813ef1fb108a7578",
+  "output_log": "practice/chapter13/results/13-6-judge-agreement.log"
+}

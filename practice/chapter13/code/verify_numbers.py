@@ -21,6 +21,7 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent.parent
 REPORT = BASE / "data" / "output" / "ch13_llmops_report.json"
 OUTPUT_CHECK = BASE / "data" / "output" / "ch13_output_check.json"
+AGREEMENT = BASE / "data" / "output" / "ch13_judge_agreement.json"
 DOCS = BASE.parent.parent / "lecture" / "docs" / "chapter15.md"
 
 
@@ -67,6 +68,12 @@ def main() -> int:
         ("출력 검증 FLAG 답변", clova["answer_verdicts"].get("FLAG"), "2"),
         ("출력 검증 PASS 답변", clova["answer_verdicts"].get("PASS"), "3"),
         ("출력 검증 REFUSAL 답변", clova["answer_verdicts"].get("REFUSAL"), "3"),
+    ]
+    # 일치도(13-6) — 커밋된 채점 결과·초안 라벨에서 결정적으로 나온 값
+    ag = json.loads(AGREEMENT.read_text("utf-8"))["raters"]
+    checks += [
+        ("규칙 검사 카파", ag["규칙 검사(13-3)"]["cohen_kappa"], "-0.074"),
+        ("LLM 채점 카파", ag["LLM 채점 gpt-5.2-2025-12-11"]["cohen_kappa"], "0.233"),
     ]
 
     failures = []

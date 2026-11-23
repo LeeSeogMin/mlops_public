@@ -1,14 +1,14 @@
 {
   "file": "verify_numbers.py",
   "chapter_relpath": "practice/chapter13/code/verify_numbers.py",
-  "started_at": "2026-11-23T17:56:19.186297+09:00",
+  "started_at": "2026-11-23T18:16:15.095500+09:00",
   "duration_sec": 0.02,
   "exit_code": 0,
   "timed_out": false,
   "success": true,
   "python_version": "3.14.6",
   "platform": "macOS-14.3.1-arm64-arm-64bit-Mach-O",
-  "source_sha256": "5f302ff8af629d8ebf7f5d28b88706884af533ef130185593256aead23e9b87f",
-  "output_sha256": "1876bf2675419d4c676cc1403cc7dd269aaa681344d29cc0208ac6c314eb755b",
+  "source_sha256": "32bd09bd94e9b82d159616df23a652f1158a88f4c63afe471a5ac02275a7ab2f",
+  "output_sha256": "9883b620495b00db23ea920f01185caea33d7e6bf53373bad624b2c402927efc",
   "output_log": "practice/chapter13/results/verify_numbers.log"
 }

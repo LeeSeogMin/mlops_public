@@ -1,0 +1,26 @@
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 13-4-usage-snapshot.py
+
+=== STDOUT ===
+=== NAVER CLOVA Studio (HCX-DASH-002, temp=0, max_tokens=256) ===
+  Q1 입력 1306 출력 245 종료 stop 출력검증 PASS
+  Q2 입력 735 출력 110 종료 stop 출력검증 PASS
+  Q3 입력 1166 출력 256 종료 length 출력검증 FLAG
+  Q4 입력 731 출력 112 종료 stop 출력검증 FLAG
+  Q5 입력 771 출력 54 종료 stop 출력검증 PASS
+  Q9 입력 1029 출력 10 종료 stop 출력검증 REFUSAL
+  Q10 입력 780 출력 10 종료 stop 출력검증 REFUSAL
+  Q6 입력 134 출력 44 종료 stop 출력검증 REFUSAL
+  합계 입력 6652 / 출력 841 토큰, 비용 단가 미확인
+=== OpenAI (gpt-4o-mini, temp=0, max_tokens=256) ===
+  Q1 입력 1595 출력 222 종료 stop 출력검증 PASS
+  Q2 입력 909 출력 85 종료 stop 출력검증 PASS
+  Q3 입력 1431 출력 254 종료 stop 출력검증 PASS
+  Q4 입력 908 출력 70 종료 stop 출력검증 PASS
+  Q5 입력 969 출력 58 종료 stop 출력검증 PASS
+  Q9 입력 1249 출력 127 종료 stop 출력검증 FLAG
+  Q10 입력 978 출력 114 종료 stop 출력검증 PASS
+  Q6 입력 174 출력 13 종료 stop 출력검증 REFUSAL
+  합계 입력 8213 / 출력 943 토큰, 비용 $0.001798
+저장: data/output/ch13_llm_snapshot_usage.json
+
+=== STDERR ===

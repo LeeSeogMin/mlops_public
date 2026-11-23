@@ -1,0 +1,434 @@
+{
+  "kind": "비결정 스냅샷(재현 게이트 밖) — 토큰 사용량 기록",
+  "convention": "OpenTelemetry semantic-conventions-genai v0.1.0 (status: Development)",
+  "active_prompt_hash8": "f99c1b55",
+  "providers": [
+    {
+      "provider": "NAVER CLOVA Studio",
+      "model": "HCX-DASH-002",
+      "calls": [
+        {
+          "qid": "Q1",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art15",
+            "pipa-art18"
+          ],
+          "answer": "개인정보처리자가 정보주체의 동의 없이 개인정보를 수집·이용할 수 있는 경우는 다음과 같습니다.\n1. 법률에 특별한 규정이 있거나 법령상 의무를 준수하기 위하여 불가피한 경우 (제15조 2호)\n2. 공공기관이 법령 등에서 정하는 소관 업무의 수행을 위하여 불가피한 경우 (제15조 3호)\n3. 정보주체와 체결한 계약을 이행하거나 계약을 체결하는 과정에서 정보주체의 요청에 따른 조치를 이행하기 위하여 필요한 경우 (제15조 4호)\n4. 명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을 위하여 필요하다고 인정되는 경우 (제15조 5호)\n5. 개인정보처리자의 정당한 이익을 달성하기 위하여 필요한 경우로서 명백하게 정보주체의 권리보다 우선하는 경우 (제15조 6호)\n6. 공중위생 등 공공의 안전과 안녕을 위하여 긴급히 필요한 경우 (제15조 7호)\n\n이러한 경우에도 개인정보처리자는 대통령령으로 정하는 바에 따라 정보주체의 동의 없이 개인정보를 이용할 수 있습니다.(제15조 3항)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "HCX-DASH-002",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 1306,
+            "gen_ai.usage.output_tokens": 245
+          },
+          "output_check": "PASS",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q2",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art23",
+            "pipa-art3"
+          ],
+          "answer": "민감정보를 처리할 수 있는 예외 조건은 다음과 같습니다.\n\n1. 정보주체에게 제15조제2항 각 호 또는 제17조제2항 각 호의 사항을 알리고 다른 개인정보의 처리에 대한 동의와 별도로 동의를 받은 경우 (제23조 1항 1호)\n2. 법령에서 민감정보의 처리를 요구하거나 허용하는 경우 (제23조 1항 2호)\n\n이 두 가지 경우에 해당하는 경우 민감정보를 처리할 수 있습니다. (관련 조문 번호: 제23조 1항)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "HCX-DASH-002",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 735,
+            "gen_ai.usage.output_tokens": 110
+          },
+          "output_check": "PASS",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q3",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art18",
+            "pipa-art3"
+          ],
+          "answer": "개인정보를 목적 외 용도로 제3자에게 제공할 수 있는 경우는 다음과 같습니다:\n\n1. 정보주체로부터 별도의 동의를 받은 경우 (제18조 2항 1호)\n2. 다른 법률에 특별한 규정이 있는 경우 (제18조 2항 2호)\n3. 명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을 위하여 필요하다고 인정되는 경우 (제18조 2항 3호)\n4. 개인정보를 목적 외의 용도로 이용하거나 이를 제3자에게 제공하지 아니하면 다른 법률에서 정하는 소관 업무를 수행할 수 없는 경우로서 보호위원회의 심의·의결을 거친 경우 (제18조 2항 5호, 공공기관의 경우로 한정)\n5. 조약, 그 밖의 국제협정의 이행을 위하여 외국정부 또는 국제기구에 제공하기 위하여 필요한 경우 (제18조 2항 6호)\n6. 범죄의 수사와 공소의 제기 및 유지를 위하여 필요한 경우 (제18조 2항 7호)\n7. 법원의 재판업무 수행을 위하여 필요한 경우 (제18조 2항 8호)\n8. 형(刑) 및 감호, 보호처분의 집",
+          "finish_reason": "length",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "HCX-DASH-002",
+            "gen_ai.response.finish_reasons": [
+              "length"
+            ],
+            "gen_ai.usage.input_tokens": 1166,
+            "gen_ai.usage.output_tokens": 256
+          },
+          "output_check": "FLAG",
+          "flag_reasons": [
+            "TRUNCATED"
+          ]
+        },
+        {
+          "qid": "Q4",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art21",
+            "pipa-art15"
+          ],
+          "answer": "보유기간이 지나 불필요해진 개인정보는 지체 없이 **파기**하여야 합니다. 이는 개인정보 보호법 제21조에 명시되어 있습니다.(제21조 ①) 다만, 다른 법령에 따라 보존해야 하는 예외적인 경우가 있을 수 있습니다. 이 경우, 해당 정보를 다른 개인정보와 분리하여 보관해야 합니다.(제21조 ③) 또한, 파기는 복구 또는 재생이 불가능하도록 해야 하며, 이에 대한 구체적인 방법은 대통령령으로 정해져 있습니다.(제21조 ②, ④)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "HCX-DASH-002",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 731,
+            "gen_ai.usage.output_tokens": 112
+          },
+          "output_check": "FLAG",
+          "flag_reasons": [
+            "주장 1건 근거 미확인"
+          ]
+        },
+        {
+          "qid": "Q5",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art35",
+            "pipa-art3"
+          ],
+          "answer": "네, 정보주체는 개인정보처리자가 처리하는 자신의 개인정보에 대해 열람을 요구할 수 있습니다.(제35조 1항) 또한 공공기관에 직접 열람을 요구하거나 보호위원회를 통해 열람을 요구할 수도 있습니다.(제35조 2항)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "HCX-DASH-002",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 771,
+            "gen_ai.usage.output_tokens": 54
+          },
+          "output_check": "PASS",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q9",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art21",
+            "pipa-art18"
+          ],
+          "answer": "제공된 근거로는 답변할 수 없습니다.",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "HCX-DASH-002",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 1029,
+            "gen_ai.usage.output_tokens": 10
+          },
+          "output_check": "REFUSAL",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q10",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art35",
+            "pipa-art3"
+          ],
+          "answer": "제공된 근거로는 답변할 수 없습니다.",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "HCX-DASH-002",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 780,
+            "gen_ai.usage.output_tokens": 10
+          },
+          "output_check": "REFUSAL",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q6",
+          "decision": "BLOCKED_INSUFFICIENT_GROUNDING",
+          "provided_sources": [],
+          "answer": "제공된 근거 문서에는 오늘 서울의 미세먼지 경보 발령 기준과 예상 농도에 대한 정보가 포함되어 있지 않습니다. 따라서 이에 대해 답변할 수 없습니다.  (관련 법령 및 규정 확인 필요)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "naver.clova_studio",
+            "gen_ai.request.model": "HCX-DASH-002",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "HCX-DASH-002",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 134,
+            "gen_ai.usage.output_tokens": 44
+          },
+          "output_check": "REFUSAL",
+          "flag_reasons": []
+        }
+      ],
+      "succeeded": 8,
+      "failed": 0,
+      "input_tokens_total": 6652,
+      "output_tokens_total": 841,
+      "price_per_1m_usd": null,
+      "cost_usd": null
+    },
+    {
+      "provider": "OpenAI",
+      "model": "gpt-4o-mini",
+      "calls": [
+        {
+          "qid": "Q1",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art15",
+            "pipa-art18"
+          ],
+          "answer": "개인정보처리자가 정보주체의 동의 없이 개인정보를 수집·이용할 수 있는 경우는 다음과 같습니다:\n\n1. 법률에 특별한 규정이 있거나 법령상 의무를 준수하기 위하여 불가피한 경우\n2. 공공기관이 법령 등에서 정하는 소관 업무의 수행을 위하여 불가피한 경우\n3. 정보주체와 체결한 계약을 이행하거나 계약을 체결하는 과정에서 정보주체의 요청에 따른 조치를 이행하기 위하여 필요한 경우\n4. 명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을 위하여 필요하다고 인정되는 경우\n5. 개인정보처리자의 정당한 이익을 달성하기 위하여 필요한 경우로서 명백하게 정보주체의 권리보다 우선하는 경우\n6. 공중위생 등 공공의 안전과 안녕을 위하여 긴급히 필요한 경우\n\n(제15조)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 1595,
+            "gen_ai.usage.output_tokens": 222
+          },
+          "output_check": "PASS",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q2",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art23",
+            "pipa-art3"
+          ],
+          "answer": "민감정보를 처리할 수 있는 예외 조건은 다음과 같습니다. \n\n1. 정보주체에게 제15조제2항 각 호 또는 제17조제2항 각 호의 사항을 알리고 다른 개인정보의 처리에 대한 동의와 별도로 동의를 받은 경우.\n2. 법령에서 민감정보의 처리를 요구하거나 허용하는 경우. \n\n(제23조)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 909,
+            "gen_ai.usage.output_tokens": 85
+          },
+          "output_check": "PASS",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q3",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art18",
+            "pipa-art3"
+          ],
+          "answer": "개인정보를 목적 외 용도로 제3자에게 제공할 수 있는 경우는 다음과 같습니다:\n\n1. 정보주체로부터 별도의 동의를 받은 경우\n2. 다른 법률에 특별한 규정이 있는 경우\n3. 명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을 위하여 필요하다고 인정되는 경우\n5. 개인정보를 목적 외의 용도로 이용하거나 이를 제3자에게 제공하지 아니하면 다른 법률에서 정하는 소관 업무를 수행할 수 없는 경우로서 보호위원회의 심의ㆍ의결을 거친 경우\n6. 조약, 그 밖의 국제협정의 이행을 위하여 외국정부 또는 국제기구에 제공하기 위하여 필요한 경우\n7. 범죄의 수사와 공소의 제기 및 유지를 위하여 필요한 경우\n8. 법원의 재판업무 수행을 위하여 필요한 경우\n9. 형 및 감호, 보호처분의 집행을 위하여 필요한 경우\n10. 공중위생 등 공공의 안전과 안녕을 위하여 긴급히 필요한 경우\n\n(근거: 제18조)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 1431,
+            "gen_ai.usage.output_tokens": 254
+          },
+          "output_check": "PASS",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q4",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art21",
+            "pipa-art15"
+          ],
+          "answer": "보유기간의 경과로 불필요해진 개인정보는 개인정보처리자가 지체 없이 파기해야 합니다. 단, 다른 법령에 따라 보존해야 하는 경우에는 그러하지 않습니다. 또한, 개인정보를 파기할 때에는 복구 또는 재생되지 않도록 조치해야 합니다. (제21조)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 908,
+            "gen_ai.usage.output_tokens": 70
+          },
+          "output_check": "PASS",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q5",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art35",
+            "pipa-art3"
+          ],
+          "answer": "정보주체는 개인정보처리자가 처리하는 자신의 개인정보에 대한 열람을 해당 개인정보처리자에게 요구할 수 있습니다. 또한, 공공기관에 요구할 경우에는 직접 열람을 요구하거나 보호위원회를 통해 요구할 수 있습니다. (제35조)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 969,
+            "gen_ai.usage.output_tokens": 58
+          },
+          "output_check": "PASS",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q9",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art21",
+            "pipa-art18"
+          ],
+          "answer": "민원인 홍길동의 개인정보 파기 요청은 개인정보처리자가 보유기간의 경과, 개인정보의 처리 목적 달성 등으로 인해 해당 개인정보가 불필요하게 되었을 때 지체 없이 파기해야 합니다. 다만, 다른 법령에 따라 보존해야 하는 경우에는 파기하지 않아야 하며, 파기 시에는 복구 또는 재생되지 않도록 조치해야 합니다. 따라서, 요청에 따라 개인정보를 파기할 수 있는지 여부를 확인한 후, 해당 조건에 맞으면 파기 절차를 진행해야 합니다. (제21조)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 1249,
+            "gen_ai.usage.output_tokens": 127
+          },
+          "output_check": "FLAG",
+          "flag_reasons": [
+            "주장 1건 근거 미확인"
+          ]
+        },
+        {
+          "qid": "Q10",
+          "decision": "ALLOW_GENERATION",
+          "provided_sources": [
+            "pipa-art35",
+            "pipa-art3"
+          ],
+          "answer": "정보주체는 개인정보처리자에게 자신의 개인정보에 대한 열람을 요구할 수 있으며, 공공기관에 요구할 경우 직접 열람을 요구하거나 보호위원회를 통해 요구할 수 있습니다. 개인정보처리자는 요구받은 열람을 대통령령으로 정하는 기간 내에 허용해야 하며, 정당한 사유가 있을 경우에는 그 사유를 알리고 열람을 연기할 수 있습니다. 열람 요구 및 절차에 관한 사항은 대통령령으로 정해집니다. (제35조)",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 978,
+            "gen_ai.usage.output_tokens": 114
+          },
+          "output_check": "PASS",
+          "flag_reasons": []
+        },
+        {
+          "qid": "Q6",
+          "decision": "BLOCKED_INSUFFICIENT_GROUNDING",
+          "provided_sources": [],
+          "answer": "제공된 근거로는 답변할 수 없습니다.",
+          "finish_reason": "stop",
+          "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.provider.name": "openai",
+            "gen_ai.request.model": "gpt-4o-mini",
+            "gen_ai.request.temperature": 0.0,
+            "gen_ai.request.max_tokens": 256,
+            "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
+            "gen_ai.response.finish_reasons": [
+              "stop"
+            ],
+            "gen_ai.usage.input_tokens": 174,
+            "gen_ai.usage.output_tokens": 13
+          },
+          "output_check": "REFUSAL",
+          "flag_reasons": []
+        }
+      ],
+      "succeeded": 8,
+      "failed": 0,
+      "input_tokens_total": 8213,
+      "output_tokens_total": 943,
+      "price_per_1m_usd": [
+        0.15,
+        0.6
+      ],
+      "cost_usd": 0.001798
+    }
+  ]
+}
